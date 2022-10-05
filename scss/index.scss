@@ -1,0 +1,15 @@
+/*cada que se cree un nuevo archivo scss se debe agregar aquí*/
+
+//colors
+@import "./colors.scss";
+
+/*pages*/
+//@import "../pages/index.scss";
+
+/*layouts*/
+@import "../layouts/MainLayout/MainLayout.scss";
+
+//components
+//@import "../components/Header/Menu/Menu.scss";
+@import "../components/Header/Header.scss";
+@import "../components/Header/Bar/Bar.scss";
