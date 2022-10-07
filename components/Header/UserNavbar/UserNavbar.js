@@ -1,10 +1,51 @@
-import React from 'react'
+import Link from "next/link";
 
-export default function UserNavbar() {
-  return (
-    <nav>
-      UserNavbar
+import React, { useState } from "react";
 
-    </nav>
-  )
+import NavItem from "../NavItem";
+
+
+const MENU_LIST = [
+  { text: "Notificaciónes", href: "/" },
+  { text: "Equipamiento", href: "/Equipamiento" },
+  { text: "Adeudo", href: "/Adeudo" },
+];
+
+  export default function Navbar () {
+    const [navActive, setNavActive] = useState(null);
+    const [activeIdx, setActiveIdx] = useState(-1);
+    return (
+        
+    <header>
+      <nav className={`nav`}>
+        <Link href={"/"}>
+          <a>
+            <h1 className="logo">Electrónica 1</h1>
+          </a>
+        </Link>
+        <div
+          onClick={() => setNavActive(!navActive)}
+          className={`nav__menu-bar`}
+        >
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div className={`${navActive ? "active" : ""} nav__menu-list`}>
+          {MENU_LIST.map((menu, idx) => (
+            <div
+              onClick={() => {
+                setActiveIdx(idx);
+                setNavActive(false);
+              }}
+              key={menu.text}
+            >
+              <NavItem active={activeIdx === idx} {...menu} />
+            </div>
+          ))}
+        </div>
+      </nav>
+    </header>
+
+);
 }

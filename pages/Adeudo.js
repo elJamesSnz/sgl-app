@@ -5,7 +5,7 @@ export default function Home() {
     <div className="home">
       <MainLayout className="home">
       <br/>
-      Aqui va el formulario de Equipamiento 
+      Aqui va el formulario de Adeudo 
       </MainLayout>
     </div>
   );
