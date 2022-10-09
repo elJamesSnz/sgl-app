@@ -1,4 +1,9 @@
 @import "./index.scss";
-
 /*estilos globales*/
-
+body{
+    background-color: $background-light;
+    img{
+        width: 100%;
+        margin: 0 auto;
+    }
+}

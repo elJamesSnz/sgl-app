@@ -1,5 +1,14 @@
 .top-bar{
     background-color: #4C0027;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    align-items: center;
+}
+
+.TITLE{
+    text-align: center;
+    padding: 15px 7px;
 }
 
 .SGL{
@@ -8,10 +17,6 @@
 }
 
 .IPN{
-    background-color: #ff0000;
     text-align: right;
 }
 
-.TITLE{
-    text-align: center;
-}
