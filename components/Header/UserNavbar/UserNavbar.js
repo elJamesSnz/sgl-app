@@ -20,7 +20,7 @@ const MENU_LIST = [
       <nav className={`nav`}>
         <Link href={"/"}>
           <a>
-            <h1 className="logo">Electrónica I</h1>
+            <h1 className="lab">Electrónica I</h1>
           </a>
         </Link>
         <div

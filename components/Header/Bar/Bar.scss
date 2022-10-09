@@ -1,5 +1,5 @@
 .top-bar{
-    background-color: #4C0027;
+    background-color: $background-pallete-1;
     display: flex;
     justify-content: space-between;
     padding: 10px 5px;
@@ -12,7 +12,6 @@
 }
 
 .SGL{
-    background-color: #888888;
     text-align: left;
 }
 
