@@ -9,7 +9,6 @@ export default function RequestForm() {
         <Dimmer active>
         <Loader size='mini'>Loading</Loader>
         </Dimmer>
-
       </Segment>
     </div>
   )
