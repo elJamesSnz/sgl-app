@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import mypic from "../../../resources/ipnWhite.png";
+import IPN from "../../../resources/ipnWhite.png";
+import SGL from "../../../resources/SglWhite.png";
 
 export default function Bar() {
   return (
     <div className="top-bar">
       <div className="main_bar main-container">
-        <a className="SGL">LOGO SGL</a>
+        <LogoSGL />
         <a className="TITLE">
           Unidad Profesional Interdisciplinaria en Ingeniería y Tecnologías
           Avanzadas
@@ -21,10 +22,22 @@ function LogoIPN() {
   return (
     <Image
       className="IPN"
-      src={mypic}
+      src={IPN}
       alt="Picture of the author"
       width="50px"
       height="70px"
+    />
+  );
+}
+
+function LogoSGL() {
+  return (
+    <Image
+      className="SGL"
+      src={SGL}
+      alt="Picture of the author"
+      width="110px"
+      height="60px"
     />
   );
 }
