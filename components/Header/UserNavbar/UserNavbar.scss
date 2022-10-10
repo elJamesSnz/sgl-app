@@ -1,91 +1,149 @@
 * {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
-    font-family: 'Work Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+}
+
+.nav {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $background-pallete-2;
+}
+.nav__menu-bar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  cursor: pointer;
+}
+.nav__menu-bar div {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+}
+.nav__menu-list {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 60px;
+  width: 288px;
+  row-gap: 24px;
+  right: -288px;
+  padding: 10px 16px;
+  transition: all 0.2s;
+  min-height: calc(100vh - 60px);
+}
+.nav__menu-list.active {
+  right: 0;
+}
+.nav__link {
+  font-size: 16px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.lab {
+  font-size: 20px;
+}
+.nav__link:hover {
+  color: $hover-font-light;
+}
+
+.nav__link:hover {
+  color: $hover-font-light;
+}
+
+.center {
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .nav__menu-bar {
+    display: none;
   }
-  
-  nav{
-    display: flex;
-    padding: 5px;
-    justify-content: space-between;
+  .nav__menu-list {
+    position: unset;
+    flex-direction: row;
+    min-height: fit-content;
+    width: fit-content;
+    column-gap: 24px;
     align-items: center;
-    background-color:$background-pallete-2;
   }
-  .nav__menu-bar{
-    display: flex;
-    flex-direction: column;
-    row-gap: 6px;
-    cursor: pointer;
-  }
-  .nav__menu-bar div{
-    width: 40px;
-    height: 4px;
-    border-radius: 2px;
-  }
-  .nav__menu-list{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 60px;
-    width: 288px;
-    row-gap: 24px;
-    right: -288px;
-    padding: 10px 16px;
-    transition: all 0.2s;
-    min-height: calc(100vh - 60px);
-  }
-  .nav__menu-list.active{
-    right: 0;
-  }
-  .nav__link{
-    font-size: 16px; 
-    position: relative;
-    transition: all 0.2s;
+  .nav__link::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: -16px;
+    left: 0;
+    background-color: $hover-font-light;
+    transition: all 0.1s;
   }
 
-  .lab{
-    font-size: 20px;
+  .nav__link:hover:before {
+    width: 100%;
   }
-  .nav__link:hover{
-    color: $hover-font-light;
-   }
-   
-  .nav__link:hover{
-   color: $hover-font-light;
+}
+
+.icon {
+  margin-right: 10px !important;
+}
+
+.menu {
+  background-color: $background-pallete-2 !important;
+  border-radius: 0;
+
+  .ui.grid {
+    margin: 0;
   }
-  
-  .center{
-    min-height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+  .ui.menu {
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+    height: 100%;
+    background: transparent !important;
+
+    .icon {
+      margin-right: 10px !important;
+      color: $background-light;
+    }
+
+    .item {
+      color: $background-light;
+      border-radius: 0 !important;
+
+      &:hover {
+        color: $background-black;
+        background-color: $background-pallete-2;
+
+        &before {
+          background-color: $background-pallete-2;
+        }
+      }
+
+      &.m-0 i {
+        margin: 0 !important;
+      }
+    }
   }
-  @media screen and (min-width: 768px) {
-    .nav__menu-bar{
-      display: none;
-    }
-    .nav__menu-list{
-      position: unset;
-      flex-direction: row;
-      min-height: fit-content;
-      width: fit-content;
-      column-gap: 24px;
-      align-items: center;
-    }
-    .nav__link::before{
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 3px;
-      bottom: -16px;
-      left: 0;
-      background-color: $hover-font-light;
-      transition: all 0.1s;
-    }
-    
-    .nav__link:hover:before{
-     width: 100%;
+
+  .nav__options {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end;
+    padding: 0.5rem 0rem !important;
+    .ui.button {
+      background-color: transparent;
+      color: $background-light;
     }
   }
+}

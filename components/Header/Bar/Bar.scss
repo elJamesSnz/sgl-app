@@ -1,21 +1,23 @@
-.top-bar{
-    background-color: $background-pallete-1;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 5px;
-    align-items: center;
+.top-bar {
+  background-color: $background-pallete-1;
 }
 
-.TITLE{
-    text-align: center;
-    padding: 15px 7px;
+.TITLE {
+  text-align: center;
+  padding: 1.5rem 0.7rem;
 }
 
-.SGL{
-    text-align: left;
+.SGL {
+  text-align: left;
 }
 
-.IPN{
-    text-align: right;
+.IPN {
+  text-align: right;
 }
 
+.main_bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+  align-items: center;
+}

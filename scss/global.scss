@@ -1,9 +1,30 @@
 @import "./index.scss";
 /*estilos globales*/
-body{
-    background-color: $background-light;
-    img{
-        width: 100%;
-        margin: 0 auto;
-    }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /** Reset para REMS - 62.5% = 10px de 16px **/
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  background-color: $background-light;
+  font-family: "Lato", sans-serif;
+  font-size: 1.2rem !important;
+  line-height: 2;
+}
+
+/** Globales **/
+img {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.main-container {
+  width: 95% !important;
+  max-width: 100rem !important; /** = 1200px; **/
+  margin: 0 auto !important;
 }

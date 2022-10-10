@@ -1,0 +1,25 @@
+.main-modal {
+  .header {
+    background-color: $background-black !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  span,
+  i {
+    color: $hover-font-light;
+  }
+
+  i {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 25px;
+    margin: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

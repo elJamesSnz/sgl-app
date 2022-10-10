@@ -9,12 +9,12 @@ export default function MainLayout(props) {
   return (
     <Container
       fluid
-      className={classNames("main-layout", {
+      className={classNames("main-layout ", {
         [className]: className,
       })}
     >
       <Header />
-      <Body/>
+      <Body />
       <Container className="content">{children}</Container>
     </Container>
   );
