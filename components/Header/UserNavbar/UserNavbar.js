@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, Icon, Container, Button } from "semantic-ui-react";
 //constantes
 import MENU_LIST from "../../../utils/constants";
@@ -8,6 +8,7 @@ import NavItem from "../NavItem";
 import MainModal from "../../Modal/MainModal";
 import Auth from "../../Auth";
 import useAuth from "../../../hooks/useAuth";
+import { getMeApi } from "../../../api/user";
 
 export default function Navbar() {
   const [navActive, setNavActive] = useState(null);
@@ -16,6 +17,14 @@ export default function Navbar() {
   const [titleModel, setTitleModel] = useState("Iniciar sesión");
   const [user, setUser] = useState(undefined);
   const { auth, logout } = useAuth();
+
+  useEffect(() => {
+    (async () => {
+      //función asíncrona que se autoejecuta onload
+      const response = await getMeApi(logout);
+      console.log(1, response);
+    })();
+  }, []);
 
   const onShowModal = () => {
     setShowModal(true);

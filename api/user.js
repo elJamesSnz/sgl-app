@@ -1,4 +1,6 @@
 import { URL } from "../utils/constants";
+import { authFetch } from "../utils/fetch";
+
 //import axios from "axios";
 export async function loginApi(formData) {
   try {
@@ -21,9 +23,9 @@ export async function loginApi(formData) {
   }
 }
 
-export async function getMeApi(logout) {
+export async function getMeApi(id, logout) {
   try {
-    const url = `${URL}/login/getMe`;
+    const url = `${URL}/api/users/getMe`;
     const result = await authFetch(url, null, logout);
     return result ? result : null;
   } catch (error) {

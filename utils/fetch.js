@@ -1,4 +1,4 @@
-import { getToken } from "../api/token";
+import { getToken, hasExpiredToken } from "../api/token";
 
 export async function authFetch(url, params, logout) {
   const token = getToken();
@@ -10,22 +10,24 @@ export async function authFetch(url, params, logout) {
     if (hasExpiredToken(token)) {
       //token expirado
       logout();
-    } else {
-      const paramsTemp = {
-        ...params,
-        headers: {
-          ...params?.headers,
-          Authorization: `Bearer ${token}`,
-        },
-      };
+    }
 
-      try {
-        const response = await fetch(url, paramsTemp);
-        const result = await response.json();
-        return result;
-      } catch (error) {
-        return null;
-      }
+    const paramsTemp = {
+      ...params,
+      headers: {
+        ...params?.headers,
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log(paramsTemp);
+    try {
+      const response = await fetch(url, paramsTemp);
+      console.log(response);
+      const result = await response.json();
+
+      return result;
+    } catch (error) {
+      return console.log(error);
     }
   }
 }

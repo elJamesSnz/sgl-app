@@ -1,12 +1,13 @@
 //{}
 import jwtDecode from "jwt-decode";
 import { TOKEN } from "../utils/constants";
+
 export function setToken(token) {
   localStorage.setItem(TOKEN, token);
 }
 
 export function getToken() {
-  localStorage.getItem(TOKEN);
+  return localStorage.getItem(TOKEN);
 }
 
 export function removeToken() {
