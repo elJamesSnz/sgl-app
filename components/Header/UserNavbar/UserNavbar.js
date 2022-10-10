@@ -32,6 +32,7 @@ export default function Navbar() {
               <a>E</a>
               <Link href={"/Equipamiento"}>Equipamiento</Link>
               <a>Adeudo</a>
+              <Link href={"/Adeudo"}>Adeudo</Link>
             </div>
           ) : (
             <NavBarOptions

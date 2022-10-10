@@ -1,47 +1,66 @@
 import React from "react";
-import { Button, Form, Segment,Dropdown,Input} from 'semantic-ui-react'
+import { Button, Form, Header, Select, Icon } from "semantic-ui-react";
+const estado = [
+  { key: "Funcional", text: "Funcional", value: "Funcional" },
+  { key: "No Funcional", text: "No Funcional", value: "No Funcional" },
+  {
+    key: "Funcional con fallos",
+    text: "Funcional con fallos",
+    value: "Funcional con fallos",
+  },
+];
 
-export default function CaptureForm(){
-    const options = [
-      { key: 'Funcional', text: 'Funcional', value: 'Funcional' },
-      { key: 'No Funcional', text: 'No Funcional', value: 'No Funcional' },
-    ]
-    return(
-      <div>
-      <Segment inverted>
-      
-    </Segment>
+export default function CaptureForm() {
+  return (
+    <div>
+      <FormCapturaEquipos />
     </div>
-    );
-  }
+  );
+}
 
-  function FormCapturaEquipos(props){
-    return (
-      <>
+function FormCapturaEquipos(props) {
+  return (
+    <>
       <Form inverted>
-        <Form.Group widths='equal'>
+        <Form.Group widths="equal">
           <Form.Field required>
-          <Form.Input fluid label='Nombre' placeholder='Nombre' />
-          <Form.TextArea label='Descripción' placeholder='Descripción' />
-          <Form.Input fluid label='Código de barras' placeholder='Código de barras' />
-          <Form.Input fluid label='Modelo' placeholder='Modelo'/>
-          <Form.Input fluid label='Año' placeholder='Año'/>
-          <Form.Input fluid label='Manual de Usuario' placeholder='Año'/>
-          <Input
-            label={<Dropdown defaultValue='Funcional' options={options} />}
-            labelPosition='right'
-            placeholder='Find domain'
-          />
-          //Condicional If No Funcional
-          <Form.Input fluid label='Descripcion Fallo' placeholder='Descripcion Fallo'/>
-
+            <Form.Input fluid label="Nombre" placeholder="Nombre" />
+            <Form.TextArea label="Descripción" placeholder="Descripción" />
+            <Form.Input
+              fluid
+              label="Código de barras"
+              placeholder="Código de barras"
+            />
+            <Form.Input fluid label="Modelo" placeholder="Modelo" />
+            <Form.Input fluid label="Año" placeholder="Año" />
+            //Condicion Si tiene Manual ingresa el name
+            <Form.Checkbox fluid label="Manual de Usuario" />
+            <Form.Input
+              fluid
+              label="Nombre Manual de Usuario"
+              placeholder="Manual de Usuario"
+            />
+            //Condicional If No Funcional
+            <Form.Select
+              fluid
+              label="Estado del equipo"
+              options={estado}
+              placeholder="Estado del equipo"
+            />
+            <Form.Input
+              fluid
+              label="Descripcion Fallo"
+              placeholder="Descripcion Fallo"
+            />
+            <Header icon>
+              <Icon name="png image outline" />
+              Foto del fallo
+            </Header>
+            <Button primary>Add Document</Button>
           </Form.Field>
         </Form.Group>
-      <Form.Checkbox label='I agree to the Terms and Conditions' />
-      <Button type='submit'>Submit</Button>
+        <Button type="submit">Submit</Button>
       </Form>
-      </>
-    );
-  }
-
-
+    </>
+  );
+}
