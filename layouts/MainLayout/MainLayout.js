@@ -14,7 +14,6 @@ export default function MainLayout(props) {
       })}
     >
       <Header />
-      <Body />
       <Container className="content">{children}</Container>
     </Container>
   );

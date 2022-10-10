@@ -10,15 +10,17 @@ const estado = [
   },
 ];
 
-export default function CaptureForm() {
+export default function CaptureForm(props) {
+  const { onShowForm } = props;
   return (
     <div>
-      <FormCapturaEquipos />
+      <FormCapturaEquipos onShowForm={onShowForm} />
     </div>
   );
 }
 
 function FormCapturaEquipos(props) {
+  const { onShowForm } = props;
   return (
     <>
       <Form inverted>
