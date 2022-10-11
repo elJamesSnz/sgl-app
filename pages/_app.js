@@ -57,9 +57,6 @@ function MyApp({ Component, pageProps }) {
 
   //aùn no se comprueba si user està logueado
   if (auth === undefined) return null;
-
-  console.log(authData.auth);
-
   return (
     //el AuthContext debe envolver a todo el aplicativo
     <AuthContext.Provider value={authData}>

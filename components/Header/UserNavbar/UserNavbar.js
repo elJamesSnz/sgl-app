@@ -21,7 +21,7 @@ export default function Navbar() {
   useEffect(() => {
     (async () => {
       //función asíncrona que se autoejecuta onload
-      const response = await getMeApi(logout);
+      const response = await getMeApi(auth?.idUser, logout);
       console.log(1, response);
     })();
   }, []);
