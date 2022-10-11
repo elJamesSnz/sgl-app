@@ -1,6 +1,9 @@
 import React from "react";
+import useAuth from "../hooks/useAuth";
 import MainLayout from "../layouts/MainLayout";
+
 export default function Account() {
+  const auth = useAuth();
   return (
     <>
       <MainLayout>

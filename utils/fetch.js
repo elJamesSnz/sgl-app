@@ -1,8 +1,7 @@
 import { getToken, hasExpiredToken } from "../api/token";
 
-export async function authFetch(url, params, logout) {
+export async function authFetch(url, params, logout, urlExtra) {
   const token = getToken();
-
   //usuario n ologueado
   if (!token) {
     logout();
@@ -11,23 +10,47 @@ export async function authFetch(url, params, logout) {
       //token expirado
       logout();
     }
-
     const paramsTemp = {
       ...params,
       headers: {
         ...params?.headers,
-        Authorization: `Bearer ${token}`,
+        Authorization: `JWT ${token}`,
       },
     };
-    console.log(paramsTemp);
+    if (urlExtra) {
+      url = url + urlExtra;
+    }
     try {
       const response = await fetch(url, paramsTemp);
-      console.log(response);
-      const result = await response.json();
-
+      const result = await JSON.stringify(response);
+      //console.log(result);
       return result;
     } catch (error) {
       return console.log(error);
     }
   }
 }
+
+/*
+if (urlExtra) {
+      url = url + urlExtra;
+    }
+
+    const headers = {
+      "Content-type": "application/json",
+      Authorization: token,
+    };
+
+    res = await http.get(url, headers);
+    data = JSON.stringify(res.body);
+    return data;
+
+    try {
+      const response = await fetch(url, paramsTemp);
+      const result = await JSON.stringify(response);
+      //console.log(result);
+      return result;
+    } catch (error) {
+      return console.log(error);
+    }
+*/

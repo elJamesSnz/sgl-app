@@ -23,10 +23,11 @@ export async function loginApi(formData) {
   }
 }
 
-export async function getMeApi(id, logout) {
+export async function getMeApi(idUser, logout) {
   try {
     const url = `${URL}/api/users/getMe`;
-    const result = await authFetch(url, null, logout);
+    const urlparams = `?idUser=${idUser}`;
+    const result = await authFetch(url, null, logout, urlparams);
     return result ? result : null;
   } catch (error) {
     return null;
