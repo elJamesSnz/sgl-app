@@ -23,7 +23,7 @@ function FormCapturaEquipos(props) {
   const { onShowForm } = props;
   return (
     <>
-      <Form inverted>
+      <Form inverted className="captureForm">
         <Form.Group widths="equal">
           <Form.Field required>
             <Form.Input fluid label="Nombre" placeholder="Nombre" />
