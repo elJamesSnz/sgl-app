@@ -9,6 +9,7 @@ import MainModal from "../../Modal/MainModal";
 import Auth from "../../Auth";
 import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
+import { authFetch } from "../../../utils/fetch";
 
 export default function Navbar() {
   const [navActive, setNavActive] = useState(null);
@@ -21,8 +22,10 @@ export default function Navbar() {
   useEffect(() => {
     (async () => {
       //función asíncrona que se autoejecuta onload
-      const response = await getMeApi(auth?.idUser, logout);
-      console.log(1, response);
+      const response = await authFetch(logout);
+      if(response){
+        
+      }
     })();
   }, []);
 

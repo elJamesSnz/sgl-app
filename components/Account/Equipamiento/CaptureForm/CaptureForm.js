@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import 'antd/dist/antd.css'; 
+import React, { useState } from "react";
+
 import {
   Form,
   Input,
@@ -13,7 +13,7 @@ import {
   Switch,
   Checkbox,
   Upload,
-} from 'antd';
+} from "antd";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -42,30 +42,34 @@ function FormCapturaEquipos(props) {
   //Validador para ocultar Forms
   const [componentDisabled, setComponentDisabled] = useState(false);
   const onFormLayoutChange = ({ disabled }) => {
-     setComponentDisabled(disabled);
+    setComponentDisabled(disabled);
   };
 
   return (
     <>
-      <Form className="captureForm"
+      <Form
+        className="captureForm"
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
       >
         <Form.Item label="Nombre">
-          <Input placeholder="Nombre del equipo"/>
+          <Input placeholder="Nombre del equipo" />
         </Form.Item>
         <Form.Item label="Descripción">
-          <TextArea rows={4} placeholder="Breve descripcion del la utilidad o propósito principal del equipo"/>
+          <TextArea
+            rows={4}
+            placeholder="Breve descripcion del la utilidad o propósito principal del equipo"
+          />
         </Form.Item>
         <Form.Item label="Código de barras">
-          <Input placeholder="Código de barras (PARTIDA)"/>
+          <Input placeholder="Código de barras (PARTIDA)" />
         </Form.Item>
         <Form.Item label="Modelo">
-          <Input placeholder="Modelo"/>
+          <Input placeholder="Modelo" />
         </Form.Item>
         <Form.Item label="Año">
-          <InputNumber placeholder="Año"/>
+          <InputNumber placeholder="Año" />
         </Form.Item>
 
         <Checkbox
@@ -75,14 +79,14 @@ function FormCapturaEquipos(props) {
           Tiene manual de usuario
         </Checkbox>
         <Form
-          labelCol={{span: 4}}
-          wrapperCol={{span: 14}}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
           layout="horizontal"
           onValuesChange={onFormLayoutChange}
           disabled={componentDisabled}
         >
           <Form.Item label="Manual de usuario">
-          <Input placeholder="Nombre del manual de usuairo"/>
+            <Input placeholder="Nombre del manual de usuairo" />
           </Form.Item>
         </Form>
 
@@ -93,9 +97,6 @@ function FormCapturaEquipos(props) {
             <Select.Option value="demo">Funcional con fallos</Select.Option>
           </Select>
         </Form.Item>
-        
-
-
 
         <Button type="submit">Submit</Button>
       </Form>

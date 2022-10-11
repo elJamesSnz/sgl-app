@@ -1,15 +1,21 @@
 import { getToken, hasExpiredToken } from "../api/token";
 
-export async function authFetch(url, params, logout, urlExtra) {
+//export async function authFetch(url, params, logout, urlExtra) {
+export function authFetch(logout) {
   const token = getToken();
   //usuario n ologueado
   if (!token) {
     logout();
+    return false;
   } else {
     if (hasExpiredToken(token)) {
       //token expirado
       logout();
+      return false;
+    } else {
+      return true;
     }
+    /*
     const paramsTemp = {
       ...params,
       headers: {
@@ -27,7 +33,8 @@ export async function authFetch(url, params, logout, urlExtra) {
       return result;
     } catch (error) {
       return console.log(error);
-    }
+    } 
+    */
   }
 }
 

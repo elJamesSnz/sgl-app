@@ -7,6 +7,7 @@ import { setToken, getToken, removeToken } from "../api/token";
 import "../styles/globals.css";
 import "../scss/global.scss";
 import "semantic-ui-css/semantic.min.css";
+import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   const [auth, setAuth] = useState(undefined);
