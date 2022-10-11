@@ -14,8 +14,9 @@ export default function SelectBar() {
     <>
       <div className="tabular">
         <div className="tabular__top">
-          <Menu attached="top" tabular>
+          <Menu attached="top" tabular >
             <Menu.Item
+              className="new_equipment"
               name="Nuevo Equipamiento"
               active={activeItem === "Nuevo Equipamiento"}
               onClick={onShowForm}

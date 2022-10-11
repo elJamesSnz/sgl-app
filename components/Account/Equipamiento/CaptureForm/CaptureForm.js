@@ -1,5 +1,23 @@
-import React from "react";
-import { Button, Form, Header, Select, Icon } from "semantic-ui-react";
+import React,{useState} from "react";
+import 'antd/dist/antd.css'; 
+import {
+  Form,
+  Input,
+  Button,
+  Radio,
+  Select,
+  Cascader,
+  DatePicker,
+  InputNumber,
+  TreeSelect,
+  Switch,
+  Checkbox,
+  Upload,
+} from 'antd';
+
+const { RangePicker } = DatePicker;
+const { TextArea } = Input;
+
 const estado = [
   { key: "Funcional", text: "Funcional", value: "Funcional" },
   { key: "No Funcional", text: "No Funcional", value: "No Funcional" },
@@ -21,46 +39,64 @@ export default function CaptureForm(props) {
 
 function FormCapturaEquipos(props) {
   const { onShowForm } = props;
+  //Validador para ocultar Forms
+  const [componentDisabled, setComponentDisabled] = useState(false);
+  const onFormLayoutChange = ({ disabled }) => {
+     setComponentDisabled(disabled);
+  };
+
   return (
     <>
-      <Form inverted className="captureForm">
-        <Form.Group widths="equal">
-          <Form.Field required>
-            <Form.Input fluid label="Nombre" placeholder="Nombre" />
-            <Form.TextArea label="Descripción" placeholder="Descripción" />
-            <Form.Input
-              fluid
-              label="Código de barras"
-              placeholder="Código de barras"
-            />
-            <Form.Input fluid label="Modelo" placeholder="Modelo" />
-            <Form.Input fluid label="Año" placeholder="Año" />
-            //Condicion Si tiene Manual ingresa el name
-            <Form.Checkbox fluid label="Manual de Usuario" />
-            <Form.Input
-              fluid
-              label="Nombre Manual de Usuario"
-              placeholder="Manual de Usuario"
-            />
-            //Condicional If No Funcional
-            <Form.Select
-              fluid
-              label="Estado del equipo"
-              options={estado}
-              placeholder="Estado del equipo"
-            />
-            <Form.Input
-              fluid
-              label="Descripcion Fallo"
-              placeholder="Descripcion Fallo"
-            />
-            <Header icon>
-              <Icon name="png image outline" />
-              Foto del fallo
-            </Header>
-            <Button primary>Add Document</Button>
-          </Form.Field>
-        </Form.Group>
+      <Form className="captureForm"
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 14 }}
+        layout="horizontal"
+      >
+        <Form.Item label="Nombre">
+          <Input placeholder="Nombre del equipo"/>
+        </Form.Item>
+        <Form.Item label="Descripción">
+          <TextArea rows={4} placeholder="Breve descripcion del la utilidad o propósito principal del equipo"/>
+        </Form.Item>
+        <Form.Item label="Código de barras">
+          <Input placeholder="Código de barras (PARTIDA)"/>
+        </Form.Item>
+        <Form.Item label="Modelo">
+          <Input placeholder="Modelo"/>
+        </Form.Item>
+        <Form.Item label="Año">
+          <InputNumber placeholder="Año"/>
+        </Form.Item>
+
+        <Checkbox
+          checked={componentDisabled}
+          onChange={(e) => setComponentDisabled(e.target.checked)}
+        >
+          Tiene manual de usuario
+        </Checkbox>
+        <Form
+          labelCol={{span: 4}}
+          wrapperCol={{span: 14}}
+          layout="horizontal"
+          onValuesChange={onFormLayoutChange}
+          disabled={componentDisabled}
+        >
+          <Form.Item label="Manual de usuario">
+          <Input placeholder="Nombre del manual de usuairo"/>
+          </Form.Item>
+        </Form>
+
+        <Form.Item label="Estado">
+          <Select>
+            <Select.Option value="demo">Funcional</Select.Option>
+            <Select.Option value="demo">No Funcional</Select.Option>
+            <Select.Option value="demo">Funcional con fallos</Select.Option>
+          </Select>
+        </Form.Item>
+        
+
+
+
         <Button type="submit">Submit</Button>
       </Form>
     </>
