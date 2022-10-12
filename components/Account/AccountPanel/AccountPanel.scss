@@ -1,14 +1,45 @@
+.MainPanel {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.panel {
+  display: flex !important;
+
+  flex-wrap: wrap;
+
+  &__left {
+    flex: 0 1 calc(10% - 1rem) !important;
+  }
+  &__principal {
+    flex: 0 0 calc(70% - 1rem) !important;
+  }
+  &__right {
+    flex: 0 0 calc(10% - 1rem) !important;
+  }
+}
+
+.panel__principal {
+  background-color: white;
+  margin: 0 auto !important;
+}
+
 .panel__left {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   &__labTab {
-    padding: 2rem 6rem;
-    border-style: dotted;
-    border-radius: 25%;
-    border-color: aqua;
+    display: inline-block;
+    width: 100%;
+    padding: 2rem 1rem;
     margin-bottom: 1rem;
+    margin: 0 auto;
+  }
+}
+
+.panel__left__labTab {
+  p {
+    font-size: 1.4rem;
   }
 }

@@ -11,9 +11,9 @@ export default function Account() {
   const [user, setUser] = useState([]);
   const router = useRouter();
 
-  if (auth.idUser === undefined) router.push("/");
-  if (auth.idUser === null) return null;
-  if (auth.idUser)
+  if (auth?.idUser === undefined) router.push("/");
+  if (auth?.idUser === null) return null;
+  if (auth?.idUser)
     return (
       <div className="acc-home">
         <UserLayout

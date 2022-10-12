@@ -7,12 +7,7 @@ export default function Panel(props) {
   const { idUser, logout } = props;
   const [user, setUser] = useState(undefined);
 
-  if (user === undefined)
-    return (
-      <>
-        <p>No se ha cargado al usuario</p>
-      </>
-    );
+  if (user === undefined) return <></>;
 
   return (
     <>

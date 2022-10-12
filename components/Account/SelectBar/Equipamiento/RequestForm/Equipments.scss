@@ -1,0 +1,11 @@
+.equipments {
+  margin-top: 1rem !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.equipments__card {
+  margin: 1rem auto !important;
+  width: 25rem;
+}

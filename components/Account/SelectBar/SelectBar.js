@@ -4,7 +4,8 @@ import CaptureForm from "./Equipamiento/CaptureForm";
 import RequestForm from "./Equipamiento/RequestForm";
 import classNames from "classnames";
 
-export default function SelectBar() {
+export default function SelectBar(props) {
+  const { equips } = props;
   const [activeItem, setActiveItem] = useState(false);
 
   const onShowForm = () => {
@@ -16,32 +17,52 @@ export default function SelectBar() {
     <>
       <Menu
         mode="horizontal"
-        defaultSelectedKeys={["Nuevo Equipamiento"]}
-        style={{ backgroundColor: "#dbdbdb" }}
+        defaultSelectedKeys={["Equipamientos"]}
+        style={{}}
       >
+        <Menu.Item
+          key="Consultar equipamiento"
+          name="Consultar equipamiento"
+          active={activeItem === "Equipamientos"}
+          disabled={activeItem}
+          onClick={onShowForm}
+        >
+          Equipamientos
+        </Menu.Item>
         <Menu.Item
           key="Nuevo Equipamiento"
           className="new_equipment"
           name="Nuevo Equipamiento"
           active={activeItem === "Nuevo Equipamiento"}
           onClick={onShowForm}
+          disabled={!activeItem}
         >
           Nuevo Equipamiento
         </Menu.Item>
+
         <Menu.Item
-          key="Consultar equipamiento"
-          name="Consultar equipamiento"
-          active={activeItem === "Consultar equipamiento"}
+          key="Nuevo Adeudo"
+          className="new_adeudo"
+          name="Nuevo Adeudo"
+          active={activeItem === "Nuevo Adeudo"}
           onClick={onShowForm}
         >
-          Consultar equipamiento
+          Nuevo Adeudo
+        </Menu.Item>
+        <Menu.Item
+          key="Consultar Adeudo"
+          name="Consultar Adeudo"
+          active={activeItem === "Consultar Adeudo"}
+          onClick={onShowForm}
+        >
+          Consultar Adeudo
         </Menu.Item>
       </Menu>
       <Content
         className="site-layout"
         style={{ padding: "0 50px", marginTop: 64 }}
       >
-        {activeItem ? <RequestForm /> : <CaptureForm />}
+        {activeItem ? <RequestForm equips={equips} /> : <CaptureForm />}
       </Content>
     </>
   );
