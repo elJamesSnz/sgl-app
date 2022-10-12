@@ -26,10 +26,17 @@ export async function loginApi(formData) {
 export async function getUserLabsApi(idUser) {
   try {
     const url = `${URL}/api/users/getMe?idUser=${idUser}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
 
-    //const urlparams = `?idUser=${idUser}`;
-    //const valid = await authFetch(url, null, logout, urlparams);
-
+export async function getItemsLabApi(idLab) {
+  try {
+    const url = `${URL}/api/users/getItemsLab?idLab=${idLab}`;
     const response = await fetch(url);
     const result = await response.json();
     return result;

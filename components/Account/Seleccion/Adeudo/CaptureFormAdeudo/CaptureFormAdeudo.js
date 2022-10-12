@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import { loginApi, resetPasswordApi } from "../../../../api/user";
+import { loginApi, resetPasswordApi } from "../../../../../api/user";
 import { useRouter } from "next/router";
 
 import {
@@ -16,7 +16,7 @@ import {
 import {  
   Input,
   Select,
-  InputNumber,
+  DatePicker,
   Checkbox,
   Upload,} from "antd";
 
@@ -62,102 +62,98 @@ function FormCapturaEquipos(props) {
     style={{padding:'15px'}}
     onSubmit={formik.handleSubmit}
     >
-    <Item>Nombre:</Item>  
+    <Item>Nombre del Alumno:</Item>  
       <Input 
           name="nombre"
           type="text"
-          placeholder="Nombre del equipo" 
+          placeholder="Nombre del Alumno" 
           onChange={formik.handleChange}
           error={formik.errors.nombre}
       />
 
-      <Item>Descripción:</Item> 
-          <TextArea 
-            name="descripcion"
+      <Item>Boleta:</Item> 
+          <Input 
+            name="boleta"
             type="text"
             rows={4}
-            placeholder="Breve descripcion del la utilidad o propósito principal del equipo"
+            placeholder="Boleta del alumno"
             onChange={formik.handleChange}
-            error={formik.errors.descripcion}
+            error={formik.errors.boleta}
           />    
 
-        <Item>Código de barras:</Item>
+        <Item>Carrera:</Item>
           <Input 
-          name="codigo"
+          name="carrera"
           type="text"
-          placeholder="Código de barras" 
+          placeholder="Carrera" 
           onChange={formik.handleChange}
-          error={formik.errors.codigo}
+          error={formik.errors.carrera}
           />
         
-        <Item>Modelo:</Item>
-          <Input 
-          name="modelo"
-          type="text"
-          placeholder="Modelo" 
+        <Item>Fecha de peticion y Fecha de entrega:</Item>
+        <DatePicker.RangePicker
+          style={{
+            width: '50%'
+          }}
+          name="fecha"
+          //type="text"
           onChange={formik.handleChange}
-          error={formik.errors.modelo}
+          error={formik.errors.fecha}
+        />
+
+        <Item>Laboratorio:</Item>
+          <Input 
+          name="lab"
+          type="text"
+          placeholder="Laboratorio" 
+          onChange={formik.handleChange}
+          error={formik.errors.lab}
           />
         
-        <Item>Año:</Item>  
+        <Item>Asignatura:</Item>  
           <Input 
-          name="ano"
+          name="asignatura"
           type="text"
-          placeholder="Año" 
+          placeholder="Asignatura" 
           onChange={formik.handleChange}
-          error={formik.errors.ano}
+          error={formik.errors.asignatura}
           />
 
-        <br></br> 
-        <Checkbox
-          checked={componentDisabled}
-          onChange={(e) => setComponentDisabled(e.target.checked)}
-          
-        >
-          No cuenta con manual de usuario
-        </Checkbox>
-
+        <Item>Profesor:</Item>
           <Input 
-          name="manual"
+          name="profesor"
           type="text"
-          placeholder="Nombre del manual de usuairo" 
+          placeholder="Profesor" 
+          onChange={formik.handleChange}
+          error={formik.errors.profesor}
+          />
+
+          <Item>Material o Equipo:</Item> 
+          <Input 
+          name="material"
+          type="text"
+          placeholder="Material o equipo adeudado" 
           onValuesChange={onFormLayoutChange}
           disabled={componentDisabled}
           onChange={formik.handleChange}
-          error={formik.errors.manual}
+          error={formik.errors.material}
           />
         
-        <Item>Estado:</Item> 
+        <Item>Estatus:</Item> 
         <Select
           //name="estado"
           //type="text"
-          defaultValue="Funcional"
+          defaultValue="Entregado"
           style={{
             width: 170,
           }}
           onChange={handleChange}
           //error={formik.errors.estado}
         >
-          <Option value="Funcional" >Funcional</Option>
-          <Option value="No Funcional">No Funcional</Option>
-          <Option value="Funcional con Fallo">Funcional con Fallo</Option>
+          <Option value="Entregado" >Entregado</Option>
+          <Option value="No Entregado">No Entregado</Option>
         </Select>
-              
-        <Item valuePropName="fileList">Evidencia:</Item>
-          <Upload action="/upload.do" listType="picture-card">
-            <div>
-              <PlusOutlined />
-              <div
-                style={{
-                  marginTop: 8,
-                }}
-              >
-                Subir imagen
-              </div>
-            </div>
-          </Upload>
-        
-
+          <br></br><br></br>
       <Button type="submit">Guardar</Button>
 
     </Form>
@@ -167,11 +163,13 @@ function FormCapturaEquipos(props) {
 function initualValues() {
   return {
     nombre: "",
-    descripcion: "",
-    codigo: "",
-    modelo:"",
-    ano:"",
-    manual:"",
+    boleta: "",
+    carrera: "",
+    fecha:"",
+    lab:"",
+    asignatura:"",
+    profesor:"",
+    material:"",
     estado:"",
   };
 }
@@ -179,11 +177,13 @@ function initualValues() {
 function validationSchema() {
   return {
     nombre: Yup.string(),
-    descripcion: Yup.string(),
-    codigo: Yup.string(),
-    modelo:Yup.string(),
-    ano:Yup.string(),
-    manual:Yup.string(),
+    boleta: Yup.string(),
+    carrera: Yup.string(),
+    fecha:Yup.string(),
+    lab:Yup.string(),
+    asignatura:Yup.string(),
+    profesor:Yup.string(),
+    material:Yup.string(),
     estado:Yup.string(),
   };
 }

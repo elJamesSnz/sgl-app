@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getUserLabsApi } from "../../../api/user";
 import { map, size } from "lodash";
 import { useRouter } from "next/router";
+import { Loader } from "semantic-ui-react";
 
 export default function AccountPanel(props) {
   const { auth, logout } = props;
@@ -22,9 +23,19 @@ export default function AccountPanel(props) {
     })();
   }, []);
 
-  if (!name || !labs) {
-    return null;
-  }
+  useEffect(() => {
+    (async () => {
+      if (auth.idUser) {
+        const res = await getUserLabsApi(auth.idUser, logout);
+
+        if (size(res.data.labs) >= 0) {
+          setLabs(res.data.labs || []);
+          setName(res.data.nombre);
+        }
+      }
+    })();
+  }, []);
+
 
   return (
     <>
