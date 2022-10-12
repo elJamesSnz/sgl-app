@@ -1,12 +1,12 @@
 import MainLayout from "../layouts/MainLayout";
-import CaptureFormAdeudo from "../components/Account/Adeudo/CaptureFormAdeudo/CaptureFormAdeudo";
+import SelectAdeudo from "../components/Account/Seleccion/SelectAdeudo";
 
 export default function Home() {
   return (
     <div className="home">
       <MainLayout className="home">
         <br />
-        <CaptureFormAdeudo></CaptureFormAdeudo>
+        <SelectAdeudo></SelectAdeudo>
       </MainLayout>
     </div>
   );

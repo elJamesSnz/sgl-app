@@ -1,0 +1,16 @@
+
+  .ant-layout-header {
+    background-color: $background-light;
+  }
+
+  .ant-menu-title-content {
+    color: black;
+  }
+
+  .ant-menu-title-content:hover {
+    color: $background-pallete-3;
+  }
+
+  .ant-menu-title-content::after{
+    color: $background-pallete-3;
+  }

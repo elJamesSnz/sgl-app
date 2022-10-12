@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Input, Menu, Segment } from "semantic-ui-react";
-import CaptureForm from "../CaptureForm";
-import RequestForm from "../RequestForm";
+import CaptureForm from "../Equipamiento/CaptureForm";
+import RequestForm from "../Equipamiento/RequestForm";
 
 export default function SelectBar() {
   const [activeItem, setActiveItem] = useState(false);

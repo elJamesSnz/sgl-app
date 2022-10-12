@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/MainLayout";
-import SelectBar from "../components/Account/Equipamiento/Seleccion/SelectBar";
+import SelectBar from "../components/Account/Seleccion";
 
 export default function Equipamiento() {
   //Aqui va el useState(false)

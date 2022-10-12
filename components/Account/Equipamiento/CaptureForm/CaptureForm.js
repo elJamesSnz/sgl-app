@@ -1,32 +1,18 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
+import 'antd/dist/antd.css';
+import { PlusOutlined } from '@ant-design/icons'; 
 
 import {
   Form,
   Input,
   Button,
-  Radio,
   Select,
-  Cascader,
-  DatePicker,
   InputNumber,
-  TreeSelect,
-  Switch,
   Checkbox,
   Upload,
 } from "antd";
 
-const { RangePicker } = DatePicker;
 const { TextArea } = Input;
-
-const estado = [
-  { key: "Funcional", text: "Funcional", value: "Funcional" },
-  { key: "No Funcional", text: "No Funcional", value: "No Funcional" },
-  {
-    key: "Funcional con fallos",
-    text: "Funcional con fallos",
-    value: "Funcional con fallos",
-  },
-];
 
 export default function CaptureForm(props) {
   const { onShowForm } = props;
@@ -43,6 +29,9 @@ function FormCapturaEquipos(props) {
   const [componentDisabled, setComponentDisabled] = useState(false);
   const onFormLayoutChange = ({ disabled }) => {
     setComponentDisabled(disabled);
+  };
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
   };
 
   return (
@@ -63,7 +52,7 @@ function FormCapturaEquipos(props) {
           />
         </Form.Item>
         <Form.Item label="Código de barras">
-          <Input placeholder="Código de barras (PARTIDA)" />
+          <Input placeholder="Código de barras" />
         </Form.Item>
         <Form.Item label="Modelo">
           <Input placeholder="Modelo" />
@@ -76,7 +65,7 @@ function FormCapturaEquipos(props) {
           checked={componentDisabled}
           onChange={(e) => setComponentDisabled(e.target.checked)}
         >
-          Tiene manual de usuario
+          No cuenta con manual de usuario
         </Checkbox>
         <Form
           labelCol={{ span: 4 }}
@@ -91,15 +80,39 @@ function FormCapturaEquipos(props) {
         </Form>
 
         <Form.Item label="Estado">
-          <Select>
-            <Select.Option value="demo">Funcional</Select.Option>
-            <Select.Option value="demo">No Funcional</Select.Option>
-            <Select.Option value="demo">Funcional con fallos</Select.Option>
-          </Select>
+        <Select
+          defaultValue="Funcional"
+          style={{
+            width: 170,
+          }}
+          onChange={handleChange}
+        >
+          <Option value="Funcional">Funcional</Option>
+          <Option value="No Funcional">No Funcional</Option>
+          <Option value="Funcional con Fallo">Funcional con Fallo</Option>
+        </Select>
         </Form.Item>
 
-        <Button type="submit">Submit</Button>
-      </Form>
+        <Form.Item label="Foto" valuePropName="fileList">
+          <Upload action="/upload.do" listType="picture-card">
+            <div>
+              <PlusOutlined />
+              <div
+                style={{
+                  marginTop: 8,
+                }}
+              >
+                Subir imagen
+              </div>
+            </div>
+          </Upload>
+        </Form.Item>
+
+
+        <Form.Item label="Guardar">
+          <Button>Guardar</Button>
+        </Form.Item>
+      </Form> 
     </>
   );
 }
