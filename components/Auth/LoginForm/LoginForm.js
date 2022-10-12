@@ -11,7 +11,7 @@ export default function LoginForm(props) {
   const { onCloseModal } = props;
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
-  //const router = useRouter();
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: initualValues(),
@@ -23,6 +23,7 @@ export default function LoginForm(props) {
       if (response?.data.session_token) {
         //toast.success("Inicio de sesión exitoso");
         login(response.data.session_token);
+        router.push("/panel");
         onCloseModal(true);
       } else {
         //toast.error("El email o la contraseña son incorrectos");

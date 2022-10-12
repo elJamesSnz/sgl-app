@@ -1,19 +1,30 @@
-import React from "react";
-import useAuth from "../hooks/useAuth";
+import React, { useState, useEffect } from "react";
 import { authFetch } from "../utils/fetch";
 import MainLayout from "../layouts/MainLayout";
+import { useRouter } from "next/router";
 
-export default function Account() {
-  const auth = useAuth();
+export default function Panel(props) {
+  const { idUser, logout } = props;
+  const [user, setUser] = useState(undefined);
+
+  if (user === undefined)
+    return (
+      <>
+        <p>No se ha cargado al usuario</p>
+      </>
+    );
+
   return (
     <>
-      <MainLayout>
+      {user ? (
         <div className="main-container panel seccion">
           <PanelLaboratorios />
           <PanelModulos />
           <PanelUsuario />
         </div>
-      </MainLayout>
+      ) : (
+        <>No hay usuario</>
+      )}
     </>
   );
 }

@@ -10,6 +10,7 @@ import Auth from "../../Auth";
 import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
 import { authFetch } from "../../../utils/fetch";
+import Panel from "../../../pages/panel";
 
 export default function Navbar() {
   const [navActive, setNavActive] = useState(null);
@@ -17,14 +18,13 @@ export default function Navbar() {
   const [showModal, setShowModal] = useState(false);
   const [titleModel, setTitleModel] = useState("Iniciar sesión");
   const [user, setUser] = useState(undefined);
-  const { auth, logout } = useAuth();
+  const { auth, logout, setReloadUser } = useAuth();
 
   useEffect(() => {
     (async () => {
       //función asíncrona que se autoejecuta onload
       const response = await authFetch(logout);
-      if(response){
-        
+      if (response) {
       }
     })();
   }, []);
@@ -39,7 +39,6 @@ export default function Navbar() {
       <div className="menu nav">
         <div className="nav__options main-container">
           {auth ? (
-            //<Button onClick={logout}>Salir</Button>
             <div>
               <a>E</a>
               <Link href={"/Equipamiento"}>Equipamiento</Link>
@@ -47,17 +46,20 @@ export default function Navbar() {
               <Link href={"/Adeudo"}>Adeudo</Link>
             </div>
           ) : (
-            <NavBarOptions
-              MENU_LIST={MENU_LIST}
-              navActive={navActive}
-              setNavActive={setNavActive}
-              activeIdx={activeIdx}
-              setActiveIdx={setActiveIdx}
-              onShowModal={onShowModal}
-              user={user}
-              logout={logout}
-              setShow={setShowModal}
-            />
+            <>
+              <NavBarOptions
+                MENU_LIST={MENU_LIST}
+                navActive={navActive}
+                setNavActive={setNavActive}
+                activeIdx={activeIdx}
+                setActiveIdx={setActiveIdx}
+                onShowModal={onShowModal}
+                user={user}
+                logout={logout}
+                setShow={setShowModal}
+              />
+              <Panel logout={logout} idUser={auth?.idUser} />
+            </>
           )}
         </div>
         <MainModal
