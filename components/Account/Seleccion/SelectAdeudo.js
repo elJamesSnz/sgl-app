@@ -13,7 +13,7 @@ export default function SelectBar() {
   const { Header, Content } = Layout;
   return (
   <Layout>
-    <Header style={{backgroundColor: "#790252", padding: '5px',marginTop: -27}}>
+    <Header style={{backgroundColor: "#790252", padding: '5px',marginTop: -26}}>
       <Menu mode="horizontal" defaultSelectedKeys={['Nuevo Equipamiento']} style={{backgroundColor: "#dbdbdb"}}>
         <Menu.Item 
           key="Nuevo Adeudo"

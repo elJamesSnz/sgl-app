@@ -40,10 +40,12 @@ export default function Navbar() {
         <div className="nav__options main-container">
           {auth ? (
             <div>
-              <a>E</a>
-              <Link href={"/Equipamiento"}>Equipamiento</Link>
-              <a>Adeudo</a>
-              <Link href={"/Adeudo"}>Adeudo</Link>
+            <div className="e">
+              <Link href={"/Equipamiento"} > Equipamiento  </Link>
+            </div>
+            <div className="a">
+              <Link href={"/Adeudo"}> Adeudo </Link>
+            </div>
             </div>
           ) : (
             <>
