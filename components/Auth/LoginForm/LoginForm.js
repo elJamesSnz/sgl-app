@@ -74,3 +74,4 @@ function validationSchema() {
     password: Yup.string().required(true),
   };
 }
+
