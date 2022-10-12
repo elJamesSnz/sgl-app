@@ -9,15 +9,18 @@
 
 ///*layouts*/
 @import "../layouts/MainLayout/MainLayout.scss";
+@import "../layouts/UserLayout/UserLayout.scss";
 
 //components
 //@import "../components/Header/Menu/Menu.scss";
 @import "../components/Header/Header.scss";
+@import "../components/Account/AccountHeader/AccountHeader.scss";
 @import "../components/Header/Bar/Bar.scss";
 @import "../components/Body/Body.scss";
 @import "../components/Header/UserNavbar/UserNavbar.scss";
 @import "../components/Account/Equipamiento/CaptureForm/CaptureForm.scss";
 @import "../components/Account/Equipamiento/Seleccion/SelectBar.scss";
+@import "../components/Account/AccountPanel/AccountPanel.scss";
 //modal
 @import "../components/Auth/LoginForm/LoginForm.scss";
 @import "../components/Modal/MainModal.scss";

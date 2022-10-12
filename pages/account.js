@@ -3,26 +3,25 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { map, size } from "lodash";
 import { getUserLabsApi } from "../api/user";
+import UserLayout from "../layouts/UserLayout";
 
 export default function Account() {
   const { auth, logout, setReloadUser } = useAuth();
-
   const [labs, setLabs] = useState(null);
+  const [user, setUser] = useState([]);
   const router = useRouter();
 
-  useEffect(() => {
-    (async () => {
-      if (auth?.idUser) {
-        const response = await getUserLabsApi(auth?.idUser);
-        console.log(response);
-        if (size(response?.Labs) >= 0) {
-          setLabs(response?.Labs || []);
-        }
-      }
-    })();
-  }, []);
-
-  if (auth?.idUser === undefined) router.push("/");
-  if (auth?.idUser === null) return null;
-  if (auth?.idUser) return <p>logueado</p>;
+  if (auth.idUser === undefined) router.push("/");
+  if (auth.idUser === null) return null;
+  if (auth.idUser)
+    return (
+      <div className="acc-home">
+        <UserLayout
+          className="home"
+          auth={auth}
+          logout={logout}
+          user={user}
+        ></UserLayout>
+      </div>
+    );
 }

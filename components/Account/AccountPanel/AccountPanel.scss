@@ -1,0 +1,14 @@
+.panel__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  &__labTab {
+    padding: 2rem 6rem;
+    border-style: dotted;
+    border-radius: 25%;
+    border-color: aqua;
+    margin-bottom: 1rem;
+  }
+}
