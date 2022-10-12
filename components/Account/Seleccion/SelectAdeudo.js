@@ -13,9 +13,8 @@ export default function SelectBar() {
   const { Header, Content } = Layout;
   return (
   <Layout>
-    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-      <div className="logo" />
-      <Menu mode="horizontal" theme="dark" defaultSelectedKeys={['Nuevo Adeudo']}>
+    <Header style={{backgroundColor: "#790252", padding: '5px',marginTop: -27}}>
+      <Menu mode="horizontal" defaultSelectedKeys={['Nuevo Equipamiento']} style={{backgroundColor: "#dbdbdb"}}>
         <Menu.Item 
           key="Nuevo Adeudo"
           className="new_adeudo"
@@ -34,7 +33,7 @@ export default function SelectBar() {
       </Menu>
     </Header>
     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
-      {activeItem ? <RequestForm /> : <CaptureFormAdeudo />}
+      {activeItem ? <CaptureFormAdeudo /> : <RequestForm/>}
     </Content>
   </Layout>
   );

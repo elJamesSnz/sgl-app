@@ -1,78 +1,189 @@
-import React from "react";
-import {
-  Button,
-  Form,
-  Header,
-  Select,
-  Icon,
-  DateInput,
-} from "semantic-ui-react";
-const Laboratorio = [
-  { key: "Fisica1", text: "Fisica1", value: "Fisica1" },
-  { key: "Fisica2", text: "Fisica2", value: "Fisica2" },
-  {
-    key: "Sistemas Digitales 1",
-    text: "Sistemas Digitales 1",
-    value: "Sistemas Digitales 1",
-  },
-];
-const estatus = [
-  { key: "Entregado", text: "Entregado", value: "Entregado" },
-  { key: "NoEntregado", text: "NoEntregado", value: "NoEntregado" },
-];
+import React,{useState} from "react";
+import 'antd/dist/antd.css';
+import { PlusOutlined } from '@ant-design/icons'; 
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
+import { loginApi, resetPasswordApi } from "../../../../api/user";
+import { useRouter } from "next/router";
 
-export default function CaptureFormAdeudo() {
+import {
+  Form,
+  Item,
+  Button,
+} from "semantic-ui-react";
+
+import {  
+  Input,
+  Select,
+  DatePicker,
+  Checkbox,
+  Upload,} from "antd";
+
+const { TextArea } = Input;
+
+export default function CaptureForm(props) {
+  const { onShowForm } = props;
+
   return (
     <div>
-      <FormCapturaAdeudos />
+      <FormCapturaEquipos onShowForm={onShowForm} />
     </div>
   );
 }
 
-function FormCapturaAdeudos(props) {
+function FormCapturaEquipos(props) {
+  const { onShowForm } = props;
+  //Validador para ocultar Forms
+  const [componentDisabled, setComponentDisabled] = useState(false);
+  const onFormLayoutChange = ({ disabled }) => {
+   setComponentDisabled(disabled);
+  };
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  const [loading, setLoading] = useState(false);
+
+  const formik = useFormik({
+    initialValues: initualValues(),
+    validationSchema: Yup.object(validationSchema()),
+    onSubmit: async (formData) => {
+      console.log(formData);
+    },
+  });
+
   return (
-    <>
-      <Form inverted>
-        <Form.Group widths="equal">
-          <Form.Field required>
-            <Form.Input fluid label="NombreAlumno" placeholder="NombreAlumno" />
-            <Form.Input fluid label="Boleta" placeholder="Boleta" />
-            <Form.Input fluid label="Carrera" placeholder="Carrera" />
-            <Form.Input
-              fluid
-              label="Fecha y Hora de peticion "
-              placeholder="Fecha y Hora de peticion"
-            />
-            <Form.Input
-              fluid
-              label="Fecha y Hora de entrega "
-              placeholder="Fecha y Hora de entrega"
-            />
-            <Form.Select
-              fluid
-              label="Laboratorio"
-              options={Laboratorio}
-              placeholder="Laboratorio"
-            />
+    <Form
+    className="captureForm"
+    labelCol={{ span: 4 }}
+    wrapperCol={{ span: 14 }}
+    layout="horizontal"
+    style={{padding:'15px'}}
+    onSubmit={formik.handleSubmit}
+    >
+    <Item>Nombre del Alumno:</Item>  
+      <Input 
+          name="nombre"
+          type="text"
+          placeholder="Nombre del Alumno" 
+          onChange={formik.handleChange}
+          error={formik.errors.nombre}
+      />
 
-            <Form.Input
-              fluid
-              label="Material Solicitado "
-              placeholder="Material Solicitado"
-            />
-            <Form.Input fluid label="Materia " placeholder="Materia" />
-            <Form.Input fluid label="Profesor  " placeholder="Profesor" />
+      <Item>Boleta:</Item> 
+          <Input 
+            name="boleta"
+            type="text"
+            rows={4}
+            placeholder="Boleta del alumno"
+            onChange={formik.handleChange}
+            error={formik.errors.boleta}
+          />    
 
-            <Form.Select
-              fluid
-              label="Estatus"
-              options={estatus}
-              placeholder="Estatus"
-            />
-          </Form.Field>
-        </Form.Group>
-        <Button type="submit">Submit</Button>
-      </Form>
-    </>
+        <Item>Carrera:</Item>
+          <Input 
+          name="carrera"
+          type="text"
+          placeholder="Carrera" 
+          onChange={formik.handleChange}
+          error={formik.errors.carrera}
+          />
+        
+        <Item>Fecha de peticion y Fecha de entrega:</Item>
+        <DatePicker.RangePicker
+          style={{
+            width: '50%'
+          }}
+          name="fecha"
+          //type="text"
+          onChange={formik.handleChange}
+          error={formik.errors.fecha}
+        />
+
+        <Item>Laboratorio:</Item>
+          <Input 
+          name="lab"
+          type="text"
+          placeholder="Laboratorio" 
+          onChange={formik.handleChange}
+          error={formik.errors.lab}
+          />
+        
+        <Item>Asignatura:</Item>  
+          <Input 
+          name="asignatura"
+          type="text"
+          placeholder="Asignatura" 
+          onChange={formik.handleChange}
+          error={formik.errors.asignatura}
+          />
+
+        <Item>Profesor:</Item>
+          <Input 
+          name="profesor"
+          type="text"
+          placeholder="Profesor" 
+          onChange={formik.handleChange}
+          error={formik.errors.profesor}
+          />
+
+          <Item>Material o Equipo:</Item> 
+          <Input 
+          name="material"
+          type="text"
+          placeholder="Material o equipo adeudado" 
+          onValuesChange={onFormLayoutChange}
+          disabled={componentDisabled}
+          onChange={formik.handleChange}
+          error={formik.errors.material}
+          />
+        
+        <Item>Estatus:</Item> 
+        <Select
+          //name="estado"
+          //type="text"
+          defaultValue="Entregado"
+          style={{
+            width: 170,
+          }}
+          onChange={handleChange}
+          //error={formik.errors.estado}
+        >
+          <Option value="Entregado" >Entregado</Option>
+          <Option value="No Entregado">No Entregado</Option>
+        </Select>
+          <br></br><br></br>
+      <Button type="submit">Guardar</Button>
+
+    </Form>
   );
+}
+
+function initualValues() {
+  return {
+    nombre: "",
+    boleta: "",
+    carrera: "",
+    fecha:"",
+    lab:"",
+    asignatura:"",
+    profesor:"",
+    material:"",
+    estado:"",
+  };
+}
+
+function validationSchema() {
+  return {
+    nombre: Yup.string(),
+    boleta: Yup.string(),
+    carrera: Yup.string(),
+    fecha:Yup.string(),
+    lab:Yup.string(),
+    asignatura:Yup.string(),
+    profesor:Yup.string(),
+    material:Yup.string(),
+    estado:Yup.string(),
+  };
 }
