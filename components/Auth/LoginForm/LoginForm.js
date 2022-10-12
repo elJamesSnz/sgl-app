@@ -23,7 +23,7 @@ export default function LoginForm(props) {
       if (response?.data.session_token) {
         //toast.success("Inicio de sesión exitoso");
         login(response.data.session_token);
-        router.push("/panel");
+        router.push("/");
         onCloseModal(true);
       } else {
         //toast.error("El email o la contraseña son incorrectos");

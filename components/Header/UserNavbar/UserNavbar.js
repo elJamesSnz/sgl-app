@@ -10,7 +10,7 @@ import Auth from "../../Auth";
 import useAuth from "../../../hooks/useAuth";
 import { getMeApi } from "../../../api/user";
 import { authFetch } from "../../../utils/fetch";
-import Panel from "../../../pages/panel";
+
 
 export default function Navbar() {
   const [navActive, setNavActive] = useState(null);
@@ -60,7 +60,7 @@ export default function Navbar() {
                 logout={logout}
                 setShow={setShowModal}
               />
-              <Panel logout={logout} idUser={auth?.idUser} />
+     
             </>
           )}
         </div>

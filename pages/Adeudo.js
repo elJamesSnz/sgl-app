@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/MainLayout";
-import SelectAdeudo from "../components/Account/Seleccion/SelectAdeudo";
+import SelectAdeudo from "../components/Account/SelectBar/SelectAdeudo";
 
 export default function Home() {
   return (

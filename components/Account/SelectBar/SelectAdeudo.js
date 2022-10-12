@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { Breadcrumb, Layout, Menu } from "antd";
-import CaptureFormAdeudo from "./Adeudo/CaptureFormAdeudo";
+import CaptureFormAdeudo from "./Adeudo/CaptureFormAdeudo/CaptureFormAdeudo";
 import RequestForm from "./Adeudo/RequestFormAdeudo";
 
 export default function SelectBar() {
