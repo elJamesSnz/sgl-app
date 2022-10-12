@@ -41,6 +41,7 @@ function FormCapturaEquipos(props) {
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        style={{padding:'15px'}}
       >
         <Form.Item label="Nombre">
           <Input placeholder="Nombre del equipo" />
