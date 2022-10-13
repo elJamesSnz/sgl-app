@@ -62,6 +62,8 @@ function FormCapturaEquipos(props) {
     style={{padding:'15px'}}
     onSubmit={formik.handleSubmit}
     >
+    <Item className="datosAlumno_item">DATOS DEL ALUMNO:</Item> 
+    <Form className="datoAlumno">
     <Item>Nombre del Alumno:</Item>  
       <Input 
           name="nombre"
@@ -89,7 +91,19 @@ function FormCapturaEquipos(props) {
           onChange={formik.handleChange}
           error={formik.errors.carrera}
           />
-        
+
+        <Item>Correo:</Item>
+          <Input 
+          name="correo"
+          type="text"
+          placeholder="Correo" 
+          onChange={formik.handleChange}
+          error={formik.errors.correo}
+          />
+        </Form>
+
+        <Item className="datosAdeudo_item">DATOS DEL ADEUDO:</Item> 
+        <Form className="datoAdeudo"></Form>
         <Item>Fecha de peticion y Fecha de entrega:</Item>
         <DatePicker.RangePicker
           style={{
@@ -141,14 +155,19 @@ function FormCapturaEquipos(props) {
         
         <Item>Estatus:</Item> 
         <Select
-          //name="estado"
-          //type="text"
+          name="estado"
+          type="text"
           defaultValue="Entregado"
           style={{
             width: 170,
           }}
-          onChange={handleChange}
-          //error={formik.errors.estado}
+          onChange={() => 
+            {
+              formik.handleChange,
+              handleChange
+            }
+          }
+          error={formik.errors.estado}
         >
           <Option value="Entregado" >Entregado</Option>
           <Option value="No Entregado">No Entregado</Option>
