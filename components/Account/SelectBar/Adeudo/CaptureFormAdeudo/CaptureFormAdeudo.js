@@ -165,12 +165,14 @@ function initualValues() {
     nombre: "",
     boleta: "",
     carrera: "",
-    fecha:"",
+    fecha_inicio:"",
+    fecha_fin:"",
     lab:"",
     asignatura:"",
     profesor:"",
     material:"",
     estado:"",
+    correo:"",
   };
 }
 
@@ -179,11 +181,13 @@ function validationSchema() {
     nombre: Yup.string(),
     boleta: Yup.string(),
     carrera: Yup.string(),
-    fecha:Yup.string(),
+    fecha_inicio:Yup.string(),
+    fecha_fin:Yup.string(),
     lab:Yup.string(),
     asignatura:Yup.string(),
     profesor:Yup.string(),
     material:Yup.string(),
     estado:Yup.string(),
+    correo:Yup.string(),
   };
 }

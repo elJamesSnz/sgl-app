@@ -257,6 +257,7 @@ function initualValues() {
     practicas:"",
     
     partida:"",
+    foto:"",
     
     
   };
@@ -283,7 +284,7 @@ function validationSchema() {
     numAlumnos:Yup.string(),
     
     partida:Yup.string(),
-    
+    foto:"",
   };
 }
 
