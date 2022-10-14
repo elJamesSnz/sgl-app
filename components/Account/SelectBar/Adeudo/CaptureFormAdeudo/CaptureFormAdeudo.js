@@ -104,33 +104,37 @@ function FormCapturaEquipos(props) {
 
         <Item className="datosAdeudo_item">DATOS DEL ADEUDO:</Item> 
         <Form className="datoAdeudo"></Form>
-        <Item>Fecha de peticion y Fecha de entrega:</Item>
-        <DatePicker.RangePicker
+        <Item>Fecha de peticion</Item>
+        <DatePicker
+          name="fecha_peticion"
           style={{
             width: '50%'
           }}
-          name="fecha"
-          //type="text"
-          onChange={formik.handleChange}
-          error={formik.errors.fecha}
+        />
+        <Item>Fecha de entrega:</Item>
+        <DatePicker
+          name="fecha_entrega"
+          style={{
+            width: '50%'
+          }}
         />
 
         <Item>Laboratorio:</Item>
           <Input 
-          name="lab"
+          name="idlaboratorio"
           type="text"
           placeholder="Laboratorio" 
           onChange={formik.handleChange}
-          error={formik.errors.lab}
+          error={formik.errors.idlaboratorio}
           />
         
         <Item>Asignatura:</Item>  
           <Input 
-          name="asignatura"
+          name="materia"
           type="text"
           placeholder="Asignatura" 
           onChange={formik.handleChange}
-          error={formik.errors.asignatura}
+          error={formik.errors.materia}
           />
 
         <Item>Profesor:</Item>
@@ -144,29 +148,30 @@ function FormCapturaEquipos(props) {
 
           <Item>Material o Equipo:</Item> 
           <Input 
-          name="material"
+          name="idequipo"
           type="text"
           placeholder="Material o equipo adeudado" 
           onValuesChange={onFormLayoutChange}
           disabled={componentDisabled}
           onChange={formik.handleChange}
-          error={formik.errors.material}
+          error={formik.errors.idequipo}
           />
         
         <Item>Estatus:</Item> 
         <Select
+          name = "estatus"
           placeholder="Estado"
           defaultValue="Entregado"
           style={{
             width: 170,
           }}
-          value={formik.values.estado}
-          onChange={(value) => { formik.setFieldValue('estado', value); }}
+          value={formik.values.estatus}
+          onChange={(value) => { formik.setFieldValue('estatus', value); }}
           onBlur={formik.handleBlur}
           onSelect={formik.handleChange}
           >
-          <Option value="Entregado">Entregado</Option>
-          <Option value="No Entregad">No Entregado</Option>
+          <Option value="TRUE">Entregado</Option>
+          <Option value="FALSE">No Entregado</Option>
         </Select>
 
 
@@ -182,13 +187,13 @@ function initualValues() {
     nombre: "",
     boleta: "",
     carrera: "",
-    fecha_inicio:"",
-    fecha_fin:"",
-    lab:"",
-    asignatura:"",
+    fecha_peticion:"",
+    fecha_entrega:"",
+    idlaboratorio:"",
+    materia:"",
     profesor:"",
-    material:"",
-    estado:"",
+    idequipo:"",
+    estatus:"",
     correo:"",
   };
 }
@@ -198,13 +203,13 @@ function validationSchema() {
     nombre: Yup.string(),
     boleta: Yup.string(),
     carrera: Yup.string(),
-    fecha_inicio:Yup.string(),
-    fecha_fin:Yup.string(),
-    lab:Yup.string(),
-    asignatura:Yup.string(),
+    fecha_peticion:Yup.string(),
+    fecha_entrega:Yup.string(),
+    idlaboratorio:Yup.string(),
+    materia:Yup.string(),
     profesor:Yup.string(),
-    material:Yup.string(),
-    estado:Yup.string(),
+    idequipo:Yup.string(),
+    estatus:Yup.string(),
     correo:Yup.string(),
   };
 }
