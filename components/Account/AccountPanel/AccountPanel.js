@@ -4,24 +4,24 @@ import { useRouter } from "next/router";
 import { Button, Loader } from "semantic-ui-react";
 import { getUserLabsApi, getItemsLabApi } from "../../../api/user";
 import SelectBar from "../SelectBar/";
-
+import TasksPanel from "../TasksPanel/TasksPanel";
+//<PanelModulos equips={equips} />
 export default function AccountPanel(props) {
   const { auth, logout } = props;
-  const [labs, setLabs] = useState(null);
-  const [name, setName] = useState(null);
-  const [selectedLab, setSelectedLab] = useState(null);
-  const [equips, setEquips] = useState([]);
+  const [labs, setLabs] = useState(undefined);
+  const [name, setName] = useState(undefined);
+  const [selectedLab, setSelectedLab] = useState(undefined);
+  const [equips, setEquips] = useState(undefined);
   const router = useRouter();
 
   useEffect(() => {
     (async () => {
       if (auth.idUser) {
         const res = await getUserLabsApi(auth.idUser, logout);
-
-        if (size(res.data.labs) >= 0) {
-          setLabs(res.data.labs || []);
-          setName(res.data.nombre);
-          setSelectedLab(res.data.labs[0].id);
+        if (size(res.data?.labs) >= 0) {
+          setLabs(res.data?.labs || []);
+          setName(res.data?.nombre);
+          setSelectedLab(res.data?.labs[0].id);
         }
       }
     })();
@@ -31,8 +31,7 @@ export default function AccountPanel(props) {
     (async () => {
       if (auth.idUser && selectedLab) {
         const res = await getItemsLabApi(selectedLab, logout);
-        console.log(res.data.equip);
-        if (size(res.data.equip) > 0) {
+        if (size(res.data?.equip) > 0) {
           setEquips(res.data.equip || []);
         }
       }
@@ -44,23 +43,36 @@ export default function AccountPanel(props) {
       {name ? (
         <div className="main-container panel seccion">
           {!labs && <Loader active> Cargando información del usuario</Loader>}
-          <PanelLaboratorios labs={labs} setSelectedLab={setSelectedLab} />
-          <PanelModulos equips={equips} selectedLab={selectedLab} />
+          <PanelLaboratorios
+            labs={labs}
+            setSelectedLab={setSelectedLab}
+            selectedLab={selectedLab}
+          />
+
+          <TasksPanel equips={equips} />
+
           <PanelUsuario name={name} logout={logout} router={router} />
         </div>
       ) : (
-        <>No hay usuario</>
+        <>
+          <Loader active> Cargando información del usuario</Loader>
+        </>
       )}
     </div>
   );
 }
 
 function PanelLaboratorios(props) {
-  const { labs, setSelectedLab } = props;
+  const { labs, setSelectedLab, selectedLab } = props;
   return (
     <div className="panel__left">
+      <h3>Lab disponibles</h3>
       {map(labs, (lab) => (
-        <LabTap lab={lab} setSelectedLab={setSelectedLab} />
+        <LabTap
+          lab={lab}
+          setSelectedLab={setSelectedLab}
+          selectedLab={selectedLab}
+        />
       ))}
     </div>
   );
@@ -94,10 +106,14 @@ function PanelUsuario(props) {
 }
 
 function LabTap(props) {
-  const { lab, setSelectedLab } = props;
+  const { lab, setSelectedLab, selectedLab } = props;
   return (
     <div className="panel__left__labTab">
-      <p id={lab.id} onClick={() => setSelectedLab(lab.id)}>
+      <p
+        id={lab.id}
+        onClick={() => setSelectedLab(lab.id)}
+        className={lab.id == selectedLab ? "labTap-active" : "labTap-inactive"}
+      >
         {lab.name}
       </p>
     </div>

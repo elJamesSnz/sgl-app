@@ -1,0 +1,45 @@
+.availabletasks__panel {
+  display: flex;
+  min-width: 50rem !important;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+}
+
+.availabletasks__panel__task {
+  margin: 1rem 2rem;
+  width: 30rem;
+  padding: 1rem 2rem !important;
+  background-color: lightgrey;
+  align-items: center;
+  text-align: center;
+
+  icon {
+    transform: scale(2);
+  }
+}
+
+.availabletasks__panel__task__info {
+  margin-top: 3rem;
+}
+
+.availabletasks__panel__task__info__title {
+  margin-bottom: 2rem;
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}
+
+.availabletasks__panel__task__info__stats {
+  margin-bottom: 2rem;
+}
+
+.availabletasks__panel__task__actions_btn {
+  button {
+    padding: 0;
+  }
+}
+
+.return {
+  margin-bottom: 2rem;
+}

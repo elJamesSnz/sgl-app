@@ -36,6 +36,7 @@ function CardItem(props) {
         )}
         {map(equips, (equip) => (
           <Card
+            key={equip.code}
             className="equipments__card"
             cover={
               <img
@@ -51,8 +52,10 @@ function CardItem(props) {
           >
             <Meta
               avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={equip.name}
-              description={equip.desc}
+              title={`Equipo: ${equip.name}`}
+              description={`Marca ${equip.mode}. Año ${equip.ano}. Fallo ${
+                equip.fallo || "Ninguno"
+              }`}
             />
           </Card>
         ))}
@@ -60,28 +63,14 @@ function CardItem(props) {
     </>
   );
 }
-/*
 
-<div className="equipments">
-      <Card
-        className="equipments__card"
-        cover={
-          <img
-            alt="example"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          />
-        }
-        actions={[
-          <SettingOutlined key="setting" />,
-          <EditOutlined key="edit" />,
-          <EllipsisOutlined key="ellipsis" />,
-        ]}
-      >
-        <Meta
-          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-          title="Card title"
-          description="This is the description"
-        />
-      </Card>
-
-*/
+function CardDescripcion() {
+  const { equip } = props;
+  return (
+    <p>
+      {`Marca ${equip.mode}. \nAño ${equip.ano} \nFallo: ${
+        equip.fallo || "Ninguno"
+      }`}
+    </p>
+  );
+}

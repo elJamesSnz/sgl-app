@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 export default function LoginForm(props) {
   const { onCloseModal } = props;
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const router = useRouter();
 
   const formik = useFormik({
@@ -19,16 +19,13 @@ export default function LoginForm(props) {
     onSubmit: async (formData) => {
       setLoading(true);
       const response = await loginApi(formData);
-      console.log(response);
       if (response?.data.session_token) {
-        //toast.success("Inicio de sesión exitoso");
         login(response.data.session_token);
-        router.push("/");
-        onCloseModal(true);
+        router.push("/account");
       } else {
-        //toast.error("El email o la contraseña son incorrectos");
+        logout();
       }
-
+      onCloseModal(true);
       setLoading(false);
     },
   });
@@ -74,4 +71,3 @@ function validationSchema() {
     password: Yup.string().required(true),
   };
 }
-

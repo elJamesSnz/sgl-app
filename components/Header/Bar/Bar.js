@@ -2,13 +2,15 @@ import React from "react";
 import Image from "next/image";
 import IPN from "../../../resources/ipnWhite.png";
 import SGL from "../../../resources/SglWhite.png";
+import { useRouter } from "next/router";
 
 export default function Bar() {
+  const router = useRouter();
   return (
     <div className="top-bar">
       <div className="main_bar main-container">
-        <LogoSGL />
-        <a className="TITLE">
+        <LogoSGL router={router} />
+        <a className="TITLE" href="/">
           Unidad Profesional Interdisciplinaria en Ingeniería y Tecnologías
           Avanzadas
         </a>
@@ -23,7 +25,7 @@ function LogoIPN() {
     <Image
       className="IPN"
       src={IPN}
-      alt="Picture of the author"
+      alt="IPN Logo"
       width="50px"
       height="70px"
     />
@@ -35,7 +37,7 @@ function LogoSGL() {
     <Image
       className="SGL"
       src={SGL}
-      alt="Picture of the author"
+      alt="SGL Logo"
       width="110px"
       height="60px"
     />
