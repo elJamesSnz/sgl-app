@@ -87,21 +87,21 @@ function FormCapturaEquipos(props) {
 
       <Item>Código de barras:</Item>
         <Input 
-          name="codigo"
+          name="codigo_barras"
           type="text"
           placeholder="Código de barras" 
           onChange={formik.handleChange}
-          error={formik.errors.codigo}
+          error={formik.errors.codigo_barras}
         />
       
       
       <Item>Partida:</Item>  
           <Input //Se manda el id_carrera
-          name="partida"
+          name="Partida"
           type="text"
           placeholder="Numero de Partida del equipo" 
           onChange={formik.handleChange}
-          error={formik.errors.partida}
+          error={formik.errors.Partida}
           /> 
 
       <Checkbox
@@ -112,13 +112,13 @@ function FormCapturaEquipos(props) {
       </Checkbox>
 
         <Input 
-          name="manual"
+          name="nombre_manual"
           type="text"
           placeholder="Nombre del manual de usuairo" 
           onValuesChange={onFormLayoutChange}
           disabled={componentDisabled}
           onChange={formik.handleChange}
-          error={formik.errors.manual}
+          error={formik.errors.nombre_manual}
         />
         
         <Item>Estado:</Item>  
@@ -152,76 +152,78 @@ function FormCapturaEquipos(props) {
 
         <Item>Disponibilidad:</Item> 
         <Select
-          id="disponibilidad"
-          name="disponibilidad"
+          id="Disponibilidad"
+          name="Disponibilidad"
           placeholder="Disponibilidad"
           defaultValue="Entregado"
           style={{
             width: 170,
           }}
-          value={formik.values.disponibilidad}
-          onChange={(value) => { formik.setFieldValue('disponibilidad', value); }}
+          value={formik.values.Disponibilidad}
+          onChange={(value) => { formik.setFieldValue('Disponibilidad', value); }}
           onBlur={formik.handleBlur}
           onSelect={formik.handleChange}
           >
-          <Option value="1">Disponible</Option>
-          <Option value="2">No disponible</Option>
+          <Option value="TRUE">Disponible</Option>
+          <Option value="FALSE">No disponible</Option>
           </Select>
 
         <Item className="descripcion_item">DESCRIPCION:</Item> 
         <Form className="descripcion">
         <Item>Utilidad:</Item>  
           <Input 
-          name="utilidad"
+          name="Utilidad"
           type="text"
           placeholder="Utilidad" 
           onChange={formik.handleChange}
-          error={formik.errors.utilidad}
+          error={formik.errors.Utilidad}
           />
           <Item>Carrera:</Item>
           <Select
-          id="carrera"
-          name="carrera"
+          id="id_carrera"
+          name="id_carrera"
           placeholder="Estado"
           defaultValue="Entregado"
           style={{
             width: 170,
           }}
-          value={formik.values.carrera}
-          onChange={(value) => { formik.setFieldValue('carrera', value); }}
+          value={formik.values.id_carrera}
+          onChange={(value) => { formik.setFieldValue('id_carrera', value); }}
           onBlur={formik.handleBlur}
           onSelect={formik.handleChange}
           >
           <Option value="1">Telematica</Option>
           <Option value="2">Mecatronica</Option>
           <Option value="3">Bionica</Option> 
+          <Option value="4">Energia</Option>
+          <Option value="5">ISISA</Option> 
           </Select>
 
 
         <Item>Asignatura:</Item>  
           <Input //Se manda el id_carrera
-          name="asignatura"
+          name="Asignatura"
           type="text"
           placeholder="Asignatura" 
           onChange={formik.handleChange}
-          error={formik.errors.asignatura}
+          error={formik.errors.Asignatura}
           />  
           <Item>Practicas:</Item> 
           <TextArea 
-            name="practicas"
+            name="Practicas_Aplic"
             type="text"
             rows={4}
             placeholder="Practicas en las que se utiliza el equipo"
             onChange={formik.handleChange}
-            error={formik.errors.practicas}
+            error={formik.errors.Practicas_Aplic}
           /> 
           <Item>Numero Alumnos:</Item>  
           <Input //Se manda el id_carrera
-          name="numAlumnos"
+          name="Alumnos_beneficiados"
           type="text"
           placeholder="Numero de alumnos beneficiados" 
           onChange={formik.handleChange}
-          error={formik.errors.numAlumnos}
+          error={formik.errors.Alumnos_beneficiados}
           />   
         </Form>
 
@@ -248,26 +250,25 @@ function FormCapturaEquipos(props) {
 
 function initualValues() {
   return {
-    nombre: "",
-    codigo: "",
+    nombre:"",
+    codigo_barras:"",
     modelo:"",
     ano:"",
     fallo:"",
     estado:"",
-    manual:"",
-    laboratorio:"",
+    nombre_manual:"",
+    idLaboratorio:"",
 
-    disponibilidad:"",
+    Disponibilidad:"",
     //Descripcion
-    utilidad: "",
-    carrera: "",
-    asignatura:"",
-    practicas:"",
+    Utilidad:"",
+    id_carrera:"",
+    Asignatura:"",
+    Practicas_Aplic:Yup.string(),
+    Alumnos_beneficiados:"",
     
-    partida:"",
-    foto:"",
-    
-    
+    Partida:"",
+    Foto_fallo:"",
   };
 }
 
@@ -275,24 +276,24 @@ function validationSchema() {
 
   return {
     nombre:Yup.string(),//.required(true),
-    codigo:Yup.string(),//.required("true"),
+    codigo_barras:Yup.string(),//.required("true"),
     modelo:Yup.string(),
     ano:Yup.string(),
     fallo:Yup.string(),
     estado:Yup.string(),
-    manual:Yup.string(),
-    laboratorio:Yup.string(),
+    nombre_manual:Yup.string(),
+    idLaboratorio:Yup.string(),
 
-    disponibilidad:Yup.string(),
+    Disponibilidad:Yup.string(),
     //Descripcion
-    utilidad:Yup.string(),
-    carrera:Yup.string(),
-    asignatura:Yup.string(),
-    practicas:Yup.string(),
-    numAlumnos:Yup.string(),
+    Utilidad:Yup.string(),
+    id_carrera:Yup.string(),
+    Asignatura:Yup.string(),
+    Practicas_Aplic:Yup.string(),
+    Alumnos_beneficiados:Yup.string(),
     
-    partida:Yup.string(),
-    foto:"",
+    Partida:Yup.string(),
+    Foto_fallo:Yup.string(),
   };
 }
 
