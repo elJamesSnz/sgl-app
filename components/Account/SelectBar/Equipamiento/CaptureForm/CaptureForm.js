@@ -121,21 +121,24 @@ function FormCapturaEquipos(props) {
           error={formik.errors.manual}
         />
         
-        <Item>Estado:</Item> 
+        <Item>Estado:</Item>  
         <Select
-          //name="estado"
-          //type="text"
-          defaultValue="1"
+          id="estado"
+          name="disponibilidad"
+          placeholder="estado"
           style={{
             width: 170,
           }}
-          onChange={handleChange}
-          //error={formik.errors.estado}
-        >
-          <Option value="1" >Funcional</Option>
+          value={formik.values.estado}
+          onChange={(value) => { formik.setFieldValue('estado', value); }}
+          onBlur={formik.handleBlur}
+          onSelect={formik.handleChange}
+          >
+          <Option value="1">Funcional</Option>
           <Option value="2">No Funcional</Option>
-          <Option value="3">Funcional con Fallo</Option>
-        </Select>
+          <Option value="3">Funcional con fallo</Option>
+          </Select>
+        
 
         <Item>Descripción del fallo:</Item>  
           <TextArea 
@@ -146,21 +149,24 @@ function FormCapturaEquipos(props) {
           onChange={formik.handleChange}
           error={formik.errors.fallo}
         />
-          
+
         <Item>Disponibilidad:</Item> 
         <Select
-          //name="estado"
-          //type="text"
-          defaultValue="1"
+          id="disponibilidad"
+          name="disponibilidad"
+          placeholder="Disponibilidad"
+          defaultValue="Entregado"
           style={{
             width: 170,
           }}
-          onChange={handleChange}
-          //error={formik.errors.estado}
-        >
-          <Option value="1" >Disponible</Option>
+          value={formik.values.disponibilidad}
+          onChange={(value) => { formik.setFieldValue('disponibilidad', value); }}
+          onBlur={formik.handleBlur}
+          onSelect={formik.handleChange}
+          >
+          <Option value="1">Disponible</Option>
           <Option value="2">No disponible</Option>
-        </Select>
+          </Select>
 
         <Item className="descripcion_item">DESCRIPCION:</Item> 
         <Form className="descripcion">
@@ -172,23 +178,25 @@ function FormCapturaEquipos(props) {
           onChange={formik.handleChange}
           error={formik.errors.utilidad}
           />
-        <Item>Carrera:</Item>  
+          <Item>Carrera:</Item>
           <Select
-            id="carrera"
-            name="carrera"
-            type="text" 
-            style={{
-              width: 170,
-            }}
-            onChange={handleChange}
-            //onChange={formik.handleChange}
-            //error={formik.errors.carrera}
+          id="carrera"
+          name="carrera"
+          placeholder="Estado"
+          defaultValue="Entregado"
+          style={{
+            width: 170,
+          }}
+          value={formik.values.carrera}
+          onChange={(value) => { formik.setFieldValue('carrera', value); }}
+          onBlur={formik.handleBlur}
+          onSelect={formik.handleChange}
           >
-            
-            <Option value="1">Telematica</Option>
-            <Option value="2">Mecatronica</Option>
-            <Option value="3">Bionica</Option>
+          <Option value="1">Telematica</Option>
+          <Option value="2">Mecatronica</Option>
+          <Option value="3">Bionica</Option> 
           </Select>
+
 
         <Item>Asignatura:</Item>  
           <Input //Se manda el id_carrera

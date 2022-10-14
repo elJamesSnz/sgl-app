@@ -155,23 +155,21 @@ function FormCapturaEquipos(props) {
         
         <Item>Estatus:</Item> 
         <Select
-          name="estado"
-          type="text"
+          placeholder="Estado"
           defaultValue="Entregado"
           style={{
             width: 170,
           }}
-          onChange={() => 
-            {
-              formik.handleChange,
-              handleChange
-            }
-          }
-          error={formik.errors.estado}
-        >
-          <Option value="Entregado" >Entregado</Option>
-          <Option value="No Entregado">No Entregado</Option>
+          value={formik.values.estado}
+          onChange={(value) => { formik.setFieldValue('estado', value); }}
+          onBlur={formik.handleBlur}
+          onSelect={formik.handleChange}
+          >
+          <Option value="Entregado">Entregado</Option>
+          <Option value="No Entregad">No Entregado</Option>
         </Select>
+
+
           <br></br><br></br>
       <Button type="submit">Guardar</Button>
 
