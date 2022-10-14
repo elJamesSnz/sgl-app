@@ -105,20 +105,21 @@ function FormCapturaEquipos(props) {
         <Item className="datosAdeudo_item">DATOS DEL ADEUDO:</Item> 
         <Form className="datoAdeudo"></Form>
         <Item>Fecha de peticion</Item>
-        <DatePicker
+        <Input 
           name="fecha_peticion"
-          style={{
-            width: '50%'
-          }}
-        />
+          type="text"
+          placeholder="DD/MM/AAA" 
+          onChange={formik.handleChange}
+          error={formik.errors.fecha_peticion}
+          />
         <Item>Fecha de entrega:</Item>
-        <DatePicker
+        <Input 
           name="fecha_entrega"
-          style={{
-            width: '50%'
-          }}
-        />
-
+          type="text"
+          placeholder="DD/MM/AAA" 
+          onChange={formik.handleChange}
+          error={formik.errors.fecha_entrega}
+          />
         <Item>Laboratorio:</Item>
           <Input 
           name="idlaboratorio"
