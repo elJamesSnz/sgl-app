@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { Button, Loader } from "semantic-ui-react";
 
 export default function TasksPanel(props) {
-  const { equips, debts } = props;
+  const { equips, debts, selectedLab } = props;
   const [index, setIndex] = useState(null);
   const [totalElements, setTotalElements] = useState(0);
 
@@ -43,9 +43,14 @@ export default function TasksPanel(props) {
           </>
         ) : (
           <>
-            <div>
+            <div className="availabletasks__panel__main">
               <Back setIndex={setIndex} className="return" />
-              <ShowComponent index={index} equips={equips} />
+              <ShowComponent
+                index={index}
+                equips={equips}
+                selectedLab={selectedLab}
+                debts={debts}
+              />
             </div>
           </>
         )}
@@ -56,7 +61,7 @@ export default function TasksPanel(props) {
 
 function MenuTasks(props) {
   const { list, setIndex, id } = props;
-  console.log(id);
+
   return (
     <>
       <div className="availabletasks__panel__task">
@@ -95,17 +100,17 @@ function MenuTasks(props) {
 }
 
 function ShowComponent(props) {
-  const { index, equips } = props;
+  const { index, equips, selectedLab, debts } = props;
 
   switch (index) {
     case 0:
       return <RequestForm equips={equips} />;
     case 1:
-      return <CaptureForm />;
+      return <CaptureForm selectedLab={selectedLab} />;
     case 2:
-      return <RequestFormAdeudo />;
+      return <RequestFormAdeudo debts={debts} equips={equips} />;
     case 3:
-      return <CaptureFormAdeudo />;
+      return <CaptureFormAdeudo selectedLab={selectedLab} equips={equips} />;
     case 4:
   }
 }

@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { map, size } from "lodash";
 import { useRouter } from "next/router";
 import { Button, Loader } from "semantic-ui-react";
-import { getUserLabsApi, getItemsLabApi } from "../../../api/user";
+import {
+  getUserLabsApi,
+  getItemsLabApi,
+  getDebtsLabApi,
+} from "../../../api/user";
 import SelectBar from "../SelectBar/";
 import TasksPanel from "../TasksPanel/TasksPanel";
 //<PanelModulos equips={equips} />
@@ -12,6 +16,7 @@ export default function AccountPanel(props) {
   const [name, setName] = useState(undefined);
   const [selectedLab, setSelectedLab] = useState(undefined);
   const [equips, setEquips] = useState(undefined);
+  const [debts, setDebts] = useState(undefined);
   const router = useRouter();
 
   useEffect(() => {
@@ -35,6 +40,12 @@ export default function AccountPanel(props) {
           setEquips(res.data.equip || []);
         }
       }
+
+      const res2 = await getDebtsLabApi(selectedLab, logout);
+      console.log(res2);
+      if (size(res2.data?.adeudo) > 0) {
+        setDebts(res2.data.adeudo || []);
+      }
     })();
   }, [selectedLab]);
 
@@ -49,7 +60,7 @@ export default function AccountPanel(props) {
             selectedLab={selectedLab}
           />
 
-          <TasksPanel equips={equips} />
+          <TasksPanel equips={equips} selectedLab={selectedLab} debts={debts} />
 
           <PanelUsuario name={name} logout={logout} router={router} />
         </div>

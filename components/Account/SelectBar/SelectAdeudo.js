@@ -35,7 +35,6 @@ function MenuTabBuilder(props) {
   const { key, cName, name, active, onClick } = props;
   return (
     <Menu.Item
-      key={key}
       className={cName}
       name={name}
       active={active}

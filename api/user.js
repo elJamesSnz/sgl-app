@@ -45,6 +45,57 @@ export async function getItemsLabApi(idLab) {
   }
 }
 
+export async function getDebtsLabApi(idLab) {
+  try {
+    const url = `${URL}/api/users/DebtByLab?idLab=${idLab}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function registerDebtApi(formData) {
+  try {
+    const url = `${URL}/api/users/PostAdeudo`;
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    const response = await fetch(url, params);
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+export async function registerEquipApi(formData) {
+  try {
+    const url = `${URL}/api/users/PostEquipo`;
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    const response = await fetch(url, params);
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
 /*
 export async function loginApi(formData) {
   const url = `${URL}/api/users/login`;
