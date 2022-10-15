@@ -42,7 +42,6 @@ export default function AccountPanel(props) {
       }
 
       const res2 = await getDebtsLabApi(selectedLab, logout);
-      console.log(res2);
       if (size(res2.data?.adeudo) > 0) {
         setDebts(res2.data.adeudo || []);
       }

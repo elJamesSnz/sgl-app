@@ -14,6 +14,7 @@ import form from "antd/lib/form";
 
 export default function CaptureFormAdeudo(props) {
   const { onShowForm, selectedLab, equips } = props;
+
   const router = useRouter();
   return (
     <div>
@@ -29,7 +30,7 @@ export default function CaptureFormAdeudo(props) {
 
 function FormCapturaEquipos(props) {
   const { onShowForm, selectedLab, equips, router } = props;
-
+  console.log(equips);
   //Validador para ocultar Forms
   const [componentDisabled, setComponentDisabled] = useState(false);
   const onFormLayoutChange = ({ disabled }) => {
@@ -51,7 +52,6 @@ function FormCapturaEquipos(props) {
       console.log(formData);
       const response = await registerDebtApi(formData);
       console.log(response);
-      router.push("/");
     },
   });
 
@@ -164,7 +164,7 @@ function FormCapturaEquipos(props) {
         onSelect={formik.handleChange}
       >
         {map(equips, (equip) => (
-          <Option value={` ${equip.idequip}`}>
+          <Option value={`${equip.idequipo}`.trim()}>
             {equip.name} - Código {equip.code}
           </Option>
         ))}
