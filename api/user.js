@@ -56,6 +56,17 @@ export async function getDebtsLabApi(idLab) {
   }
 }
 
+export async function getDebtApi(idLab) {
+  try {
+    const url = `${URL}/api/users/Debt?idLab=${idLab}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
 export async function registerDebtApi(formData) {
   try {
     const url = `${URL}/api/users/PostAdeudo`;
