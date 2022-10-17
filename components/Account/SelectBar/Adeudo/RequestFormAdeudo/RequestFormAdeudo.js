@@ -16,12 +16,12 @@ import {
 import { Avatar, Card } from "antd";
 import { map, size } from "lodash";
 import { useState, useEffect } from "react";
+import { Object } from "lodash";
 const { Meta } = Card;
 
 export default function RequestFormAdeudo(props) {
   const { debts } = props;
-  const [debtsView, setDebtsView] = useState(debts);
-
+  const [debtsView, setDebtsView] = useState([]);
   useEffect(() => {
     (() => {
       setDebtsView(debts);
@@ -30,12 +30,29 @@ export default function RequestFormAdeudo(props) {
 
   return debts ? (
     <>
-      <Input
-        name="Alumnos_beneficiados"
-        type="text"
-        placeholder="Boleta"
-        onChange={(value) => handleCambio(value)}
-      />
+      <div className="search__bar">
+        <Input
+          name="Alumnos_beneficiados"
+          type="text"
+          placeholder="Boleta"
+          focus="true"
+          onChange={async (e) => {
+            if (e.target.value.trim().length === 10) {
+              await setDebtsView(debts);
+              setDebtsView(
+                debtsView.filter((data) =>
+                  String(data.boleta).includes(e.target.value.trim())
+                )
+              );
+            } else {
+              setDebtsView(debts);
+            }
+          }}
+        />
+        <p>
+          Elementos encontrados: <span>{debtsView.length}</span>
+        </p>
+      </div>
       <CardItem debtsView={debtsView} />
     </>
   ) : (
@@ -48,9 +65,7 @@ function CardItem(props) {
 
   return (
     <>
-      <div>
-        
-      </div>
+      <div></div>
       <div className="equipments">
         {debtsView && size(debtsView) === 0 && (
           <div>
@@ -84,5 +99,13 @@ function CardItem(props) {
         ))}
       </div>
     </>
+  );
+}
+
+function filterByValue(array, string) {
+  return array.filter((o) =>
+    Object.keys(o).some((k) =>
+      o[k].toLowerCase().includes(string.toLowerCase())
+    )
   );
 }

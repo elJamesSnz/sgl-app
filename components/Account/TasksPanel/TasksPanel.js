@@ -72,6 +72,9 @@ function MenuTasks(props) {
           </div>
           <div className="availabletasks__panel__task__info__stats">
             <p>
+              {!list.data && (
+                <Loader active> Cargando número de equipos</Loader>
+              )}
               <span>Total de {list.statsTitle}</span> {size(list.data)}
             </p>
           </div>
