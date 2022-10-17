@@ -41,19 +41,26 @@ function FormCapturaEquipos(props) {
     initialValues: initualValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
-      if (formData.estado == 1) formData.estado = 1;
-      if (formData.estado == 2) formData.estado = 2;
-      if (formData.estado == 3) formData.estado = 3;
-      if (formData.Disponibilidad == 1) formData.Disponibilidad = true;
-      if (formData.Disponibilidad == 2) formData.Disponibilidad = false;
-      if (formData.id_carrera == 1) formData.id_carrera = 1;
-      if (formData.id_carrera == 2) formData.id_carrera = 2;
-      if (formData.id_carrera == 3) formData.id_carrera = 3;
-      if (formData.id_carrera == 4) formData.id_carrera = 4;
-      if (formData.id_carrera == 5) formData.id_carrera = 5;
-      formData.idLaboratorio = selectedLab;
-      const response = await registerEquipApi(formData);
-      router.push("/");
+      if (selectedLab == 0 || selectedLab == null) {
+        alert("Elige un laboratorio");
+        return null;
+      } else {
+        if (formData.estado == 1) formData.estado = 1;
+        if (formData.estado == 2) formData.estado = 2;
+        if (formData.estado == 3) formData.estado = 3;
+        if (formData.Disponibilidad == 1) formData.Disponibilidad = true;
+        if (formData.Disponibilidad == 2) formData.Disponibilidad = false;
+        if (formData.id_carrera == 1) formData.id_carrera = 1;
+        if (formData.id_carrera == 2) formData.id_carrera = 2;
+        if (formData.id_carrera == 3) formData.id_carrera = 3;
+        if (formData.id_carrera == 4) formData.id_carrera = 4;
+        if (formData.id_carrera == 5) formData.id_carrera = 5;
+        formData.idLaboratorio = selectedLab;
+        console.log(formData);
+        const response = await registerEquipApi(formData);
+        console.log(response);
+        router.push("/");
+      }
     },
   });
 
@@ -250,8 +257,8 @@ function FormCapturaEquipos(props) {
           </div>
         </div>
       </Upload>
-    
-      <Button type="submit" >Guardar</Button>
+
+      <Button type="submit">Guardar</Button>
     </Form>
   );
 }

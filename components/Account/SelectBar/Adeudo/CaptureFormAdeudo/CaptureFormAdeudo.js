@@ -46,7 +46,7 @@ function FormCapturaEquipos(props) {
     initialValues: initualValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
-      if (selectedLab == 0) {
+      if (selectedLab == 0 || selectedLab == null) {
         alert("Elige un laboratorio");
         return null;
       }
