@@ -37,7 +37,7 @@ export default function RequestFormAdeudo(props) {
           placeholder="Boleta"
           focus="true"
           onChange={async (e) => {
-            if (e.target.value.trim().length === 10) {
+            if (e.target.value.trim().length === 10 || e.target.value.trim().length === 12) {
               await setDebtsView(debts);
               setDebtsView(
                 debtsView.filter((data) =>
