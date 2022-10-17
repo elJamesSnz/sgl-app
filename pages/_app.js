@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }) {
       setAuth({
         token,
         idUser: jwtDecode(token).id,
+        idRol: jwtDecode(token).idRol,
       });
     } else {
       setAuth(null);
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps }) {
         token,
         //decodificar el token
         idUser: jwtDecode(token).id,
+        idRol: jwtDecode(token).idRol,
       });
   };
 

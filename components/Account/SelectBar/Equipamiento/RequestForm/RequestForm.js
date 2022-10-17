@@ -42,7 +42,7 @@ function CardItem(props) {
               <img
                 alt="example"
                 //src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_epf5hcwaMn4XXjm0F1bWC1dWjIJ18-_TcA&usqp=CAU"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_epf5hcwaMn4XXjm0F1bWC1dWjIJ18-_TcA&usqp=CAU"
               />
             }
             actions={[
@@ -53,7 +53,7 @@ function CardItem(props) {
           >
             <Meta
               avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={`Equipo: ${equip.name}`}
+              title={`Equipo: ${equip.nombreequipo}`}
               description={`Marca ${equip.mode}. Año ${equip.ano}. Fallo ${
                 equip.fallo || "Ninguno"
               }`}

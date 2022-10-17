@@ -67,6 +67,39 @@ export async function getDebtApi(idLab) {
   }
 }
 
+export async function getAllDebts() {
+  try {
+    const url = `${URL}/api/users/AllDebts`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getAllEquipo() {
+  try {
+    const url = `${URL}/api/users/getAllEquipo`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function AllLab() {
+  try {
+    const url = `${URL}/api/users/AllLab`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
 export async function registerDebtApi(formData) {
   try {
     const url = `${URL}/api/users/PostAdeudo`;

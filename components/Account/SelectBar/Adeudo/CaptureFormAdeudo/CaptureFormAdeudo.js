@@ -16,6 +16,7 @@ export default function CaptureFormAdeudo(props) {
   const { onShowForm, selectedLab, equips } = props;
 
   const router = useRouter();
+
   return (
     <div className="panel_adeudo">
       <FormCapturaEquipos
@@ -30,7 +31,6 @@ export default function CaptureFormAdeudo(props) {
 
 function FormCapturaEquipos(props) {
   const { onShowForm, selectedLab, equips, router } = props;
-  console.log(equips);
   //Validador para ocultar Forms
   const [componentDisabled, setComponentDisabled] = useState(false);
   const onFormLayoutChange = ({ disabled }) => {
@@ -46,12 +46,17 @@ function FormCapturaEquipos(props) {
     initialValues: initualValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
+      if (selectedLab == 0) {
+        alert("Elige un laboratorio");
+        return null;
+      }
+
       if (formData.estatus === 1) formData.estatus = true;
       else formData.estatus = false;
       formData.idlaboratorio = selectedLab;
       console.log(formData);
       const response = await registerDebtApi(formData);
-      console.log(response);
+      router.push("/");
     },
   });
 
@@ -67,7 +72,7 @@ function FormCapturaEquipos(props) {
       <Item className="form_Adeudo">
         ------------------------------------------------------
         -----------------------------------------------------
-        </Item>
+      </Item>
       <Item className="datosAlumno_item">DATOS DEL ALUMNO:</Item>
       <Form className="datoAlumno">
         <Item>Nombre del Alumno:</Item>
@@ -126,14 +131,14 @@ function FormCapturaEquipos(props) {
         onChange={formik.handleChange}
         error={formik.errors.fecha_entrega}
       />
-      <Item>Laboratorio:</Item>
+      {/* <Item>Laboratorio:</Item>
       <Input
         name="idlaboratorio"
         type="text"
         placeholder="Laboratorio"
         onChange={formik.handleChange}
         error={formik.errors.idlaboratorio}
-      />
+      /> */}
 
       <Item>Asignatura:</Item>
       <Input
@@ -158,7 +163,7 @@ function FormCapturaEquipos(props) {
         name="idequipo"
         placeholder="Equipo"
         style={{
-          width: 250,
+          width: 350,
         }}
         value={formik.values.idequipo}
         onChange={(value) => {
@@ -169,7 +174,7 @@ function FormCapturaEquipos(props) {
       >
         {map(equips, (equip) => (
           <Option value={`${equip.idequipo}`.trim()}>
-            {equip.name} - Código {equip.code}
+            {equip.nombreequipo} - Código {equip.codigo_barras}
           </Option>
         ))}
       </Select>

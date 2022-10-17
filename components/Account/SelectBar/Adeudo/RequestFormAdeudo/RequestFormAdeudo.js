@@ -37,7 +37,10 @@ export default function RequestFormAdeudo(props) {
           placeholder="Boleta"
           focus="true"
           onChange={async (e) => {
-            if (e.target.value.trim().length === 10 || e.target.value.trim().length === 12) {
+            if (
+              e.target.value.trim().length === 10 ||
+              e.target.value.trim().length === 12
+            ) {
               await setDebtsView(debts);
               setDebtsView(
                 debtsView.filter((data) =>
@@ -62,7 +65,7 @@ export default function RequestFormAdeudo(props) {
 
 function CardItem(props) {
   const { debtsView, setDebtsView = { setDebtsView } } = props;
-
+  console.log(debtsView);
   return (
     <>
       <div></div>
@@ -91,8 +94,8 @@ function CardItem(props) {
           >
             <Meta
               avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={`Equipo: ${debt.equipo}`}
-              description={`Adeudor ${debt.name}. boleta ${
+              title={`Equipo: ${debt.nombreequipo}`}
+              description={`Adeudor ${debt.nombrealumno}. Boleta ${
                 debt.boleta
               }. Fallo ${debt.fallo || "Ninguno"}`}
             />
