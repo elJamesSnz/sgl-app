@@ -3,6 +3,7 @@
   min-width: 50rem !important;
   padding: 1rem 2rem;
   justify-content: space-between;
+
 }
 
 .availabletasks__panel__task {
@@ -16,7 +17,18 @@
   icon {
     transform: scale(2);
   }
+  transition: box-shadow 0.8s;
 }
+
+.availabletasks__panel__task{
+  box-shadow: .01rem .01rem .5rem .1rem black;
+
+}
+.availabletasks__panel__task:hover{
+  box-shadow: .1rem .1rem 1.3rem .3rem $background-pallete-1;
+}
+
+
 
 .availabletasks__panel__task__info {
   margin-top: 3rem;

@@ -14,7 +14,7 @@ export default function CaptureForm(props) {
   const { onShowForm, selectedLab } = props;
   const router = useRouter();
   return (
-    <div>
+    <div className="panel_equipamiento">
       <FormCapturaEquipos
         onShowForm={onShowForm}
         selectedLab={selectedLab}
@@ -250,8 +250,8 @@ function FormCapturaEquipos(props) {
           </div>
         </div>
       </Upload>
-
-      <Button type="submit">Guardar</Button>
+    
+      <Button type="submit" >Guardar</Button>
     </Form>
   );
 }

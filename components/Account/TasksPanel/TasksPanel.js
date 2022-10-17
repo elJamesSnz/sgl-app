@@ -50,8 +50,8 @@ export default function TasksPanel(props) {
                 equips={equips}
                 selectedLab={selectedLab}
                 debts={debts}
-              />
-            </div>
+              />  
+          </div>
           </>
         )}
       </div>
@@ -64,6 +64,7 @@ function MenuTasks(props) {
 
   return (
     <>
+    <div className="availabletasks__panel__corner">
       <div className="availabletasks__panel__task">
         <Icon name={list.icon} size="huge" />
         <div className="availabletasks__panel__task__info">
@@ -98,6 +99,7 @@ function MenuTasks(props) {
           </Button>
         </div>
       </div>
+    </div>
     </>
   );
 }

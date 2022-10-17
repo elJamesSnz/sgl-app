@@ -76,7 +76,7 @@ function PanelLaboratorios(props) {
   const { labs, setSelectedLab, selectedLab } = props;
   return (
     <div className="panel__left">
-      <h3>Lab disponibles</h3>
+      <h3>Laboratorios disponibles</h3>
       {map(labs, (lab) => (
         <LabTap
           lab={lab}
@@ -100,7 +100,10 @@ function PanelUsuario(props) {
   return (
     <div className="panel__right">
       <p>
-        <span>Profesor</span>
+        <span>Bienvenido !</span>
+      </p>
+      <p>
+        <spam>Tipo de cuenta</spam>
       </p>
       <p>{name}</p>
       <Button

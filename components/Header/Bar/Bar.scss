@@ -7,11 +7,17 @@
   padding: 1.5rem 0.7rem;
   color: aliceblue;
   font-size: 2rem;
+  transition: color 1s;
+}
+
+.TITLE:hover{
+  color: $background-pallete-3;
 }
 
 .SGL {
   text-align: left;
 }
+
 
 .IPN {
   text-align: right;

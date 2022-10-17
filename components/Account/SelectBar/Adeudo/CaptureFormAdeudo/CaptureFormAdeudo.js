@@ -17,7 +17,7 @@ export default function CaptureFormAdeudo(props) {
 
   const router = useRouter();
   return (
-    <div>
+    <div className="panel_adeudo">
       <FormCapturaEquipos
         onShowForm={onShowForm}
         selectedLab={selectedLab}
@@ -57,13 +57,17 @@ function FormCapturaEquipos(props) {
 
   return (
     <Form
-      className="captureForm"
+      className="captureForm_a"
       labelCol={{ span: 4 }}
       wrapperCol={{ span: 14 }}
       layout="horizontal"
       style={{ padding: "15px" }}
       onSubmit={formik.handleSubmit}
     >
+      <Item className="form_Adeudo">
+        ------------------------------------------------------
+        -----------------------------------------------------
+        </Item>
       <Item className="datosAlumno_item">DATOS DEL ALUMNO:</Item>
       <Form className="datoAlumno">
         <Item>Nombre del Alumno:</Item>

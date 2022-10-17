@@ -1,9 +1,22 @@
+.form_Adeudo{
+    padding-left: 100px;
+    opacity: 0%;
+}
+.captureForm_a{
+    margin-top: 1.5rem;
+    transition: box-shadow 1s;
+    box-shadow: .01rem .01rem .3rem .05rem black;
+}
+.captureForm_a:hover{
+    box-shadow: .01rem .01rem .5rem .1rem $background-pallete-1;
+}
+
 .datosAlumno{
     background-color: $background-light;
     padding: 7px;
 }
 .datosAlumno_item{
-    padding-top: 5px;
+    padding-top: -5px;
     font-size: 120%;
 }
 
@@ -15,6 +28,9 @@
     padding-top: 5px;
     font-size: 120%;
 }
-.availabletasks__panel__main{
-    width: 100%;
+
+.panel_adeudo{
+    margin: 11.4rem;
+    margin-top: auto;
+    margin-bottom: auto;
 }

@@ -8,14 +8,16 @@
   flex-wrap: wrap;
 
   &__left {
-    flex: 0 1 calc(10%) !important;
+    flex: 0 1 calc(13%) !important;
   }
   &__principal {
     flex: 0 0 calc(70% - 1rem) !important;
   }
   &__right {
-    flex: 0 0 calc(10% - 1rem) !important;
+    flex: 0 0 calc(13% - 1rem) !important;
   }
+
+  min-height: 85vh;
 }
 
 .panel__principal {
@@ -28,6 +30,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding: 10px;
+  padding-top: 25px;
 
   &__labTab {
     display: inline-block;
@@ -44,6 +48,12 @@
   }
 }
 
+.panel__right{
+  padding-left: 10px;
+  padding-top: 25px;
+  padding-right: -10px;
+}
+
 .labTap-active {
   font-size: 1.6rem !important;
   font-weight: bold !important;
@@ -57,3 +67,4 @@
   font-weight: bold !important;
   font-size: 1.3rem !important;
 }
+

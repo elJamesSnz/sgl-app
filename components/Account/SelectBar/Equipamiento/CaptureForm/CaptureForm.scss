@@ -1,3 +1,12 @@
+.captureForm{
+    margin-top: 1.5rem;
+    transition: box-shadow 1s;
+    box-shadow: .01rem .01rem .3rem .05rem black;
+}
+.captureForm:hover{
+    box-shadow: .01rem .01rem .5rem .1rem $background-pallete-1;
+}
+
 .descripcion{
     background-color: $background-light;
     padding: 7px;
@@ -5,4 +14,10 @@
 .descripcion_item{
     padding-top: 5px;
     font-size: 120%;
+}
+
+.panel_equipamiento{
+    margin: 11.66rem;
+    margin-top: auto;
+    margin-bottom: auto;
 }

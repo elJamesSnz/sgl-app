@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import IPN from "../../../resources/ipnWhite.png";
-import SGL from "../../../resources/SglWhite.png";
+import SGL from "../../../resources/SglWhithe3.png";
 import { useRouter } from "next/router";
 
 export default function Bar() {
