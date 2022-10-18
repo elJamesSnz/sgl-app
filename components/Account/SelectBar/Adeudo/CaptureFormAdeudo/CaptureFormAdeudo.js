@@ -49,6 +49,14 @@ function FormCapturaEquipos(props) {
       if (selectedLab == 0 || selectedLab == null) {
         alert("Elige un laboratorio");
         return null;
+      }else{
+        if (formData.carrera == 1) formData.carrera = 1;
+        if (formData.carrera == 2) formData.carrera = 2;
+        if (formData.carrera == 3) formData.carrera = 3;
+        if (formData.carrera == 4) formData.carrera = 4;
+        if (formData.carrera == 5) formData.carrera = 5;
+        //if (formData.otro == checked) formData.otro = true;
+        //if (formData.otro == off) formData.otro = false;
       }
 
       if (formData.estatus === 1) formData.estatus = true;
@@ -95,13 +103,26 @@ function FormCapturaEquipos(props) {
         />
 
         <Item>Carrera:</Item>
-        <Input
-          name="carrera"
-          type="text"
+        <Select
+          id="carrera"
+          name="id_carrera"
           placeholder="Carrera"
-          onChange={formik.handleChange}
-          error={formik.errors.carrera}
-        />
+          style={{
+            width: 170,
+          }}
+          value={formik.values.carrera}
+          onChange={(value) => {
+            formik.setFieldValue("carrera", value);
+          }}
+          onBlur={formik.handleBlur}
+          onSelect={formik.handleChange}
+        >
+          <Option value="1">Telematica</Option>
+          <Option value="2">Mecatronica</Option>
+          <Option value="3">Bionica</Option>
+          <Option value="4">Energia</Option>
+          <Option value="5">ISISA</Option>
+        </Select>       
 
         <Item>Correo:</Item>
         <Input
@@ -182,17 +203,17 @@ function FormCapturaEquipos(props) {
       <Checkbox
         name="otro"
         checked={componentDisabled}
-        onChange={(e) => setComponentDisabled(e.target.checked)}
-        //onChange={formik.handleChange}
-        error={formik.errors.otro}
+        onChange={(e) => {setComponentDisabled(e.target.checked), formik?.setFieldValue("otro", e.target.checked),console.log(e.target.checked)}}
+        onBlur={formik.handleBlur}
+        onSelect={formik.handleChange}
       >
-        Otros materiales
+        Otros componentes no registrados
       </Checkbox>
 
       <Input
         name="otro_name"
         type="text"
-        placeholder="Nombre del otro material"
+        placeholder="Nombre del componente"
         onValuesChange={onFormLayoutChange}
         disabled={!componentDisabled}
         onChange={formik.handleChange}
@@ -201,7 +222,7 @@ function FormCapturaEquipos(props) {
       <Input
         name="otro_motivo"
         type="text"
-        placeholder="Motivo del otro material"
+        placeholder="Descripcion del componente"
         onValuesChange={onFormLayoutChange}
         disabled={!componentDisabled}
         onChange={formik.handleChange}

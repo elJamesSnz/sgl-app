@@ -198,8 +198,7 @@ function FormCapturaEquipos(props) {
         <Select
           id="id_carrera"
           name="id_carrera"
-          placeholder="Estado"
-          defaultValue="Entregado"
+          placeholder="Carrera"
           style={{
             width: 170,
           }}
