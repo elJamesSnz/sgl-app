@@ -35,7 +35,7 @@ export default function EquipamientoEditForm(props) {
             placeholder="Nombre del equipo"
             value={`${viewEquip.nombreequipo}`}
           />
-          <Item>Codigo de Barras:</Item>
+          <Item>Codigo Cams:</Item>
           <Input
             className={`correo ${editable ? "" : "disabled"}`}
             name="codigo_barras"

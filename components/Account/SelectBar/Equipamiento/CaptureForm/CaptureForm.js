@@ -100,7 +100,7 @@ function FormCapturaEquipos(props) {
         error={formik.errors.ano}
       />
 
-      <Item>Código de barras:</Item>
+      <Item>Código Cams</Item>
       <Input
         name="codigo_barras"
         type="text"
