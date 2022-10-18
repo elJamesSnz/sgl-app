@@ -44,7 +44,7 @@ export default function AdeudoEditForm(props) {
         >
           <Item>Laboratorio</Item>
           <Input
-            className={`nombrelaboratorio ${editable ? "" : "disabled"}`}
+            className={`nombrelaboratorio ${editable ? "disabled" : "disabled"}`}
             name="nombrelaboratorio"
             type="text"
             placeholder="Nombre del Laboratorio"
@@ -52,7 +52,7 @@ export default function AdeudoEditForm(props) {
           />
           <Item>Nombre del Alumno:</Item>
           <Input
-            className={`nombrealumno ${editable ? "" : "disabled"}`}
+            className={`nombrealumno ${editable ? "disabled" : "disabled"}`}
             name="nombre"
             type="text"
             placeholder="Nombre del Alumno"
@@ -60,7 +60,7 @@ export default function AdeudoEditForm(props) {
           />
           <Item>Boleta:</Item>
           <Input
-            className={`boleta ${editable ? "" : "disabled"}`}
+            className={`boleta ${editable ? "disabled" : "disabled"}`}
             name="boleta"
             type="text"
             rows={4}
@@ -98,6 +98,14 @@ export default function AdeudoEditForm(props) {
             type="text"
             placeholder="MM/DD/AAAA"
             value={`${viewAdeudo.fecha_entrega}`}
+          />
+          <Item>Nombre equipo adeudado:</Item>
+          <Input
+            className={`nombreequipo ${editable ? "disabled" : "disabled"}`}
+            name="nombreequipo" 
+            type="text"
+            placeholder="Nombre equipo adeudado"
+            value={`${viewAdeudo.nombreequipo}`}
           />
           <Item>Asignatura:</Item>
           <Input
