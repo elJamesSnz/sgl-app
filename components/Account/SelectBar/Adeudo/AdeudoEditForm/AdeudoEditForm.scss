@@ -1,34 +1,41 @@
 .AdeudoEditForm {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-  
-  .AdeudoEditForm__form {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .AdeudoEditForm__info {
-    display: flex;
-  }
-  
-  .AdeudoEditForm__actions {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.AdeudoEditForm__form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.AdeudoEditForm__info {
+  display: flex;
+}
+
+.AdeudoEditForm__actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.AdeudoEditForm__img {
+  padding: 2rem 2rem;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+
+  Button {
+    margin-top: 2rem !important;
+    width: 8rem !important;
     display: flex;
     justify-content: flex-end;
   }
-  
-  .AdeudoEditForm__img {
-    padding: 2rem 2rem;
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-  
-    Button {
-      margin-top: 2rem !important;
-      width: 8rem !important;
-      display: flex;
-      justify-content: flex-end;
-    }
+}
+
+.AdeudoEditForm__actions__right {
+  display: flex;
+  flex-direction: column;
+  p {
+    font-weight: bold;
   }
-  
+}

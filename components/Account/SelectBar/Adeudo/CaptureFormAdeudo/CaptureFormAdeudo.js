@@ -169,6 +169,7 @@ function FormCapturaEquipos(props) {
         }}
         onBlur={formik.handleBlur}
         onSelect={formik.handleChange}
+        disabled={componentDisabled}
       >
         {map(equips, (equip) => (
           <Option value={`${equip.idequipo}`.trim()}>
@@ -176,6 +177,36 @@ function FormCapturaEquipos(props) {
           </Option>
         ))}
       </Select>
+      <br></br>
+
+      <Checkbox
+        name="otro"
+        checked={componentDisabled}
+        onChange={(e) => setComponentDisabled(e.target.checked)}
+        //onChange={formik.handleChange}
+        error={formik.errors.otro}
+      >
+        Otros materiales
+      </Checkbox>
+
+      <Input
+        name="otro_name"
+        type="text"
+        placeholder="Nombre del otro material"
+        onValuesChange={onFormLayoutChange}
+        disabled={!componentDisabled}
+        onChange={formik.handleChange}
+        error={formik.errors.otro_name}
+      />
+      <Input
+        name="otro_motivo"
+        type="text"
+        placeholder="Motivo del otro material"
+        onValuesChange={onFormLayoutChange}
+        disabled={!componentDisabled}
+        onChange={formik.handleChange}
+        error={formik.errors.otro_motivo}
+      />
 
       <Item>Estatus:</Item>
       <Select
@@ -216,6 +247,10 @@ function initualValues() {
     idequipo: "",
     estatus: "",
     correo: "",
+    otro:"",
+    otro_name:"",
+    otro_motivo:"",
+    
   };
 }
 
@@ -232,5 +267,8 @@ function validationSchema() {
     idequipo: Yup.string(),
     estatus: Yup.string(),
     correo: Yup.string(),
+    otro:Yup.string(),
+    otro_name: Yup.string(),
+    otro_motivo: Yup.string(),
   };
 }

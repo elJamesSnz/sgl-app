@@ -1,5 +1,15 @@
+import { Formik } from "formik";
+import { map } from "lodash";
 import React, { useState } from "react";
-import { Button, Icon, Input, Form, Item } from "semantic-ui-react";
+import {
+  Button,
+  Icon,
+  Input,
+  Form,
+  Item,
+  Select,
+  Option,
+} from "semantic-ui-react";
 
 export default function AdeudoEditForm(props) {
   const { viewAdeudo } = props;
@@ -7,6 +17,16 @@ export default function AdeudoEditForm(props) {
   console.log(viewAdeudo);
   //<div className={`${navActive ? "active" : ""} nav__menu-list`}>
 
+  const ESTATUS = [
+    {
+      status: "No entregado",
+      boolValue: false,
+    },
+    {
+      status: "Entregado",
+      boolValue: true,
+    },
+  ];
   return (
     <div className={`AdeudoEditForm`}>
       <div className={`AdeudoEditForm__form`}>
@@ -14,6 +34,7 @@ export default function AdeudoEditForm(props) {
           <p>info de la form</p>
           <p>{viewAdeudo.idlaboratorio}</p>
         </div> */}
+        
         <Form
           className="adeudo_edit"
           labelCol={{ span: 4 }}
@@ -94,14 +115,6 @@ export default function AdeudoEditForm(props) {
             placeholder="Profesor"
             value={`${viewAdeudo.profesor}`}
           />
-          <Item>Estatus:</Item>
-          <Input
-            className={`estatus ${editable ? "" : "disabled"}`}
-            name="estatus"
-            type="text"
-            placeholder="Estatus"
-            value={`${viewAdeudo.estatus ? "Entregado" : "No entregado"}`}
-          />
         </Form>
         <div className="AdeudoEditForm__img">
           <img
@@ -115,12 +128,20 @@ export default function AdeudoEditForm(props) {
         </div>
       </div>
       <div className="AdeudoEditForm__actions">
-        <Button onClick={() => setEditable(!editable)}>
-          <Icon name="edit"></Icon>
-        </Button>
-        <Button disabled={!editable}>
-          <Icon name="save"></Icon>
-        </Button>
+        <div className="AdeudoEditForm__actions__left">
+          <Button onClick={() => setEditable(!editable)}>
+            <Icon name="edit"></Icon>
+          </Button>
+          <Button disabled={!editable}>
+            <Icon name="save"></Icon>
+          </Button>
+        </div>
+        <div className="AdeudoEditForm__actions__right">
+          <Button active={editable} onClick={() => {}}>
+            <Icon name="check"></Icon>
+          </Button>
+          <p>Margar como entregado</p>
+        </div>
       </div>
     </div>
   );
