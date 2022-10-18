@@ -119,7 +119,7 @@ function FormCapturaEquipos(props) {
       <Input
         name="fecha_peticion"
         type="text"
-        placeholder="DD/MM/AAAA"
+        placeholder="MM/DD/AAAA"
         onChange={formik.handleChange}
         error={formik.errors.fecha_peticion}
       />
@@ -127,7 +127,7 @@ function FormCapturaEquipos(props) {
       <Input
         name="fecha_entrega"
         type="text"
-        placeholder="DD/MM/AAAA"
+        placeholder="MM/DD/AAAA"
         onChange={formik.handleChange}
         error={formik.errors.fecha_entrega}
       />
@@ -148,7 +148,6 @@ function FormCapturaEquipos(props) {
         onChange={formik.handleChange}
         error={formik.errors.materia}
       />
-
       <Item>Profesor:</Item>
       <Input
         name="profesor"
@@ -157,7 +156,6 @@ function FormCapturaEquipos(props) {
         onChange={formik.handleChange}
         error={formik.errors.profesor}
       />
-
       <Item>Material o Equipo:</Item>
       <Select
         name="idequipo"

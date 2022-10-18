@@ -8,20 +8,36 @@ import {
   Loader,
   Image,
 } from "semantic-ui-react";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { EyeFilled, EditFilled, DeleteFilled } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 import { map, size } from "lodash";
 import { useState, useEffect } from "react";
 import { Object } from "lodash";
+import MainModal from "../../../../Modal/MainModal";
+import AdeudoEditForm from "../AdeudoEditForm/AdeudoEditForm";
 const { Meta } = Card;
 
 export default function RequestFormAdeudo(props) {
   const { debts } = props;
+
   const [debtsView, setDebtsView] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [viewAdeudo, setViewAdeudo] = useState([]);
+
+  const onShowModal = async (id) => {
+    await setViewAdeudo(null);
+    for (let index = 0; index < debts.length; index++) {
+      const element = debts[index];
+      if (element?.idlaboratorio == id) {
+        setViewAdeudo(element);
+      }
+    }
+
+    if (viewAdeudo) setShowModal(true);
+    else console.log(id);
+  };
+  const onCloseModal = () => setShowModal(false);
+
   useEffect(() => {
     (() => {
       setDebtsView(debts);
@@ -56,7 +72,20 @@ export default function RequestFormAdeudo(props) {
           Elementos encontrados: <span>{debtsView.length}</span>
         </p>
       </div>
-      <CardItem debtsView={debtsView} />
+      <CardItem
+        debtsView={debtsView}
+        showModal={showModal}
+        onShowModal={onShowModal}
+        onCloseModal={onCloseModal}
+      />
+      <MainModal
+        show={showModal}
+        setShow={setShowModal}
+        title={"Adeudo"}
+        size="small"
+      >
+        <AdeudoEditForm viewAdeudo={viewAdeudo} />
+      </MainModal>
     </>
   ) : (
     <>No hay adeudos por mostrar</>
@@ -64,8 +93,7 @@ export default function RequestFormAdeudo(props) {
 }
 
 function CardItem(props) {
-  const { debtsView, setDebtsView = { setDebtsView } } = props;
-  console.log(debtsView);
+  const { debtsView, setDebtsView, onShowModal } = props;
   return (
     <>
       <div></div>
@@ -87,9 +115,11 @@ function CardItem(props) {
               />
             }
             actions={[
-              <SettingOutlined key="view" />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <Button onClick={() => onShowModal(debt.idlaboratorio)}>
+                <EyeFilled />
+              </Button>,
+              <EditFilled />,
+              <DeleteFilled />,
             ]}
           >
             <Meta

@@ -32,6 +32,7 @@ export default function Navbar() {
   const onShowModal = () => {
     setShowModal(true);
   };
+  
   const onCloseModal = () => setShowModal(false);
 
   return (

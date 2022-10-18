@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   Button,
   Segment,
@@ -8,23 +8,58 @@ import {
   Loader,
   Image,
 } from "semantic-ui-react";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { EditFilled, DeleteFilled, EyeFilled } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
-import { map, size } from "lodash";
+import { eq, map, size } from "lodash";
+import MainModal from "../../../../Modal/MainModal";
+import EquipamientoEditForm from "../EquipamientoEditForm/EquipamientoEditForm";
 const { Meta } = Card;
 
 export default function RequestForm(props) {
   const { equips } = props;
-  console.log(equips);
-  return equips ? <CardItem equips={equips} /> : <>No hay equipos</>;
+  const [showModal, setShowModal] = useState(false);
+  const [viewEquip, setViewEquip] = useState([]);
+
+  const onShowModal = async (id) => {
+    await setViewEquip(null);
+    for (let index = 0; index < equips.length; index++) {
+      const element = equips[index];
+      if (element?.idequipo == id) {
+        setViewEquip(element);
+      }
+    }
+
+    if (viewEquip) setShowModal(true);
+    else console.log(id);
+  };
+  const onCloseModal = () => setShowModal(false);
+
+  return equips ? (
+    <>
+      <CardItem
+        equips={equips}
+        showModal={showModal}
+        onShowModal={onShowModal}
+        onCloseModal={onCloseModal}
+        viewEquip={viewEquip}
+        setViewEquip={setViewEquip}
+      />
+      <MainModal
+        show={showModal}
+        setShow={setShowModal}
+        title={"Equipo"}
+        size="small"
+      >
+        <EquipamientoEditForm viewEquip={viewEquip} />
+      </MainModal>
+    </>
+  ) : (
+    <>No hay equipos</>
+  );
 }
 
 function CardItem(props) {
-  const { equips } = props;
+  const { equips, onShowModal} = props;
 
   return (
     <>
@@ -46,9 +81,11 @@ function CardItem(props) {
               />
             }
             actions={[
-              <SettingOutlined key="view" />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <Button onClick={() => onShowModal(equip.idequipo)}>
+                <EyeFilled />
+              </Button>,
+              <EditFilled />,
+              <DeleteFilled />,
             ]}
           >
             <Meta

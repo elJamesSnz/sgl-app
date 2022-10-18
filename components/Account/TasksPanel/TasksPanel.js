@@ -4,16 +4,18 @@ import CaptureForm from "../SelectBar/Equipamiento/CaptureForm";
 import RequestForm from "../SelectBar/Equipamiento/RequestForm";
 import CaptureFormAdeudo from "../SelectBar/Adeudo/CaptureFormAdeudo";
 import RequestFormAdeudo from "../SelectBar/Adeudo/RequestFormAdeudo";
+import ReportesNoAdeudo from "../SelectBar/ReportesNoAdeudo";
 import classNames from "classnames";
 import { Icon } from "semantic-ui-react";
 import { forEach, map, size } from "lodash";
 import { useRouter } from "next/router";
 import { Button, Loader } from "semantic-ui-react";
+import useAuth from "../../../hooks/useAuth";
 
 export default function TasksPanel(props) {
   const { equips, debts, selectedLab, index, setIndex } = props;
-
   const [totalElements, setTotalElements] = useState(0);
+  const { auth, logout, setReloadUser } = useAuth();
 
   const MENU_LIST = [
     {
@@ -25,10 +27,20 @@ export default function TasksPanel(props) {
     },
     {
       title: "Adeudo",
-      icon: "clipboard outline",
+      icon: "address card outline",
       statsTitle: "adeudos",
       data: debts,
       id: 2,
+    },
+  ];
+
+  const ADMIN_LIST = [
+    {
+      title: "Reporte no adeudos",
+      icon: "clipboard outline",
+      statsTitle: "reportes",
+      data: debts,
+      id: 20,
     },
   ];
 
@@ -38,8 +50,22 @@ export default function TasksPanel(props) {
         {index === null ? (
           <>
             {map(MENU_LIST, (list) => (
-              <MenuTasks list={list} setIndex={setIndex} id={list.id} />
+              <MenuTasks
+                list={list}
+                setIndex={setIndex}
+                id={list.id}
+                auth={auth}
+              />
             ))}
+            {auth.idRol == 6 &&
+              map(ADMIN_LIST, (listAdmin) => (
+                <MenuTasksAdmin
+                  list={listAdmin}
+                  setIndex={setIndex}
+                  id={listAdmin.id}
+                  auth={auth}
+                />
+              ))}
           </>
         ) : (
           <>
@@ -50,6 +76,8 @@ export default function TasksPanel(props) {
                 equips={equips}
                 selectedLab={selectedLab}
                 debts={debts}
+                auth={auth}
+                setIndex={setIndex}
               />
             </div>
           </>
@@ -101,8 +129,40 @@ function MenuTasks(props) {
   );
 }
 
+function MenuTasksAdmin(props) {
+  const { list, setIndex, id } = props;
+
+  return (
+    <>
+      <div className="availabletasks__panel__corner">
+        <div className="availabletasks__panel__task">
+          <Icon name={list.icon} size="huge" />
+          <div className="availabletasks__panel__task__info">
+            <div className="availabletasks__panel__task__info__title">
+              <p>{list.title}</p>
+            </div>
+          </div>
+          <div className="availabletasks__panel__task__actions">
+            <Button
+              animated
+              className="availabletasks__panel__task__actions_btn"
+              onClick={() => setIndex(id)}
+            >
+              <Button.Content visible>Ver {list.statsTitle}</Button.Content>
+              <Button.Content hidden>
+                <Icon name="unordered list" />
+              </Button.Content>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 function ShowComponent(props) {
-  const { index, equips, selectedLab, debts } = props;
+  const { index, equips, selectedLab, debts, auth, setIndex } = props;
+
   switch (index) {
     case 0:
       return <RequestForm equips={equips} />;
@@ -118,7 +178,12 @@ function ShowComponent(props) {
           index={index}
         />
       );
-    case 4:
+    case 20:
+      if (auth.idRol == 6) {
+        return <ReportesNoAdeudo />;
+      } else {
+        setIndex(null);
+      }
   }
 }
 
