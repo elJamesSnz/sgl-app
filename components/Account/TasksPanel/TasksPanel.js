@@ -17,6 +17,9 @@ export default function TasksPanel(props) {
   const [totalElements, setTotalElements] = useState(0);
   const { auth, logout, setReloadUser } = useAuth();
 
+  console.log(equips);
+  console.log(debts);
+
   const MENU_LIST = [
     {
       title: "Equipamiento",
@@ -57,7 +60,7 @@ export default function TasksPanel(props) {
                 auth={auth}
               />
             ))}
-            {auth.idRol == 6 &&
+            {auth.idRol == 1 &&
               map(ADMIN_LIST, (listAdmin) => (
                 <MenuTasksAdmin
                   list={listAdmin}
@@ -179,7 +182,7 @@ function ShowComponent(props) {
         />
       );
     case 20:
-      if (auth.idRol == 6) {
+      if (auth.idRol == 1) {
         return <ReportesNoAdeudo />;
       } else {
         setIndex(null);

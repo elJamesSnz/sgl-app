@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 
 export default function MainLayout(props) {
   const { children, className, auth, logout } = props;
+  console.log(auth);
 
   return (
     <Container

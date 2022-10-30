@@ -29,7 +29,7 @@ export default function AccountPanel(props) {
   useEffect(() => {
     (async () => {
       if (auth.idUser) {
-        if (auth.idRol == 6) {
+        if (auth.idRol == 1) {
           setName("Jefe");
           const resLabs = await AllLab();
           setLabs(resLabs?.data || []);
@@ -59,12 +59,14 @@ export default function AccountPanel(props) {
         setReloadData(true);
       } else {
         const res = await getItemsLabApi(selectedLab, logout);
-        if (size(res.data?.equip) > 0) {
-          setEquips(res.data.equip || []);
+        if (size(res?.data) > 0) {
+          console.log(res.data);
+          setEquips(res.data || []);
         }
         const res2 = await getDebtsLabApi(selectedLab, logout);
-        if (size(res2.data?.adeudo) > 0) {
-          setDebts(res2.data.adeudo || []);
+        if (size(res2?.data) > 0) {
+          console.log(res.data);
+          setDebts(res2.data || []);
         }
       }
     })();
@@ -123,8 +125,8 @@ function PanelLaboratorios(props) {
           <Option value={"0"}>Todos</Option>
         )}
         {map(labs, (lab) => (
-          <Option value={`${lab.idlaboratorio}`} selected={"selected"}>
-            {lab.nombre}
+          <Option value={`${lab.Id_laboratorio}`} selected={"selected"}>
+            {lab.Nombre_laboratorio}
           </Option>
         ))}
       </Select>
@@ -144,7 +146,7 @@ function PanelUsuario(props) {
   return (
     <div className="panel__right">
       <p>
-        <span>Bienvenido !</span>
+        <span>Bienvenid@ {}</span>
       </p>
       <p>
         <span>Tipo de cuenta</span>

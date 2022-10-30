@@ -20,12 +20,13 @@ export default function EquipamientoEditForm(props) {
           style={{ padding: "10px" }}
         >
           <Item>Laboratorio</Item>
+          //{" "}
           <Input
             className={`nombre ${editable ? "" : "disabled"}`}
             name="nombre"
             type="text"
             placeholder="Nombre del Laboratorio"
-            value={`${viewEquip.nombre}`}
+            value={`${viewEquip.Nombre_laboratorio}`}
           />
           <Item>Nombre del equipo:</Item>
           <Input
@@ -33,7 +34,7 @@ export default function EquipamientoEditForm(props) {
             name="nombreequipo"
             type="text"
             placeholder="Nombre del equipo"
-            value={`${viewEquip.nombreequipo}`}
+            value={`${viewEquip.Nombre_equipo}`}
           />
           <Item>Codigo Cams:</Item>
           <Input
@@ -41,7 +42,7 @@ export default function EquipamientoEditForm(props) {
             name="codigo_barras"
             type="text"
             placeholder="Codigo de Barras"
-            value={`${viewEquip.codigo_barras}`}
+            value={`${viewEquip.Cams_equipo}`}
           />
           <Item>Modelo:</Item>
           <Input
@@ -50,7 +51,7 @@ export default function EquipamientoEditForm(props) {
             type="text"
             rows={4}
             placeholder="Modelo"
-            value={`${viewEquip.modelo}`}
+            value={`${viewEquip.Modelo_equipo}`}
           />
           <Item>Año:</Item>
           <Input
@@ -58,7 +59,7 @@ export default function EquipamientoEditForm(props) {
             name="ano"
             type="text"
             placeholder="Año"
-            value={`${viewEquip.ano}`}
+            value={`${viewEquip.Año_equipo}`}
           />
           <Item>Descripción</Item>
           <Input
@@ -66,7 +67,7 @@ export default function EquipamientoEditForm(props) {
             name="Id_descripcion"
             type="text"
             placeholder="Descripción"
-            value={`${viewEquip.Id_descripcion}`}
+            value={`${viewEquip.Descripcion_equipo}`}
           />
           <Item>Nombre del manual:</Item>
           <Input
@@ -82,7 +83,9 @@ export default function EquipamientoEditForm(props) {
             name="estatus"
             type="text"
             placeholder="Estatus"
-            value={`${viewEquip.estatus ? "Funcional" : "No funcional"}`}
+            value={`${
+              viewEquip.Disponibilidad_equipo ? "Funcional" : "No funcional"
+            }`}
           />
           <Item>Descripción del fallo:</Item>
           <Input

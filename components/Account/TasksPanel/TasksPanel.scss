@@ -1,9 +1,20 @@
+.availabletasks__panel__main {
+  margin: 0;
+}
+
 .availabletasks__panel {
-  display: flex;
+  //display grid para número de columnas
   min-width: 50rem !important;
   padding: 1rem 2rem;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
 
+.availabletasks__panel__corner {
+  margin: 0;
 }
 
 .availabletasks__panel__task {
@@ -20,15 +31,12 @@
   transition: box-shadow 0.8s;
 }
 
-.availabletasks__panel__task{
-  box-shadow: .01rem .01rem .5rem .1rem black;
-
+.availabletasks__panel__task {
+  box-shadow: 0.01rem 0.01rem 0.5rem 0.1rem black;
 }
-.availabletasks__panel__task:hover{
-  box-shadow: .1rem .1rem 1.3rem .3rem $background-pallete-1;
+.availabletasks__panel__task:hover {
+  box-shadow: 0.1rem 0.1rem 1.3rem 0.3rem $background-pallete-1;
 }
-
-
 
 .availabletasks__panel__task__info {
   margin-top: 3rem;

@@ -34,6 +34,8 @@ export default function RequestForm(props) {
   };
   const onCloseModal = () => setShowModal(false);
 
+  if (showModal) return <EquipamientoEditForm viewEquip={viewEquip} />;
+
   return equips ? (
     <>
       <CardItem
@@ -44,14 +46,6 @@ export default function RequestForm(props) {
         viewEquip={viewEquip}
         setViewEquip={setViewEquip}
       />
-      <MainModal
-        show={showModal}
-        setShow={setShowModal}
-        title={"Equipo"}
-        size="small"
-      >
-        <EquipamientoEditForm viewEquip={viewEquip} />
-      </MainModal>
     </>
   ) : (
     <>No hay equipos</>
@@ -59,7 +53,7 @@ export default function RequestForm(props) {
 }
 
 function CardItem(props) {
-  const { equips, onShowModal} = props;
+  const { equips, onShowModal } = props;
 
   return (
     <>
@@ -82,7 +76,7 @@ function CardItem(props) {
             }
             actions={[
               <Button onClick={() => onShowModal(equip.idequipo)}>
-                <EyeFilled />
+                <EyeFilled/>
               </Button>,
               <EditFilled />,
               <DeleteFilled />,
@@ -90,9 +84,11 @@ function CardItem(props) {
           >
             <Meta
               avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={`Equipo: ${equip.nombreequipo}`}
-              description={`Marca ${equip.mode}. Año ${equip.ano}. Fallo ${
-                equip.fallo || "Ninguno"
+              title={`Equipo: ${equip.Nombre_equipo}`}
+              description={`Marca ${equip.Marca_equipo}. Año ${
+                equip.Año_equipo
+              }. Disponibilidad:  ${
+                equip.Disponibilidad_equipo ? "Disponible" : "No Disponible"
               }`}
             />
           </Card>
@@ -112,3 +108,14 @@ function CardDescripcion() {
     </p>
   );
 }
+
+/*
+<MainModal
+        show={showModal}
+        setShow={setShowModal}
+        title={"Equipo"}
+        size="small"
+      >
+        <EquipamientoEditForm viewEquip={viewEquip} />
+      </MainModal>
+*/
