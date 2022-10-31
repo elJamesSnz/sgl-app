@@ -5,6 +5,7 @@ import { Button, Loader } from "semantic-ui-react";
 import {
   getUserLabsApi,
   getItemsLabApi,
+  getEstadosEquipoApi,
   getDebtsLabApi,
   getAllDebts,
   getAllEquipo,
@@ -18,10 +19,11 @@ export default function AccountPanel(props) {
   const { auth, logout } = props;
   const [labs, setLabs] = useState(undefined);
   const [name, setName] = useState(undefined);
-  const [selectedLab, setSelectedLab] = useState(0);
   const [equips, setEquips] = useState(undefined);
+  const [estadosEquipos, setEstadosEquipos] = useState(undefined);
   const [debts, setDebts] = useState(undefined);
   const [reloadData, setReloadData] = useState(false);
+  const [selectedLab, setSelectedLab] = useState(0);
   const [index, setIndex] = useState(null);
 
   const router = useRouter();
@@ -30,7 +32,7 @@ export default function AccountPanel(props) {
     (async () => {
       if (auth.idUser) {
         if (auth.idRol == 1) {
-          setName("Jefe");
+          setName("Coordinador NO DB");
           const resLabs = await AllLab();
           setLabs(resLabs?.data || []);
           const resEquipos = await getAllEquipo();
@@ -47,6 +49,12 @@ export default function AccountPanel(props) {
             console.log(labs);
           }
         }
+
+        //get de estados, tipos de fallo que se pasarán entre capture y edit forms
+        const estados = await getEstadosEquipoApi();
+        if (size(estados?.data) >= 0) setEstadosEquipos(estados?.data);
+        else setEstadosEquipos([]);
+        console.log(estadosEquipos);
       }
 
       setReloadData(false);
@@ -86,6 +94,7 @@ export default function AccountPanel(props) {
           />
 
           <TasksPanel
+            estadosEquipos={estadosEquipos}
             equips={equips}
             selectedLab={selectedLab}
             debts={debts}

@@ -13,7 +13,7 @@ import { Button, Loader } from "semantic-ui-react";
 import useAuth from "../../../hooks/useAuth";
 
 export default function TasksPanel(props) {
-  const { equips, debts, selectedLab, index, setIndex } = props;
+  const { equips, debts, selectedLab, index, setIndex, estadosEquipos } = props;
   const [totalElements, setTotalElements] = useState(0);
   const { auth, logout, setReloadUser } = useAuth();
 
@@ -75,6 +75,7 @@ export default function TasksPanel(props) {
             <div className="availabletasks__panel__main">
               <Back setIndex={setIndex} className="return" />
               <ShowComponent
+                estadosEquipos={estadosEquipos}
                 index={index}
                 equips={equips}
                 selectedLab={selectedLab}
@@ -164,13 +165,20 @@ function MenuTasksAdmin(props) {
 }
 
 function ShowComponent(props) {
-  const { index, equips, selectedLab, debts, auth, setIndex } = props;
+  const { index, equips, selectedLab, debts, auth, setIndex, estadosEquipos } =
+    props;
 
   switch (index) {
     case 0:
-      return <RequestForm equips={equips} />;
+      return <RequestForm estadosEquipos={estadosEquipos} equips={equips} />;
     case 1:
-      return <CaptureForm selectedLab={selectedLab} index={index} />;
+      return (
+        <CaptureForm
+          estadosEquipos={estadosEquipos}
+          selectedLab={selectedLab}
+          index={index}
+        />
+      );
     case 2:
       return <RequestFormAdeudo debts={debts} equips={equips} />;
     case 3:

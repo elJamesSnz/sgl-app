@@ -11,12 +11,11 @@ import {
 import { EditFilled, DeleteFilled, EyeFilled } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 import { eq, map, size } from "lodash";
-import MainModal from "../../../../Modal/MainModal";
 import EquipamientoEditForm from "../EquipamientoEditForm/EquipamientoEditForm";
 const { Meta } = Card;
 
 export default function RequestForm(props) {
-  const { equips } = props;
+  const { equips, estadosEquipos } = props;
   const [showModal, setShowModal] = useState(false);
   const [viewEquip, setViewEquip] = useState([]);
 
@@ -34,7 +33,13 @@ export default function RequestForm(props) {
   };
   const onCloseModal = () => setShowModal(false);
 
-  if (showModal) return <EquipamientoEditForm viewEquip={viewEquip} />;
+  if (showModal)
+    return (
+      <EquipamientoEditForm
+        estadosEquipos={estadosEquipos}
+        viewEquip={viewEquip}
+      />
+    );
 
   return equips ? (
     <>
@@ -76,7 +81,7 @@ function CardItem(props) {
             }
             actions={[
               <Button onClick={() => onShowModal(equip.idequipo)}>
-                <EyeFilled/>
+                <EyeFilled />
               </Button>,
               <EditFilled />,
               <DeleteFilled />,
@@ -108,14 +113,3 @@ function CardDescripcion() {
     </p>
   );
 }
-
-/*
-<MainModal
-        show={showModal}
-        setShow={setShowModal}
-        title={"Equipo"}
-        size="small"
-      >
-        <EquipamientoEditForm viewEquip={viewEquip} />
-      </MainModal>
-*/

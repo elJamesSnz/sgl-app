@@ -5,17 +5,18 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Form, Item, Button } from "semantic-ui-react";
 import { useRouter } from "next/router";
-
 import { Input, Select, InputNumber, Checkbox, Upload } from "antd";
 import { registerEquipApi } from "../../../../../api/user";
+import { map } from "lodash";
 const { TextArea } = Input;
 
 export default function CaptureForm(props) {
-  const { onShowForm, selectedLab } = props;
+  const { onShowForm, selectedLab, estadosEquipos } = props;
   const router = useRouter();
   return (
     <div className="panel_equipamiento">
       <FormCapturaEquipos
+        estadosEquipos={estadosEquipos}
         onShowForm={onShowForm}
         selectedLab={selectedLab}
         router={router}
@@ -25,7 +26,7 @@ export default function CaptureForm(props) {
 }
 
 function FormCapturaEquipos(props) {
-  const { onShowForm, values, selectedLab, router } = props;
+  const { onShowForm, values, selectedLab, router, estadosEquipos } = props;
   //Validador para ocultar Forms
   const [componentDisabled, setComponentDisabled] = useState(false);
   const onFormLayoutChange = ({ disabled }) => {
@@ -150,9 +151,11 @@ function FormCapturaEquipos(props) {
         onBlur={formik.handleBlur}
         onSelect={formik.handleChange}
       >
-        <Option value="1">Funcional</Option>
-        <Option value="2">No Funcional</Option>
-        <Option value="3">Funcional con fallo</Option>
+        {map(estadosEquipos, (estado) => (
+          <Option value={`${estado.Id_estado}`.trim()}>
+            {estado.Descripcion_estado}
+          </Option>
+        ))}
       </Select>
 
       <Item>Descripción del fallo:</Item>

@@ -44,6 +44,8 @@ export default function RequestFormAdeudo(props) {
     })();
   }, [debts]);
 
+  if (showModal) return <AdeudoEditForm viewAdeudo={viewAdeudo} />;
+
   return debts ? (
     <>
       <div className="search__bar">
@@ -78,14 +80,6 @@ export default function RequestFormAdeudo(props) {
         onShowModal={onShowModal}
         onCloseModal={onCloseModal}
       />
-      <MainModal
-        show={showModal}
-        setShow={setShowModal}
-        title={"Adeudo"}
-        size="small"
-      >
-        <AdeudoEditForm viewAdeudo={viewAdeudo} />
-      </MainModal>
     </>
   ) : (
     <>No hay adeudos por mostrar</>
@@ -143,3 +137,15 @@ function filterByValue(array, string) {
     )
   );
 }
+
+/*
+
+<MainModal
+        show={showModal}
+        setShow={setShowModal}
+        title={"Adeudo"}
+        size="small"
+      >
+        <AdeudoEditForm viewAdeudo={viewAdeudo} />
+      </MainModal>
+*/
