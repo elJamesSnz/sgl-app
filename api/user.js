@@ -145,6 +145,17 @@ export async function registerEquipApi(formData) {
   }
 }
 
+export async function getDisponibilidadApi() {
+  try {
+    const url = `${URL}/api/users/getDisponibilidad`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
 export async function getEstadosEquipoApi() {
   try {
     const url = `${URL}/api/users/getEstadosEquipo`;

@@ -6,6 +6,7 @@ import {
   getUserLabsApi,
   getItemsLabApi,
   getEstadosEquipoApi,
+  getDisponibilidadApi,
   getDebtsLabApi,
   getAllDebts,
   getAllEquipo,
@@ -21,6 +22,7 @@ export default function AccountPanel(props) {
   const [name, setName] = useState(undefined);
   const [equips, setEquips] = useState(undefined);
   const [estadosEquipos, setEstadosEquipos] = useState(undefined);
+  const [disponibilidadEquipo, setDisponibilidadEquipo] = useState(undefined);
   const [debts, setDebts] = useState(undefined);
   const [reloadData, setReloadData] = useState(false);
   const [selectedLab, setSelectedLab] = useState(0);
@@ -54,7 +56,12 @@ export default function AccountPanel(props) {
         const estados = await getEstadosEquipoApi();
         if (size(estados?.data) >= 0) setEstadosEquipos(estados?.data);
         else setEstadosEquipos([]);
-        console.log(estadosEquipos);
+
+        const disponibilidades = await getDisponibilidadApi();
+        if (size(disponibilidades?.data) >= 0)
+          setDisponibilidadEquipo(disponibilidades?.data);
+        else setDisponibilidadEquipo([]);
+        console.log(disponibilidadEquipo);
       }
 
       setReloadData(false);
@@ -95,6 +102,7 @@ export default function AccountPanel(props) {
 
           <TasksPanel
             estadosEquipos={estadosEquipos}
+            disponibilidadEquipo={disponibilidadEquipo}
             equips={equips}
             selectedLab={selectedLab}
             debts={debts}
@@ -129,8 +137,8 @@ function PanelLaboratorios(props) {
         }}
         defaultActiveFirstOption="true"
       >
-        {idRol == 6 && index == null && <Option value={"0"}>Todos</Option>}
-        {idRol == 6 && index != null && index % 2 === 0 && (
+        {idRol == 1 && index == null && <Option value={"0"}>Todos</Option>}
+        {idRol == 1 && index != null && index % 2 === 0 && (
           <Option value={"0"}>Todos</Option>
         )}
         {map(labs, (lab) => (

@@ -15,7 +15,7 @@ import EquipamientoEditForm from "../EquipamientoEditForm/EquipamientoEditForm";
 const { Meta } = Card;
 
 export default function RequestForm(props) {
-  const { equips, estadosEquipos } = props;
+  const { equips, estadosEquipos, disponibilidadEquipo } = props;
   const [showModal, setShowModal] = useState(false);
   const [viewEquip, setViewEquip] = useState([]);
 
@@ -36,6 +36,7 @@ export default function RequestForm(props) {
   if (showModal)
     return (
       <EquipamientoEditForm
+        disponibilidadEquipo={disponibilidadEquipo}
         estadosEquipos={estadosEquipos}
         viewEquip={viewEquip}
       />

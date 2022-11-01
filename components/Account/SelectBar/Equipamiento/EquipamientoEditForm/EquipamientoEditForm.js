@@ -11,11 +11,12 @@ import {
 } from "semantic-ui-react";
 
 export default function EquipamientoEditForm(props) {
-  const { viewEquip, estadosEquipos } = props;
+  const { viewEquip, estadosEquipos, disponibilidadEquipo } = props;
   const [editable, setEditable] = useState(false);
   console.log(viewEquip);
   return (
     <EditFormEquipo
+      disponibilidadEquipo={disponibilidadEquipo}
       estadosEquipos={estadosEquipos}
       editable={editable}
       setEditable={setEditable}
@@ -25,11 +26,29 @@ export default function EquipamientoEditForm(props) {
 }
 
 function EditFormEquipo(props) {
-  const { editable, setEditable, estadosEquipos, viewEquip } = props;
+  const {
+    editable,
+    setEditable,
+    estadosEquipos,
+    disponibilidadEquipo,
+    viewEquip,
+  } = props;
 
   let options = [];
+  let optionsDisponibilidad = [];
 
   {
+    let j = 0;
+    for (j; j < size(disponibilidadEquipo); j++) {
+      const aux = {
+        key: j,
+        text: disponibilidadEquipo[j].Descripcion,
+        value: disponibilidadEquipo[j].Id_disponibilidad_equipo,
+      };
+
+      optionsDisponibilidad.push(aux);
+    }
+
     let i = 0;
     for (i; i < size(estadosEquipos); i++) {
       const aux = {
@@ -40,113 +59,178 @@ function EditFormEquipo(props) {
 
       options.push(aux);
     }
+
+    console.log(options);
+    console.log(optionsDisponibilidad);
   }
   return (
     <>
       <div className="EquipamientoEditForm">
         <div className="EquipamientoEditForm__form">
-          <Form
-            className="adeudo_edit"
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 14 }}
-            layout="horizontal"
-            style={{ padding: "10px" }}
-          >
-            <Item>Laboratorio</Item>
-            <Input
-              className={`nombre ${editable ? "" : "disabled"}`}
-              name="nombre"
-              type="text"
-              placeholder="Nombre del Laboratorio"
-              value={`${viewEquip.Nombre_laboratorio}`}
-            />
-            <Item>Nombre del equipo:</Item>
-            <Input
-              className={`nombreequipo ${editable ? "" : "disabled"}`}
-              name="nombreequipo"
-              type="text"
-              placeholder="Nombre del equipo"
-              value={`${viewEquip.Nombre_equipo}`}
-            />
-            <Item>Codigo Cams:</Item>
-            <Input
-              className={`correo ${editable ? "" : "disabled"}`}
-              name="codigo_barras"
-              type="text"
-              placeholder="Codigo de Barras"
-              value={`${viewEquip.Cams_equipo}`}
-            />
-            <Item>Modelo:</Item>
-            <Input
-              className={`modelo ${editable ? "" : "disabled"}`}
-              name="modelo"
-              type="text"
-              rows={4}
-              placeholder="Modelo"
-              value={`${viewEquip.Modelo_equipo}`}
-            />
-            <Item>Año:</Item>
-            <Input
-              className={`ano ${editable ? "" : "disabled"}`}
-              name="ano"
-              type="text"
-              placeholder="Año"
-              value={`${viewEquip.Año_equipo}`}
-            />
-            <Item>Descripción</Item>
-            <Input
-              className={`Id_descripcion ${editable ? "" : "disabled"}`}
-              name="Id_descripcion"
-              type="text"
-              placeholder="Descripción"
-              value={`${viewEquip.Descripcion_equipo}`}
-            />
-            <Item>Nombre del manual:</Item>
-            <Input
-              className={`nombre_manual ${editable ? "" : "disabled"}`}
-              name="nombre_manual"
-              type="text"
-              placeholder="Nombre del manual"
-              value={`${viewEquip.nombre_manual}`}
-            />
-            <Item>Estatus:</Item>
-            <Dropdown
-              clearable
-              search
-              selection
-              options={options}
-              style={{
-                width: 170,
-              }}
-            />
-            <Item>Descripción del fallo:</Item>
-            <Input
-              className={`fallo ${editable ? "" : "disabled"}`}
-              name="fallo"
-              type="text"
-              placeholder="Descripción del fallo"
-              value={`${viewEquip.fallo}`}
-            />
-            <Item>Disponibilidad:</Item>
-            <Input
-              className={`Disponibilidad ${editable ? "" : "disabled"}`}
-              name="Disponibilidad"
-              type="text"
-              placeholder="Disponibilidad"
-              value={`${
-                viewEquip.Disponibilidad_equipo ? "Disponible" : "No disponible"
-              }`}
-            />
-          </Form>
-          <div className="EquipamientoEditForm__img">
-            <img
-              alt="example"
-              //src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_epf5hcwaMn4XXjm0F1bWC1dWjIJ18-_TcA&usqp=CAU"
-            />
-            <Button>
-              <Icon name="upload"></Icon>
-            </Button>
+          <div>
+            <Form
+              className="equipamiento_edit"
+              labelCol={{ span: 4 }}
+              wrapperCol={{ span: 14 }}
+              layout="horizontal"
+              style={{ padding: "10px" }}
+            >
+              <Item>Laboratorio actual: </Item>
+              <Item>
+                {viewEquip.Nombre_laboratorio
+                  ? viewEquip.Nombre_laboratorio
+                  : `Sin asignar`}
+              </Item>
+              <Input
+                className={`nombre ${editable ? "" : "disabled"}`}
+                name="nombre"
+                type="text"
+                placeholder="Nombre del Laboratorio"
+                value={`${viewEquip.Nombre_laboratorio}`}
+              />
+              <Item>Nombre del equipo:</Item>
+              <Input
+                className={`nombreequipo ${editable ? "" : "disabled"}`}
+                name="nombreequipo"
+                type="text"
+                placeholder="Nombre del equipo"
+                value={`${viewEquip.Nombre_equipo}`}
+              />
+              <Item>Codigo Cams:</Item>
+              <Input
+                className={`correo ${editable ? "" : "disabled"}`}
+                name="codigo_barras"
+                type="text"
+                placeholder="Codigo de Barras"
+                value={`${viewEquip.Cams_equipo}`}
+              />
+              <Item>Modelo:</Item>
+              <Input
+                className={`modelo ${editable ? "" : "disabled"}`}
+                name="modelo"
+                type="text"
+                rows={4}
+                placeholder="Modelo"
+                value={`${viewEquip.Modelo_equipo}`}
+              />
+              <Item>Año:</Item>
+              <Input
+                className={`ano ${editable ? "" : "disabled"}`}
+                name="ano"
+                type="text"
+                placeholder="Año"
+                value={`${viewEquip.Año_equipo}`}
+              />
+              <Item>Descripción</Item>
+              <Input
+                className={`Id_descripcion ${editable ? "" : "disabled"}`}
+                name="Id_descripcion"
+                type="text"
+                placeholder="Descripción"
+                value={`${viewEquip.Descripcion_equipo}`}
+              />
+              <Item>Nombre del manual:</Item>
+              <Input
+                className={`nombre_manual ${editable ? "" : "disabled"}`}
+                name="nombre_manual"
+                type="text"
+                placeholder="Nombre del manual"
+                value={`${viewEquip.nombre_manual}`}
+              />
+              <Item>Estatus actual: {viewEquip.Estado_equipo}</Item>
+              <Dropdown
+                disabled={!editable}
+                clearable
+                search
+                selection
+                options={options}
+                style={{
+                  width: 170,
+                }}
+              />
+              <Item>Descripción del fallo:</Item>
+              <Input
+                className={`fallo ${editable ? "" : "disabled"}`}
+                name="fallo"
+                type="text"
+                placeholder="Descripción del fallo"
+                value={`${viewEquip.fallo}`}
+              />
+
+              <Item>
+                Disponibilidad actual: {String(viewEquip.Disponibilidad_equipo)}
+              </Item>
+              <Dropdown
+                disabled={!editable}
+                clearable
+                search
+                selection
+                options={optionsDisponibilidad}
+                style={{
+                  width: 170,
+                }}
+              />
+            </Form>
+          </div>
+          <div className="EquipamientoEditForm__other">
+            <Form
+              className="equipamiento_edit2"
+              labelCol={{ span: 4 }}
+              wrapperCol={{ span: 14 }}
+              layout="horizontal"
+              style={{ padding: "10px" }}
+            >
+              <Item>Marca Equipo</Item>
+              <Input
+                className={`Marca_equipo ${editable ? "" : "disabled"}`}
+                name="Marca_equipo"
+                type="text"
+                placeholder="Marca del equipo"
+                value={`${viewEquip.Marca_equipo}`}
+              />
+              <Item>Alumnos beneficiados</Item>
+              <Input
+                className={`Alumnos_equipo ${editable ? "" : "disabled"}`}
+                name="Alumnos_equipo"
+                type="text"
+                placeholder="Marca del equipo"
+                value={`${viewEquip.Alumnos_equipo}`}
+              />
+              <Item>Asignaturas del equipo</Item>
+              <Input
+                className={`Asignatura_equipo ${editable ? "" : "disabled"}`}
+                name="Asignatura_equipo"
+                type="text"
+                placeholder="Asignaturas del equipo"
+                value={`${viewEquip.Asignatura_equipo}`}
+              />
+              <Item>Prácticas del equipo</Item>
+              <Input
+                className={`Practicas_equipo ${editable ? "" : "disabled"}`}
+                name="Practicas_equipo"
+                type="text"
+                placeholder="Prácticas del equipo"
+                value={`${viewEquip.Practicas_equipo}`}
+              />
+              <Item>Utilidades del equipo</Item>
+              <Input
+                className={`Utilidad_equipo ${editable ? "" : "disabled"}`}
+                name="Utilidad_equipo"
+                type="text"
+                placeholder="Utilidades del equipo"
+                value={`${viewEquip.Utilidad_equipo}`}
+              />
+              <div className="EquipamientoEditForm__img">
+                <img
+                  alt="example"
+                  //src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_epf5hcwaMn4XXjm0F1bWC1dWjIJ18-_TcA&usqp=CAU"
+                />
+                <Button>
+                  <Icon name="upload"></Icon>
+                </Button>
+              </div>
+            </Form>
           </div>
         </div>
         <div className="EquipamientoEditForm__actions">
