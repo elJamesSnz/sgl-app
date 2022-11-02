@@ -86,24 +86,37 @@ function EditFormEquipo(props) {
                 className={`nombre ${editable ? "" : "disabled"}`}
                 name="nombre"
                 type="text"
-                placeholder="Nombre del Laboratorio"
-                value={`${viewEquip.Nombre_laboratorio}`}
+                //placeholder="Nombre del Laboratorio"
+                
+
+                placeholder={
+                  viewEquip.Nombre_laboratorio
+                    ? `${viewEquip.Nombre_laboratorio}`
+                    : "Sin asignar"
+                }
               />
               <Item>Nombre del equipo:</Item>
               <Input
                 className={`nombreequipo ${editable ? "" : "disabled"}`}
                 name="nombreequipo"
                 type="text"
-                placeholder="Nombre del equipo"
-                value={`${viewEquip.Nombre_equipo}`}
+                placeholder={
+                  viewEquip.Nombre_equipo
+                    ? `${viewEquip.Nombre_equipo}`
+                    : "Sin asignar"
+                }
               />
               <Item>Codigo Cams:</Item>
               <Input
                 className={`correo ${editable ? "" : "disabled"}`}
                 name="codigo_barras"
                 type="text"
-                placeholder="Codigo de Barras"
-                value={`${viewEquip.Cams_equipo}`}
+                //placeholder="Codigo de Barras"
+                placeholder={
+                  viewEquip.Cams_equipo
+                    ? `${viewEquip.Cams_equipo}`
+                    : "Sin asignar"
+                }
               />
               <Item>Modelo:</Item>
               <Input
@@ -111,32 +124,52 @@ function EditFormEquipo(props) {
                 name="modelo"
                 type="text"
                 rows={4}
-                placeholder="Modelo"
-                value={`${viewEquip.Modelo_equipo}`}
+                //placeholder="Modelo"
+
+                placeholder={
+                  viewEquip.Modelo_equipo
+                    ? `${viewEquip.Modelo_equipo}`
+                    : "Sin asignar"
+                }
               />
               <Item>Año:</Item>
               <Input
                 className={`ano ${editable ? "" : "disabled"}`}
                 name="ano"
                 type="text"
-                placeholder="Año"
-                value={`${viewEquip.Año_equipo}`}
+                //placeholder="Año"
+
+                placeholder={
+                  viewEquip.Año_equipo
+                    ? `${viewEquip.Año_equipo}`
+                    : "Sin asignar"
+                }
               />
               <Item>Descripción</Item>
               <Input
                 className={`Descripcion_equipo ${editable ? "" : "disabled"}`}
                 name="Descripcion_equipo"
                 type="text"
-                placeholder="Descripción"
-                value={`${viewEquip.Descripcion_equipo}`}
+                //placeholder="Descripción"
+
+                placeholder={
+                  viewEquip.Descripcion_equipo
+                    ? `${viewEquip.Descripcion_equipo}`
+                    : "Sin asignar"
+                }
               />
               <Item>Nombre del manual:</Item>
               <Input
                 className={`Manual_equipo ${editable ? "" : "disabled"}`}
                 name="Manual_equipo"
                 type="text"
-                placeholder="Nombre del manual"
-                value={`${viewEquip.Manual_equipo}`}
+                //placeholder="Nombre del manual"
+
+                placeholder={
+                  viewEquip.Manual_equipo
+                    ? `${viewEquip.Manual_equipo}`
+                    : "Sin asignar"
+                }
               />
               <Item>Estatus actual: {viewEquip.Descripcion_estado}</Item>
               <Dropdown
@@ -156,8 +189,15 @@ function EditFormEquipo(props) {
                 }`}
                 name="Descripcion_fallo_equipo"
                 type="text"
-                placeholder="Descripción del fallo"
-                value={`${viewEquip.Descripcion_fallo_equipo}`}
+                //placeholder="Descripción del fallo"
+               
+                placeholder={
+                  viewEquip.Descripcion_fallo_equipo
+                    ? `${viewEquip.Descripcion_fallo_equipo}`
+                    : "Sin asignar"
+                }
+
+
               />
 
               <Item>
@@ -188,40 +228,71 @@ function EditFormEquipo(props) {
                 className={`Marca_equipo ${editable ? "" : "disabled"}`}
                 name="Marca_equipo"
                 type="text"
-                placeholder="Marca del equipo"
-                value={`${viewEquip.Marca_equipo}`}
+                //placeholder="Marca del equipo"
+               
+
+                placeholder={
+                  viewEquip.Marca_equipo
+                    ? `${viewEquip.Marca_equipo}`
+                    : "Sin asignar"
+                }
+                
               />
               <Item>Alumnos beneficiados</Item>
               <Input
                 className={`Alumnos_equipo ${editable ? "" : "disabled"}`}
                 name="Alumnos_equipo"
                 type="text"
-                placeholder="Marca del equipo"
-                value={`${viewEquip.Alumnos_equipo}`}
+                //placeholder="Marca del equipo"
+               
+
+                placeholder={
+                  viewEquip.Alumnos_equipo
+                    ? `${viewEquip.Alumnos_equipo}`
+                    : "Sin asignar"
+                }
+
               />
               <Item>Asignaturas del equipo</Item>
               <Input
                 className={`Asignatura_equipo ${editable ? "" : "disabled"}`}
                 name="Asignatura_equipo"
                 type="text"
-                placeholder="Asignaturas del equipo"
-                value={`${viewEquip.Asignatura_equipo}`}
+                //placeholder="Asignaturas del equipo"
+               
+
+                placeholder={
+                  viewEquip.Asignatura_equipo
+                    ? `${viewEquip.Asignatura_equipo}`
+                    : "Sin asignar"
+                }
+
               />
               <Item>Prácticas del equipo</Item>
               <Input
                 className={`Practicas_equipo ${editable ? "" : "disabled"}`}
                 name="Practicas_equipo"
                 type="text"
-                placeholder="Prácticas del equipo"
-                value={`${viewEquip.Practicas_equipo}`}
+                //placeholder="Prácticas del equipo"
+                
+                placeholder={
+                  viewEquip.Practicas_equipo
+                    ? `${viewEquip.Practicas_equipo}`
+                    : "Sin asignar"
+                }
               />
               <Item>Utilidades del equipo</Item>
               <Input
                 className={`Utilidad_equipo ${editable ? "" : "disabled"}`}
                 name="Utilidad_equipo"
                 type="text"
-                placeholder="Utilidades del equipo"
-                value={`${viewEquip.Utilidad_equipo}`}
+                //placeholder="Utilidades del equipo"
+                
+                placeholder={
+                  viewEquip.Utilidad_equipo
+                    ? `${viewEquip.Utilidad_equipo}`
+                    : "Sin asignar"
+                }
               />
               <div className="EquipamientoEditForm__img">
                 <img
@@ -252,7 +323,7 @@ function EditFormEquipo(props) {
 /*
 
 {map(estadosEquipos, (estado) => (
-                <Option value={`${estado.Id_estado}`.trim()}>
+                <Option placeholder={`${estado.Id_estado}`.trim()}>
                   {estado.Descripcion_estado}
                 </Option>
               ))}*/
