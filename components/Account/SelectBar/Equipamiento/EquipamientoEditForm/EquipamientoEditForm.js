@@ -1,5 +1,7 @@
 import { map, size } from "lodash";
 import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import {
   Button,
   Icon,
@@ -9,6 +11,7 @@ import {
   Select,
   Dropdown,
 } from "semantic-ui-react";
+import { registerEquipApi } from "../../../../../api/user";
 
 export default function EquipamientoEditForm(props) {
   const { viewEquip, estadosEquipos, disponibilidadEquipo } = props;
@@ -32,6 +35,7 @@ function EditFormEquipo(props) {
     estadosEquipos,
     disponibilidadEquipo,
     viewEquip,
+    selectedLab,
   } = props;
 
   let options = [];
@@ -64,6 +68,28 @@ function EditFormEquipo(props) {
     console.log(optionsDisponibilidad);
   }
 
+  const formik = useFormik({
+    initialValues: initualValues(),
+    validationSchema: Yup.object(validationSchema()),
+    onSubmit: async (formData) => {
+        /* if (formData.estado == 1) formData.estado = 1;
+        if (formData.estado == 2) formData.estado = 2;
+        if (formData.estado == 3) formData.estado = 3;
+        if (formData.Disponibilidad == 1) formData.Disponibilidad = true;
+        if (formData.Disponibilidad == 2) formData.Disponibilidad = false;
+        if (formData.id_carrera == 1) formData.id_carrera = 1;
+        if (formData.id_carrera == 2) formData.id_carrera = 2;
+        if (formData.id_carrera == 3) formData.id_carrera = 3;
+        if (formData.id_carrera == 4) formData.id_carrera = 4;
+        if (formData.id_carrera == 5) formData.id_carrera = 5;
+        formData.idLaboratorio = selectedLab; */
+        console.log(formData);
+        //const response = await registerEquipApi(formData);
+        //console.log(response);
+        //router.push("/");
+    },
+  });
+
   return (
     <>
       <div className="EquipamientoEditForm">
@@ -75,6 +101,7 @@ function EditFormEquipo(props) {
               wrapperCol={{ span: 14 }}
               layout="horizontal"
               style={{ padding: "10px" }}
+              onSubmit={formik.handleSubmit}
             >
               <Item>Laboratorio actual: </Item>
               <Item>
@@ -83,11 +110,11 @@ function EditFormEquipo(props) {
                   : `Sin asignar`}
               </Item>
               <Input
-                className={`nombre ${editable ? "" : "disabled"}`}
+                disabled={!editable}
+                className={`nombre ${!editable ? "" : "disabled"}`}
                 name="nombre"
                 type="text"
                 //placeholder="Nombre del Laboratorio"
-
                 placeholder={
                   viewEquip.Nombre_laboratorio
                     ? `${viewEquip.Nombre_laboratorio}`
@@ -96,19 +123,21 @@ function EditFormEquipo(props) {
               />
               <Item>Nombre del equipo:</Item>
               <Input
-                className={`nombreequipo ${editable ? "" : "disabled"}`}
-                name="nombreequipo"
+                className={`Nombre_equipo ${editable ? "" : "disabled"}`}
+                name="Nombre_equipo"
                 type="text"
                 placeholder={
                   viewEquip.Nombre_equipo
                     ? `${viewEquip.Nombre_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Nombre_equipo}
               />
               <Item>Codigo Cams:</Item>
               <Input
-                className={`correo ${editable ? "" : "disabled"}`}
-                name="codigo_barras"
+                className={`Cams_equipo ${editable ? "" : "disabled"}`}
+                name="Cams_equipo"
                 type="text"
                 //placeholder="Codigo de Barras"
                 placeholder={
@@ -116,33 +145,37 @@ function EditFormEquipo(props) {
                     ? `${viewEquip.Cams_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Cams_equipo}
               />
               <Item>Modelo:</Item>
               <Input
-                className={`modelo ${editable ? "" : "disabled"}`}
-                name="modelo"
+                className={`Modelo_equipo ${editable ? "" : "disabled"}`}
+                name="Modelo_equipo"
                 type="text"
                 rows={4}
                 //placeholder="Modelo"
-
                 placeholder={
                   viewEquip.Modelo_equipo
                     ? `${viewEquip.Modelo_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Modelo_equipo}
               />
               <Item>Año:</Item>
               <Input
-                className={`ano ${editable ? "" : "disabled"}`}
-                name="ano"
+                className={`Año_equipo ${editable ? "" : "disabled"}`}
+                name="Año_equipo"
                 type="text"
                 //placeholder="Año"
-
                 placeholder={
                   viewEquip.Año_equipo
                     ? `${viewEquip.Año_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Año_equipo}
               />
               <Item>Descripción</Item>
               <Input
@@ -150,12 +183,13 @@ function EditFormEquipo(props) {
                 name="Descripcion_equipo"
                 type="text"
                 //placeholder="Descripción"
-
                 placeholder={
                   viewEquip.Descripcion_equipo
                     ? `${viewEquip.Descripcion_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Descripcion_equipo}
               />
               <Item>Nombre del manual:</Item>
               <Input
@@ -163,22 +197,24 @@ function EditFormEquipo(props) {
                 name="Manual_equipo"
                 type="text"
                 //placeholder="Nombre del manual"
-
                 placeholder={
                   viewEquip.Manual_equipo
                     ? `${viewEquip.Manual_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Manual_equipo}
               />
               <Item>Estatus actual: {viewEquip.Descripcion_estado}</Item>
               <Dropdown
+                nombre="Estado_equipo"
                 disabled={!editable}
                 clearable
                 search
                 selection
                 options={options}
                 style={{
-                  width: 170,
+                  width: 170
                 }}
               />
               <Item>Descripción del fallo:</Item>
@@ -189,12 +225,13 @@ function EditFormEquipo(props) {
                 name="Descripcion_fallo_equipo"
                 type="text"
                 //placeholder="Descripción del fallo"
-
                 placeholder={
                   viewEquip.Descripcion_fallo_equipo
                     ? `${viewEquip.Descripcion_fallo_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Descripcion_fallo_equipo}
               />
 
               <Item>
@@ -226,12 +263,13 @@ function EditFormEquipo(props) {
                 name="Marca_equipo"
                 type="text"
                 //placeholder="Marca del equipo"
-
                 placeholder={
                   viewEquip.Marca_equipo
                     ? `${viewEquip.Marca_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Marca_equipo}
               />
               <Item>Alumnos beneficiados</Item>
               <Input
@@ -239,12 +277,13 @@ function EditFormEquipo(props) {
                 name="Alumnos_equipo"
                 type="text"
                 //placeholder="Marca del equipo"
-
                 placeholder={
                   viewEquip.Alumnos_equipo
                     ? `${viewEquip.Alumnos_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Alumnos_equipo}
               />
               <Item>Asignaturas del equipo</Item>
               <Input
@@ -252,12 +291,13 @@ function EditFormEquipo(props) {
                 name="Asignatura_equipo"
                 type="text"
                 //placeholder="Asignaturas del equipo"
-
                 placeholder={
                   viewEquip.Asignatura_equipo
                     ? `${viewEquip.Asignatura_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Asignatura_equipo}
               />
               <Item>Prácticas del equipo</Item>
               <Input
@@ -265,12 +305,13 @@ function EditFormEquipo(props) {
                 name="Practicas_equipo"
                 type="text"
                 //placeholder="Prácticas del equipo"
-
                 placeholder={
                   viewEquip.Practicas_equipo
                     ? `${viewEquip.Practicas_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Practicas_equipo}
               />
               <Item>Utilidades del equipo</Item>
               <Input
@@ -278,12 +319,13 @@ function EditFormEquipo(props) {
                 name="Utilidad_equipo"
                 type="text"
                 //placeholder="Utilidades del equipo"
-
                 placeholder={
                   viewEquip.Utilidad_equipo
                     ? `${viewEquip.Utilidad_equipo}`
                     : "Sin asignar"
                 }
+                onChange={formik.handleChange}
+                error={formik.errors.Utilidad_equipo}
               />
               <div className="EquipamientoEditForm__img">
                 <img
@@ -299,14 +341,64 @@ function EditFormEquipo(props) {
           </div>
         </div>
         <div className="EquipamientoEditForm__actions">
+          <Form onSubmit={formik.handleSubmit}>
           <Button onClick={() => setEditable(!editable)}>
             <Icon name="edit"></Icon>
           </Button>
-          <Button disabled={!editable}>
+          <Button disabled={!editable} type="submit">
             <Icon name="save"></Icon>
           </Button>
+          </Form>
         </div>
       </div>
     </>
   );
+}
+
+function initualValues() {
+  return {
+    Alumnos_equipo: "",
+    Asignatura_equipo: "",
+    Año_equipo: "",
+    Cams_equipo: "",
+    Descripcion: "",
+    Descripcion_equipo: "",
+    Descripcion_estado: "",
+    Descripcion_fallo_equipo: "",
+    Disponibilidad_equipo: "",
+    Estado_equipo: "",
+    Foto_equipo: "",
+    Id_laboratorio: "",
+    Manual_equipo: "",
+    Marca_equipo: "",
+    Modelo_equipo: "",
+    Nombre_equipo: "",
+    Nombre_laboratorio: "",
+    Practicas_equipo: "",
+    Utilidad_equipo: "",
+  };
+}
+
+function validationSchema() {
+  return {
+    Alumnos_equipo: Yup.string(),
+    Asignatura_equipo: Yup.string(),
+    Año_equipo: Yup.string(),
+    Cams_equipo: Yup.string(),
+    Descripcion: Yup.string(),
+    Descripcion_equipo: Yup.string(),
+    Descripcion_estado: Yup.string(),
+    Descripcion_fallo_equipo: Yup.string(),
+    Disponibilidad_equipo: Yup.string(),
+    Estado_equipo: Yup.string(),
+    Foto_equipo: Yup.string(),
+    Id_laboratorio: Yup.string(),
+    Manual_equipo: Yup.string(),
+    Marca_equipo: Yup.string(),
+    Modelo_equipo: Yup.string(),
+    Nombre_equipo: Yup.string(),
+    Nombre_laboratorio: Yup.string(),
+    Practicas_equipo: Yup.string(),
+    Utilidad_equipo: Yup.string(),
+  };
 }
