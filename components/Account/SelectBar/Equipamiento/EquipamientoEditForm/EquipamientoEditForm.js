@@ -63,6 +63,7 @@ function EditFormEquipo(props) {
     console.log(options);
     console.log(optionsDisponibilidad);
   }
+
   return (
     <>
       <div className="EquipamientoEditForm">
@@ -86,7 +87,7 @@ function EditFormEquipo(props) {
                 name="nombre"
                 type="text"
                 placeholder="Nombre del Laboratorio"
-                value={`${viewEquip.Nombre_laboratorio}`}
+                text={`${viewEquip.Nombre_laboratorio}`}
               />
               <Item>Nombre del equipo:</Item>
               <Input
@@ -94,7 +95,7 @@ function EditFormEquipo(props) {
                 name="nombreequipo"
                 type="text"
                 placeholder="Nombre del equipo"
-                value={`${viewEquip.Nombre_equipo}`}
+                text={`${viewEquip.Nombre_equipo}`}
               />
               <Item>Codigo Cams:</Item>
               <Input
@@ -102,7 +103,7 @@ function EditFormEquipo(props) {
                 name="codigo_barras"
                 type="text"
                 placeholder="Codigo de Barras"
-                value={`${viewEquip.Cams_equipo}`}
+                text={`${viewEquip.Cams_equipo}`}
               />
               <Item>Modelo:</Item>
               <Input
@@ -111,7 +112,7 @@ function EditFormEquipo(props) {
                 type="text"
                 rows={4}
                 placeholder="Modelo"
-                value={`${viewEquip.Modelo_equipo}`}
+                text={`${viewEquip.Modelo_equipo}`}
               />
               <Item>Año:</Item>
               <Input
@@ -119,25 +120,25 @@ function EditFormEquipo(props) {
                 name="ano"
                 type="text"
                 placeholder="Año"
-                value={`${viewEquip.Año_equipo}`}
+                text={`${viewEquip.Año_equipo}`}
               />
               <Item>Descripción</Item>
               <Input
-                className={`Id_descripcion ${editable ? "" : "disabled"}`}
-                name="Id_descripcion"
+                className={`Descripcion_equipo ${editable ? "" : "disabled"}`}
+                name="Descripcion_equipo"
                 type="text"
                 placeholder="Descripción"
-                value={`${viewEquip.Descripcion_equipo}`}
+                text={`${viewEquip.Descripcion_equipo}`}
               />
               <Item>Nombre del manual:</Item>
               <Input
-                className={`nombre_manual ${editable ? "" : "disabled"}`}
-                name="nombre_manual"
+                className={`Manual_equipo ${editable ? "" : "disabled"}`}
+                name="Manual_equipo"
                 type="text"
                 placeholder="Nombre del manual"
-                value={`${viewEquip.nombre_manual}`}
+                text={`${viewEquip.Manual_equipo}`}
               />
-              <Item>Estatus actual: {viewEquip.Estado_equipo}</Item>
+              <Item>Estatus actual: {viewEquip.Descripcion_estado}</Item>
               <Dropdown
                 disabled={!editable}
                 clearable
@@ -150,15 +151,17 @@ function EditFormEquipo(props) {
               />
               <Item>Descripción del fallo:</Item>
               <Input
-                className={`fallo ${editable ? "" : "disabled"}`}
-                name="fallo"
+                className={`Descripcion_fallo_equipo ${
+                  editable ? "" : "disabled"
+                }`}
+                name="Descripcion_fallo_equipo"
                 type="text"
                 placeholder="Descripción del fallo"
-                value={`${viewEquip.fallo}`}
+                text={`${viewEquip.Descripcion_fallo_equipo}`}
               />
 
               <Item>
-                Disponibilidad actual: {String(viewEquip.Disponibilidad_equipo)}
+                Disponibilidad actual: {String(viewEquip.Descripcion)}
               </Item>
               <Dropdown
                 disabled={!editable}
@@ -186,7 +189,7 @@ function EditFormEquipo(props) {
                 name="Marca_equipo"
                 type="text"
                 placeholder="Marca del equipo"
-                value={`${viewEquip.Marca_equipo}`}
+                text={`${viewEquip.Marca_equipo}`}
               />
               <Item>Alumnos beneficiados</Item>
               <Input
@@ -194,7 +197,7 @@ function EditFormEquipo(props) {
                 name="Alumnos_equipo"
                 type="text"
                 placeholder="Marca del equipo"
-                value={`${viewEquip.Alumnos_equipo}`}
+                text={`${viewEquip.Alumnos_equipo}`}
               />
               <Item>Asignaturas del equipo</Item>
               <Input
@@ -202,7 +205,7 @@ function EditFormEquipo(props) {
                 name="Asignatura_equipo"
                 type="text"
                 placeholder="Asignaturas del equipo"
-                value={`${viewEquip.Asignatura_equipo}`}
+                text={`${viewEquip.Asignatura_equipo}`}
               />
               <Item>Prácticas del equipo</Item>
               <Input
@@ -210,7 +213,7 @@ function EditFormEquipo(props) {
                 name="Practicas_equipo"
                 type="text"
                 placeholder="Prácticas del equipo"
-                value={`${viewEquip.Practicas_equipo}`}
+                text={`${viewEquip.Practicas_equipo}`}
               />
               <Item>Utilidades del equipo</Item>
               <Input
@@ -218,7 +221,7 @@ function EditFormEquipo(props) {
                 name="Utilidad_equipo"
                 type="text"
                 placeholder="Utilidades del equipo"
-                value={`${viewEquip.Utilidad_equipo}`}
+                text={`${viewEquip.Utilidad_equipo}`}
               />
               <div className="EquipamientoEditForm__img">
                 <img
@@ -249,7 +252,7 @@ function EditFormEquipo(props) {
 /*
 
 {map(estadosEquipos, (estado) => (
-                <Option value={`${estado.Id_estado}`.trim()}>
+                <Option text={`${estado.Id_estado}`.trim()}>
                   {estado.Descripcion_estado}
                 </Option>
               ))}*/

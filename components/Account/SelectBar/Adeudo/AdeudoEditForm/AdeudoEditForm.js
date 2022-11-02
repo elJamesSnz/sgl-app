@@ -16,17 +16,16 @@ export default function AdeudoEditForm(props) {
   const [editable, setEditable] = useState(false);
   console.log(viewAdeudo);
   //<div className={`${navActive ? "active" : ""} nav__menu-list`}>
+  let NombreAlumno_Completo =
+    `${viewAdeudo.Nombre_alumno} ` +
+    `${viewAdeudo.Paterno_alumno} ` +
+    `${viewAdeudo.Materno_alumno}`;
 
-  const ESTATUS = [
-    {
-      status: "No entregado",
-      boolValue: false,
-    },
-    {
-      status: "Entregado",
-      boolValue: true,
-    },
-  ];
+  let NombreEmpleado_Completo =
+    `${viewAdeudo.Nombre_empleado} ` +
+    `${viewAdeudo.Paterno_empleado} ` +
+    `${viewAdeudo.Materno_empleado}`;
+
   return (
     <div className={`AdeudoEditForm`}>
       <div className={`AdeudoEditForm__form`}>
@@ -34,7 +33,7 @@ export default function AdeudoEditForm(props) {
           <p>info de la form</p>
           <p>{viewAdeudo.idlaboratorio}</p>
         </div> */}
-        
+
         <Form
           className="adeudo_edit"
           labelCol={{ span: 4 }}
@@ -44,84 +43,90 @@ export default function AdeudoEditForm(props) {
         >
           <Item>Laboratorio</Item>
           <Input
-            className={`nombrelaboratorio ${editable ? "disabled" : "disabled"}`}
+            className={`Nombre_laboratorio ${
+              editable ? "disabled" : "disabled"
+            }`}
             name="nombrelaboratorio"
             type="text"
             placeholder="Nombre del Laboratorio"
-            value={`${viewAdeudo.nombrelaboratorio}`}
+            value={`${viewAdeudo.Nombre_laboratorio}`}
           />
           <Item>Nombre del Alumno:</Item>
           <Input
-            className={`nombrealumno ${editable ? "disabled" : "disabled"}`}
+            className={`Nombre_alumno ${editable ? "disabled" : "disabled"}`}
             name="nombre"
             type="text"
             placeholder="Nombre del Alumno"
-            value={`${viewAdeudo.nombrealumno}`}
+            value={`${NombreAlumno_Completo}`}
           />
-          <Item>Boleta:</Item>
+          <Item>Boleta_adeudo:</Item>
           <Input
             className={`boleta ${editable ? "disabled" : "disabled"}`}
             name="boleta"
             type="text"
             rows={4}
             placeholder="Boleta del alumno"
-            value={`${viewAdeudo.boleta}`}
+            value={`${viewAdeudo.Boleta_adeudo}`}
           />
           <Item>Carrera:</Item>
           <Input
-            className={`carrera ${editable ? "" : "disabled"}`}
+            className={`Nombre_carrera ${editable ? "" : "disabled"}`}
             name="carrera"
             type="text"
             placeholder="Carrera"
-            value={`${viewAdeudo.carrera}`}
+            value={`${viewAdeudo.Nombre_carrera}`}
           />
           <Item>Correo:</Item>
           <Input
-            className={`correo ${editable ? "" : "disabled"}`}
+            className={`Correo_alumno ${editable ? "" : "disabled"}`}
             name="correo"
             type="text"
             placeholder="Correo"
-            value={`${viewAdeudo.correo}`}
+            value={
+              viewAdeudo.Correo_alumno
+                ? `${viewAdeudo.Correo_alumno}`
+                : "No hay correo registrado"
+            }
           />
           <Item>Fecha de peticion</Item>
           <Input
-            className={`fecha_peticion ${editable ? "" : "disabled"}`}
+            className={`Fecha_alta ${editable ? "" : "disabled"}`}
             name="fecha_peticion"
             type="text"
             placeholder="MM/DD/AAAA"
-            value={`${viewAdeudo.fecha_peticion}`}
+            value={`${viewAdeudo.Fecha_alta}`}
           />
           <Item>Fecha de entrega:</Item>
           <Input
-            className={`fecha_entrega ${editable ? "" : "disabled"}`}
+            className={`Fecha_entrega ${editable ? "" : "disabled"}`}
             name="fecha_entrega"
             type="text"
             placeholder="MM/DD/AAAA"
-            value={`${viewAdeudo.fecha_entrega}`}
+            value={`${viewAdeudo.Fecha_entrega}`}
           />
           <Item>Nombre equipo adeudado:</Item>
           <Input
-            className={`nombreequipo ${editable ? "disabled" : "disabled"}`}
-            name="nombreequipo" 
+            className={`Nombre_equipo ${editable ? "disabled" : "disabled"}`}
+            name="nombreequipo"
             type="text"
             placeholder="Nombre equipo adeudado"
-            value={`${viewAdeudo.nombreequipo}`}
+            value={`${viewAdeudo.Nombre_equipo}`}
           />
           <Item>Asignatura:</Item>
           <Input
-            className={`materia ${editable ? "" : "disabled"}`}
+            className={`Asignatura_adeudo ${editable ? "" : "disabled"}`}
             name="materia"
             type="text"
             placeholder="Asignatura"
-            value={`${viewAdeudo.materia}`}
+            value={`${viewAdeudo.Asignatura_adeudo}`}
           />
           <Item>Profesor:</Item>
           <Input
-            className={`profesor ${editable ? "" : "disabled"}`}
+            className={`Nombre_empleado ${editable ? "" : "disabled"}`}
             name="profesor"
             type="text"
             placeholder="Profesor"
-            value={`${viewAdeudo.profesor}`}
+            value={`${NombreEmpleado_Completo}`}
           />
         </Form>
         <div className="AdeudoEditForm__img">

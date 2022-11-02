@@ -118,9 +118,9 @@ function CardItem(props) {
           >
             <Meta
               avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-              title={`Equipo: ${debt.nombreequipo}`}
-              description={`Adeudor ${debt.nombrealumno}. Boleta ${
-                debt.boleta
+              title={`Equipo: ${debt.Nombre_equipo}`}
+              description={`Adeudor ${debt.Nombre_alumno}. Boleta ${
+                debt.Boleta_adeudo
               }. Fallo ${debt.fallo || "Ninguno"}`}
             />
           </Card>
