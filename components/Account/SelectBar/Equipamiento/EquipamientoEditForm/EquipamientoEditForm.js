@@ -17,6 +17,7 @@ export default function EquipamientoEditForm(props) {
   const { viewEquip, estadosEquipos, disponibilidadEquipo } = props;
   const [editable, setEditable] = useState(false);
   const [disponibilidad, setDisponibilidad] = useState(undefined);
+  const [estado, setEstado] = useState(undefined);
 
   console.log(viewEquip);
   return (
@@ -28,6 +29,8 @@ export default function EquipamientoEditForm(props) {
       viewEquip={viewEquip}
       disponibilidad={disponibilidad}
       setDisponibilidad={setDisponibilidad}
+      estado={estado}
+      setEstado={setEstado}
     />
   );
 }
@@ -42,6 +45,8 @@ function EditFormEquipo(props) {
     selectedLab,
     disponibilidad,
     setDisponibilidad,
+    estado,
+    setEstado
   } = props;
 
   let options = [];
@@ -84,6 +89,10 @@ function EditFormEquipo(props) {
       if (!disponibilidad || disponibilidad == null)
         formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
       else formData.Disponibilidad_equipo = disponibilidad;
+
+      if (!estado || estado == null)
+        formData.Estado_equipo = viewEquip.Estado_equipo;
+      else formData.Estado_equipo = estado;
 
       if (formData.estado == 2) formData.estado = 2;
       if (formData.estado == 3) formData.estado = 3;
@@ -228,6 +237,7 @@ function EditFormEquipo(props) {
                 style={{
                   width: 170,
                 }}
+                onChange={(e, { value }) => setEstado(value)}
               />
               <Item>Descripción del fallo:</Item>
               <Input
