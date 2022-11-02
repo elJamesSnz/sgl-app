@@ -87,12 +87,11 @@ function EditFormEquipo(props) {
                 name="nombre"
                 type="text"
                 //placeholder="Nombre del Laboratorio"
-                
 
                 placeholder={
                   viewEquip.Nombre_laboratorio
                     ? `${viewEquip.Nombre_laboratorio}`
-                    : "Sin asignar"
+                    : "Nombre del Laboratorio (sin asignar)"
                 }
               />
               <Item>Nombre del equipo:</Item>
@@ -190,14 +189,12 @@ function EditFormEquipo(props) {
                 name="Descripcion_fallo_equipo"
                 type="text"
                 //placeholder="Descripción del fallo"
-               
+
                 placeholder={
                   viewEquip.Descripcion_fallo_equipo
                     ? `${viewEquip.Descripcion_fallo_equipo}`
                     : "Sin asignar"
                 }
-
-
               />
 
               <Item>
@@ -229,14 +226,12 @@ function EditFormEquipo(props) {
                 name="Marca_equipo"
                 type="text"
                 //placeholder="Marca del equipo"
-               
 
                 placeholder={
                   viewEquip.Marca_equipo
                     ? `${viewEquip.Marca_equipo}`
                     : "Sin asignar"
                 }
-                
               />
               <Item>Alumnos beneficiados</Item>
               <Input
@@ -244,14 +239,12 @@ function EditFormEquipo(props) {
                 name="Alumnos_equipo"
                 type="text"
                 //placeholder="Marca del equipo"
-               
 
                 placeholder={
                   viewEquip.Alumnos_equipo
                     ? `${viewEquip.Alumnos_equipo}`
                     : "Sin asignar"
                 }
-
               />
               <Item>Asignaturas del equipo</Item>
               <Input
@@ -259,14 +252,12 @@ function EditFormEquipo(props) {
                 name="Asignatura_equipo"
                 type="text"
                 //placeholder="Asignaturas del equipo"
-               
 
                 placeholder={
                   viewEquip.Asignatura_equipo
                     ? `${viewEquip.Asignatura_equipo}`
                     : "Sin asignar"
                 }
-
               />
               <Item>Prácticas del equipo</Item>
               <Input
@@ -274,7 +265,7 @@ function EditFormEquipo(props) {
                 name="Practicas_equipo"
                 type="text"
                 //placeholder="Prácticas del equipo"
-                
+
                 placeholder={
                   viewEquip.Practicas_equipo
                     ? `${viewEquip.Practicas_equipo}`
@@ -287,7 +278,7 @@ function EditFormEquipo(props) {
                 name="Utilidad_equipo"
                 type="text"
                 //placeholder="Utilidades del equipo"
-                
+
                 placeholder={
                   viewEquip.Utilidad_equipo
                     ? `${viewEquip.Utilidad_equipo}`
@@ -319,11 +310,3 @@ function EditFormEquipo(props) {
     </>
   );
 }
-
-/*
-
-{map(estadosEquipos, (estado) => (
-                <Option placeholder={`${estado.Id_estado}`.trim()}>
-                  {estado.Descripcion_estado}
-                </Option>
-              ))}*/

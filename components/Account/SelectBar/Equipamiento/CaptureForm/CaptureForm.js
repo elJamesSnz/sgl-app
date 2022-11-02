@@ -58,9 +58,9 @@ function FormCapturaEquipos(props) {
         if (formData.id_carrera == 5) formData.id_carrera = 5;
         formData.idLaboratorio = selectedLab;
         console.log(formData);
-        const response = await registerEquipApi(formData);
-        console.log(response);
-        router.push("/");
+        //const response = await registerEquipApi(formData);
+        //console.log(response);
+        //router.push("/");
       }
     },
   });

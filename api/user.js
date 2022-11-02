@@ -124,7 +124,7 @@ export async function registerDebtApi(formData) {
 }
 export async function registerEquipApi(formData) {
   try {
-    const url = `${URL}/api/users/PostEquipo`;
+    const url = `${URL}/api/equips/PostEquipo`;
     const params = {
       method: "POST",
       headers: {
