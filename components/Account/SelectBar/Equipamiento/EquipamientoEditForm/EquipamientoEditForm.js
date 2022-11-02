@@ -87,7 +87,7 @@ function EditFormEquipo(props) {
                 name="nombre"
                 type="text"
                 placeholder="Nombre del Laboratorio"
-                text={`${viewEquip.Nombre_laboratorio}`}
+                value={`${viewEquip.Nombre_laboratorio}`}
               />
               <Item>Nombre del equipo:</Item>
               <Input
@@ -95,7 +95,7 @@ function EditFormEquipo(props) {
                 name="nombreequipo"
                 type="text"
                 placeholder="Nombre del equipo"
-                text={`${viewEquip.Nombre_equipo}`}
+                value={`${viewEquip.Nombre_equipo}`}
               />
               <Item>Codigo Cams:</Item>
               <Input
@@ -103,7 +103,7 @@ function EditFormEquipo(props) {
                 name="codigo_barras"
                 type="text"
                 placeholder="Codigo de Barras"
-                text={`${viewEquip.Cams_equipo}`}
+                value={`${viewEquip.Cams_equipo}`}
               />
               <Item>Modelo:</Item>
               <Input
@@ -112,7 +112,7 @@ function EditFormEquipo(props) {
                 type="text"
                 rows={4}
                 placeholder="Modelo"
-                text={`${viewEquip.Modelo_equipo}`}
+                value={`${viewEquip.Modelo_equipo}`}
               />
               <Item>Año:</Item>
               <Input
@@ -120,7 +120,7 @@ function EditFormEquipo(props) {
                 name="ano"
                 type="text"
                 placeholder="Año"
-                text={`${viewEquip.Año_equipo}`}
+                value={`${viewEquip.Año_equipo}`}
               />
               <Item>Descripción</Item>
               <Input
@@ -128,7 +128,7 @@ function EditFormEquipo(props) {
                 name="Descripcion_equipo"
                 type="text"
                 placeholder="Descripción"
-                text={`${viewEquip.Descripcion_equipo}`}
+                value={`${viewEquip.Descripcion_equipo}`}
               />
               <Item>Nombre del manual:</Item>
               <Input
@@ -136,7 +136,7 @@ function EditFormEquipo(props) {
                 name="Manual_equipo"
                 type="text"
                 placeholder="Nombre del manual"
-                text={`${viewEquip.Manual_equipo}`}
+                value={`${viewEquip.Manual_equipo}`}
               />
               <Item>Estatus actual: {viewEquip.Descripcion_estado}</Item>
               <Dropdown
@@ -157,7 +157,7 @@ function EditFormEquipo(props) {
                 name="Descripcion_fallo_equipo"
                 type="text"
                 placeholder="Descripción del fallo"
-                text={`${viewEquip.Descripcion_fallo_equipo}`}
+                value={`${viewEquip.Descripcion_fallo_equipo}`}
               />
 
               <Item>
@@ -189,7 +189,7 @@ function EditFormEquipo(props) {
                 name="Marca_equipo"
                 type="text"
                 placeholder="Marca del equipo"
-                text={`${viewEquip.Marca_equipo}`}
+                value={`${viewEquip.Marca_equipo}`}
               />
               <Item>Alumnos beneficiados</Item>
               <Input
@@ -197,7 +197,7 @@ function EditFormEquipo(props) {
                 name="Alumnos_equipo"
                 type="text"
                 placeholder="Marca del equipo"
-                text={`${viewEquip.Alumnos_equipo}`}
+                value={`${viewEquip.Alumnos_equipo}`}
               />
               <Item>Asignaturas del equipo</Item>
               <Input
@@ -205,7 +205,7 @@ function EditFormEquipo(props) {
                 name="Asignatura_equipo"
                 type="text"
                 placeholder="Asignaturas del equipo"
-                text={`${viewEquip.Asignatura_equipo}`}
+                value={`${viewEquip.Asignatura_equipo}`}
               />
               <Item>Prácticas del equipo</Item>
               <Input
@@ -213,7 +213,7 @@ function EditFormEquipo(props) {
                 name="Practicas_equipo"
                 type="text"
                 placeholder="Prácticas del equipo"
-                text={`${viewEquip.Practicas_equipo}`}
+                value={`${viewEquip.Practicas_equipo}`}
               />
               <Item>Utilidades del equipo</Item>
               <Input
@@ -221,7 +221,7 @@ function EditFormEquipo(props) {
                 name="Utilidad_equipo"
                 type="text"
                 placeholder="Utilidades del equipo"
-                text={`${viewEquip.Utilidad_equipo}`}
+                value={`${viewEquip.Utilidad_equipo}`}
               />
               <div className="EquipamientoEditForm__img">
                 <img
@@ -252,7 +252,7 @@ function EditFormEquipo(props) {
 /*
 
 {map(estadosEquipos, (estado) => (
-                <Option text={`${estado.Id_estado}`.trim()}>
+                <Option value={`${estado.Id_estado}`.trim()}>
                   {estado.Descripcion_estado}
                 </Option>
               ))}*/
