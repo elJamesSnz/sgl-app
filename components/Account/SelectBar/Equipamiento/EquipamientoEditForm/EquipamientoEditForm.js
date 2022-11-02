@@ -16,6 +16,8 @@ import { registerEquipApi } from "../../../../../api/user";
 export default function EquipamientoEditForm(props) {
   const { viewEquip, estadosEquipos, disponibilidadEquipo } = props;
   const [editable, setEditable] = useState(false);
+  const [disponibilidad, setDisponibilidad] = useState(undefined);
+
   console.log(viewEquip);
   return (
     <EditFormEquipo
@@ -24,6 +26,8 @@ export default function EquipamientoEditForm(props) {
       editable={editable}
       setEditable={setEditable}
       viewEquip={viewEquip}
+      disponibilidad={disponibilidad}
+      setDisponibilidad={setDisponibilidad}
     />
   );
 }
@@ -36,6 +40,8 @@ function EditFormEquipo(props) {
     disponibilidadEquipo,
     viewEquip,
     selectedLab,
+    disponibilidad,
+    setDisponibilidad,
   } = props;
 
   let options = [];
@@ -72,21 +78,27 @@ function EditFormEquipo(props) {
     initialValues: initualValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
-        /* if (formData.estado == 1) formData.estado = 1;
-        if (formData.estado == 2) formData.estado = 2;
-        if (formData.estado == 3) formData.estado = 3;
-        if (formData.Disponibilidad == 1) formData.Disponibilidad = true;
-        if (formData.Disponibilidad == 2) formData.Disponibilidad = false;
-        if (formData.id_carrera == 1) formData.id_carrera = 1;
-        if (formData.id_carrera == 2) formData.id_carrera = 2;
-        if (formData.id_carrera == 3) formData.id_carrera = 3;
-        if (formData.id_carrera == 4) formData.id_carrera = 4;
-        if (formData.id_carrera == 5) formData.id_carrera = 5;
-        formData.idLaboratorio = selectedLab; */
-        console.log(formData);
-        //const response = await registerEquipApi(formData);
-        //console.log(response);
-        //router.push("/");
+      if (formData.Alumnos_equipo == "" || formData.Alumnos_equipo == null)
+        formData.Alumnos_equipo = viewEquip.Alumnos_equipo;
+
+      if (!disponibilidad || disponibilidad == null)
+        formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
+      else formData.Disponibilidad_equipo = disponibilidad;
+
+      if (formData.estado == 2) formData.estado = 2;
+      if (formData.estado == 3) formData.estado = 3;
+      if (formData.Disponibilidad == 1) formData.Disponibilidad = true;
+      if (formData.Disponibilidad == 2) formData.Disponibilidad = false;
+      if (formData.id_carrera == 1) formData.id_carrera = 1;
+      if (formData.id_carrera == 2) formData.id_carrera = 2;
+      if (formData.id_carrera == 3) formData.id_carrera = 3;
+      if (formData.id_carrera == 4) formData.id_carrera = 4;
+      if (formData.id_carrera == 5) formData.id_carrera = 5;
+      formData.idLaboratorio = selectedLab;
+      console.log(formData);
+      //const response = await registerEquipApi(formData);
+      //console.log(response);
+      //router.push("/");
     },
   });
 
@@ -214,7 +226,7 @@ function EditFormEquipo(props) {
                 selection
                 options={options}
                 style={{
-                  width: 170
+                  width: 170,
                 }}
               />
               <Item>Descripción del fallo:</Item>
@@ -246,6 +258,7 @@ function EditFormEquipo(props) {
                 style={{
                   width: 170,
                 }}
+                onChange={(e, { value }) => setDisponibilidad(value)}
               />
             </Form>
           </div>
@@ -341,13 +354,13 @@ function EditFormEquipo(props) {
           </div>
         </div>
         <div className="EquipamientoEditForm__actions">
-          <Form onSubmit={formik.handleSubmit}>
           <Button onClick={() => setEditable(!editable)}>
             <Icon name="edit"></Icon>
           </Button>
-          <Button disabled={!editable} type="submit">
-            <Icon name="save"></Icon>
-          </Button>
+          <Form onSubmit={formik.handleSubmit}>
+            <Button disabled={!editable} type="submit">
+              <Icon name="save"></Icon>
+            </Button>
           </Form>
         </div>
       </div>
