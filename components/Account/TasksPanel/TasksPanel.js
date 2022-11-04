@@ -1,17 +1,17 @@
 import React, { Component, useState, useEffect } from "react";
 import { Breadcrumb, Layout, Menu } from "antd";
-import CaptureForm from "../SelectBar/Equipamiento/CaptureForm";
-import RequestForm from "../SelectBar/Equipamiento/RequestForm";
-import CaptureFormAdeudo from "../SelectBar/Adeudo/CaptureFormAdeudo";
-import RequestFormAdeudo from "../SelectBar/Adeudo/RequestFormAdeudo";
-import ReportesNoAdeudo from "../SelectBar/ReportesNoAdeudo";
 import classNames from "classnames";
 import { Icon } from "semantic-ui-react";
 import { forEach, map, size } from "lodash";
 import { useRouter } from "next/router";
 import { Button, Loader } from "semantic-ui-react";
 import useAuth from "../../../hooks/useAuth";
-
+import EquipamientoEditForm from "../SelectBar/Equipamiento/EquipamientoEditForm/EquipamientoEditForm";
+import CaptureForm from "../SelectBar/Equipamiento/CaptureForm";
+import RequestForm from "../SelectBar/Equipamiento/RequestForm";
+import CaptureFormAdeudo from "../SelectBar/Adeudo/CaptureFormAdeudo";
+import RequestFormAdeudo from "../SelectBar/Adeudo/RequestFormAdeudo";
+import ReportesNoAdeudo from "../SelectBar/ReportesNoAdeudo";
 export default function TasksPanel(props) {
   const {
     equips,
@@ -195,12 +195,12 @@ function ShowComponent(props) {
         />
       );
     case 1:
+      let viewEquip = [];
       return (
-        <CaptureForm
+        <EquipamientoEditForm
           disponibilidadEquipo={disponibilidadEquipo}
           estadosEquipos={estadosEquipos}
-          selectedLab={selectedLab}
-          index={index}
+          viewEquip={viewEquip}
         />
       );
     case 2:
@@ -232,3 +232,13 @@ function Back(props) {
     </>
   );
 }
+
+/*
+<CaptureForm
+          disponibilidadEquipo={disponibilidadEquipo}
+          estadosEquipos={estadosEquipos}
+          selectedLab={selectedLab}
+          index={index}
+        />
+
+*/

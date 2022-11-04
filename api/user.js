@@ -122,28 +122,7 @@ export async function registerDebtApi(formData) {
     return null;
   }
 }
-export async function registerEquipApi(formData) {
-  try {
-    const url = `${URL}/api/equips/PostEquipo`;
-    const params = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    };
 
-    console.log(formData);
-
-    const response = await fetch(url, params);
-
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-}
 
 export async function getDisponibilidadApi() {
   try {

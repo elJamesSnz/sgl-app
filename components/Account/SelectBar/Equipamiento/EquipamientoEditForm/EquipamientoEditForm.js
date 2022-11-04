@@ -1,5 +1,5 @@
 import { map, size } from "lodash";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -13,15 +13,23 @@ import {
 } from "semantic-ui-react";
 import { Checkbox } from "antd";
 import { registerEquipApi } from "../../../../../api/user";
+import { EditEquipApi, RegisterEquipApi } from "../../../../../api/equip";
 
 export default function EquipamientoEditForm(props) {
   const { viewEquip, estadosEquipos, disponibilidadEquipo } = props;
   const [editable, setEditable] = useState(false);
   const [disponibilidad, setDisponibilidad] = useState(undefined);
   const [estado, setEstado] = useState(undefined);
-  const [agregar, setAgregar] = useState(undefined);
-
+  //Indica si es editar un equipo o agregar uno
+  const [agregar, setAgregar] = useState(false);
   console.log(viewEquip);
+
+  useEffect(() => {
+    if (viewEquip == null || size(viewEquip) == 0) {
+      setAgregar(true);
+    }
+  }, []);
+
   return (
     <EditFormEquipo
       disponibilidadEquipo={disponibilidadEquipo}
@@ -33,6 +41,7 @@ export default function EquipamientoEditForm(props) {
       setDisponibilidad={setDisponibilidad}
       estado={estado}
       setEstado={setEstado}
+      agregar={agregar}
     />
   );
 }
@@ -44,11 +53,11 @@ function EditFormEquipo(props) {
     estadosEquipos,
     disponibilidadEquipo,
     viewEquip,
-    selectedLab,
     disponibilidad,
     setDisponibilidad,
     estado,
     setEstado,
+    agregar,
   } = props;
   const [componentDisabled, setComponentDisabled] = useState(false);
   const onFormLayoutChange = ({ disabled }) => {
@@ -85,68 +94,87 @@ function EditFormEquipo(props) {
     initialValues: initualValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
-      if (formData.Nombre_equipo == "" || formData.Nombre_equipo == null)
-        formData.Nombre_equipo = viewEquip.Nombre_equipo;
+      if (agregar) {
+        //VALIDACIONES AGREGAR
+      } else {
+        //VALIDACIONES EDITAR
 
-      if (formData.Nombre_laboratorio == "" || formData.Nombre_laboratorio == null)
-        formData.Nombre_laboratorio = viewEquip.Nombre_laboratorio;
-        
-      if (formData.Cams_equipo == "" || formData.Cams_equipo == null)
-        formData.Cams_equipo = viewEquip.Cams_equipo;
+        if (formData.Nombre_equipo == "" || formData.Nombre_equipo == null)
+          formData.Nombre_equipo = viewEquip.Nombre_equipo;
 
-      if (formData.Modelo_equipo == "" || formData.Modelo_equipo == null)
-        formData.Modelo_equipo = viewEquip.Modelo_equipo;
- 
-      if (formData.Año_equipo == "" || formData.Año_equipo == null)
-        formData.Año_equipo = viewEquip.Año_equipo;
+        if (
+          formData.Nombre_laboratorio == "" ||
+          formData.Nombre_laboratorio == null
+        )
+          formData.Nombre_laboratorio = viewEquip.Nombre_laboratorio;
 
-      if (formData.Descripcion_equipo == "" || formData.Descripcion_equipo == null)
-        formData.Descripcion_equipo = viewEquip.Descripcion_equipo;
+        if (formData.Cams_equipo == "" || formData.Cams_equipo == null)
+          formData.Cams_equipo = viewEquip.Cams_equipo;
 
-      if (formData.Manual_equipo == "" || formData.Manual_equipo == null)
-        formData.Manual_equipo = viewEquip.Manual_equipo;
-        
-      if (formData.Descripcion_fallo_equipo == "" || formData.Descripcion_fallo_equipo == null)
-        formData.Descripcion_fallo_equipo = viewEquip.Descripcion_fallo_equipo;
+        if (formData.Modelo_equipo == "" || formData.Modelo_equipo == null)
+          formData.Modelo_equipo = viewEquip.Modelo_equipo;
 
-      if (formData.Marca_equipo == "" || formData.Marca_equipo == null)
-        formData.Marca_equipo = viewEquip.Marca_equipo;
+        if (formData.Año_equipo == "" || formData.Año_equipo == null)
+          formData.Año_equipo = viewEquip.Año_equipo;
 
-      if (formData.Alumnos_equipo == "" || formData.Alumnos_equipo == null)
-        formData.Alumnos_equipo = viewEquip.Alumnos_equipo;
+        if (
+          formData.Descripcion_equipo == "" ||
+          formData.Descripcion_equipo == null
+        )
+          formData.Descripcion_equipo = viewEquip.Descripcion_equipo;
 
-      if (formData.Asignatura_equipo == "" || formData.Asignatura_equipo == null)
-        formData.Asignatura_equipo = viewEquip.Asignatura_equipo;
+        if (formData.Manual_equipo == "" || formData.Manual_equipo == null)
+          formData.Manual_equipo = viewEquip.Manual_equipo;
 
-      if (formData.Practicas_equipo == "" || formData.Practicas_equipo == null)
-        formData.Practicas_equipo = viewEquip.Practicas_equipo; 
+        if (
+          formData.Descripcion_fallo_equipo == "" ||
+          formData.Descripcion_fallo_equipo == null
+        )
+          formData.Descripcion_fallo_equipo =
+            viewEquip.Descripcion_fallo_equipo;
 
-      if (formData.Utilidad_equipo == "" || formData.Utilidad_equipo == null)
-        formData.Utilidad_equipo = viewEquip.Utilidad_equipo; 
+        if (formData.Marca_equipo == "" || formData.Marca_equipo == null)
+          formData.Marca_equipo = viewEquip.Marca_equipo;
 
-        
+        if (formData.Alumnos_equipo == "" || formData.Alumnos_equipo == null)
+          formData.Alumnos_equipo = viewEquip.Alumnos_equipo;
 
-      if (!disponibilidad || disponibilidad == null)
-        formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
-      else formData.Disponibilidad_equipo = disponibilidad;
+        if (
+          formData.Asignatura_equipo == "" ||
+          formData.Asignatura_equipo == null
+        )
+          formData.Asignatura_equipo = viewEquip.Asignatura_equipo;
 
-      if (!estado || estado == null)
-        formData.Estado_equipo = viewEquip.Estado_equipo;
-      else formData.Estado_equipo = estado;
+        if (
+          formData.Practicas_equipo == "" ||
+          formData.Practicas_equipo == null
+        )
+          formData.Practicas_equipo = viewEquip.Practicas_equipo;
 
-      /* if (formData.estado == 2) formData.estado = 2;
-      if (formData.estado == 3) formData.estado = 3;
-      if (formData.Disponibilidad == 1) formData.Disponibilidad = true;
-      if (formData.Disponibilidad == 2) formData.Disponibilidad = false;
-      if (formData.id_carrera == 1) formData.id_carrera = 1;
-      if (formData.id_carrera == 2) formData.id_carrera = 2;
-      if (formData.id_carrera == 3) formData.id_carrera = 3;
-      if (formData.id_carrera == 4) formData.id_carrera = 4;
-      if (formData.id_carrera == 5) formData.id_carrera = 5;
-      formData.idLaboratorio = selectedLab;
-      formData.Id_equipo = viewEquip.Id_equipo; */
+        if (formData.Utilidad_equipo == "" || formData.Utilidad_equipo == null)
+          formData.Utilidad_equipo = viewEquip.Utilidad_equipo;
+
+        if (!disponibilidad || disponibilidad == null)
+          formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
+        else formData.Disponibilidad_equipo = disponibilidad;
+
+        if (!estado || estado == null)
+          formData.Estado_equipo = viewEquip.Estado_equipo;
+        else formData.Estado_equipo = estado;
+
+        formData.Id_equipo = viewEquip.Id_equipo;
+      }
+
       console.log(formData);
-      //const response = await registerEquipApi(formData);
+
+      if (agregar) {
+        // const response = await RegisterEquipApi(formData);
+        alert("agregar");
+      } else {
+        const response = await EditFormEquipo(formData);
+        alert("editar");
+      }
+
       //console.log(response);
       //router.push("/");
     },
@@ -178,14 +206,16 @@ function EditFormEquipo(props) {
                 type="text"
                 //placeholder="Nombre del Laboratorio"
                 placeholder={
-                  viewEquip.Nombre_laboratorio
-                    ? `${viewEquip.Nombre_laboratorio}`
-                    : "Nombre del Laboratorio (sin asignar)"
+                  viewEquip?.Nombre_laboratorio
+                    ? `${viewEquip?.Nombre_laboratorio}`
+                    : "Sin asignar"
                 }
               />
               <Item>Nombre del equipo:</Item>
               <Input
-                className={`Nombre_equipo ${editable ? "" : "disabled"}`}
+                className={`Nombre_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 name="Nombre_equipo"
                 type="text"
                 placeholder={
@@ -332,7 +362,9 @@ function EditFormEquipo(props) {
             >
               <Item>Marca Equipo</Item>
               <Input
-                className={`Marca_equipo ${editable ? "" : "disabled"}`}
+                className={`Marca_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 name="Marca_equipo"
                 type="text"
                 //placeholder="Marca del equipo"
@@ -414,14 +446,26 @@ function EditFormEquipo(props) {
           </div>
         </div>
         <div className="EquipamientoEditForm__actions">
-          <Button onClick={() => setEditable(!editable)}>
-            <span>Editar</span>
-            <Icon name="edit"></Icon>
-          </Button>
-          <Form onSubmit={formik.handleSubmit}>
-            <Button disabled={!editable} type="submit">
-              <Icon name="save"></Icon>
+          {!agregar && (
+            <Button onClick={() => setEditable(!editable)}>
+              <>
+                <span>Editar</span>
+                <Icon name="edit"></Icon>
+              </>
             </Button>
+          )}
+
+          <Form onSubmit={formik.handleSubmit}>
+            {!agregar && (
+              <Button disabled={!editable} type="submit">
+                <Icon name="save"></Icon>
+              </Button>
+            )}
+            {agregar && (
+              <Button disabled={editable} type="submit">
+                <Icon name="save"></Icon>
+              </Button>
+            )}
           </Form>
         </div>
       </div>
