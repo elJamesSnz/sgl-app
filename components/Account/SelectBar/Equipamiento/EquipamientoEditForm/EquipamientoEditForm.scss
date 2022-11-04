@@ -23,6 +23,13 @@
 .EquipamientoEditForm__actions {
   display: flex;
   justify-content: flex-end;
+  button {
+    display: flex;
+    justify-content: space-between;
+    span {
+      margin: 0 1rem;
+    }
+  }
 }
 
 .EquipamientoEditForm__img {

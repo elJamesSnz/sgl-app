@@ -18,7 +18,7 @@ export default function EquipamientoEditForm(props) {
   const [editable, setEditable] = useState(false);
   const [disponibilidad, setDisponibilidad] = useState(undefined);
   const [estado, setEstado] = useState(undefined);
-
+  const [agregar, setAgregar] = useState(undefined);
   console.log(viewEquip);
   return (
     <EditFormEquipo
@@ -46,7 +46,7 @@ function EditFormEquipo(props) {
     disponibilidad,
     setDisponibilidad,
     estado,
-    setEstado
+    setEstado,
   } = props;
 
   let options = [];
@@ -74,9 +74,6 @@ function EditFormEquipo(props) {
 
       options.push(aux);
     }
-
-    console.log(options);
-    console.log(optionsDisponibilidad);
   }
 
   const formik = useFormik({
@@ -366,6 +363,7 @@ function EditFormEquipo(props) {
         </div>
         <div className="EquipamientoEditForm__actions">
           <Button onClick={() => setEditable(!editable)}>
+            <span>Editar</span>
             <Icon name="edit"></Icon>
           </Button>
           <Form onSubmit={formik.handleSubmit}>
