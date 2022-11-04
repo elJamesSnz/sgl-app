@@ -11,6 +11,7 @@ import {
   Select,
   Dropdown,
 } from "semantic-ui-react";
+import { Checkbox } from "antd";
 import { registerEquipApi } from "../../../../../api/user";
 
 export default function EquipamientoEditForm(props) {
@@ -19,6 +20,7 @@ export default function EquipamientoEditForm(props) {
   const [disponibilidad, setDisponibilidad] = useState(undefined);
   const [estado, setEstado] = useState(undefined);
   const [agregar, setAgregar] = useState(undefined);
+
   console.log(viewEquip);
   return (
     <EditFormEquipo
@@ -48,7 +50,10 @@ function EditFormEquipo(props) {
     estado,
     setEstado,
   } = props;
-
+  const [componentDisabled, setComponentDisabled] = useState(false);
+  const onFormLayoutChange = ({ disabled }) => {
+    setComponentDisabled(disabled);
+  };
   let options = [];
   let optionsDisponibilidad = [];
 
@@ -80,8 +85,46 @@ function EditFormEquipo(props) {
     initialValues: initualValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
+      if (formData.Nombre_equipo == "" || formData.Nombre_equipo == null)
+        formData.Nombre_equipo = viewEquip.Nombre_equipo;
+
+      if (formData.Nombre_laboratorio == "" || formData.Nombre_laboratorio == null)
+        formData.Nombre_laboratorio = viewEquip.Nombre_laboratorio;
+        
+      if (formData.Cams_equipo == "" || formData.Cams_equipo == null)
+        formData.Cams_equipo = viewEquip.Cams_equipo;
+
+      if (formData.Modelo_equipo == "" || formData.Modelo_equipo == null)
+        formData.Modelo_equipo = viewEquip.Modelo_equipo;
+ 
+      if (formData.Año_equipo == "" || formData.Año_equipo == null)
+        formData.Año_equipo = viewEquip.Año_equipo;
+
+      if (formData.Descripcion_equipo == "" || formData.Descripcion_equipo == null)
+        formData.Descripcion_equipo = viewEquip.Descripcion_equipo;
+
+      if (formData.Manual_equipo == "" || formData.Manual_equipo == null)
+        formData.Manual_equipo = viewEquip.Manual_equipo;
+        
+      if (formData.Descripcion_fallo_equipo == "" || formData.Descripcion_fallo_equipo == null)
+        formData.Descripcion_fallo_equipo = viewEquip.Descripcion_fallo_equipo;
+
+      if (formData.Marca_equipo == "" || formData.Marca_equipo == null)
+        formData.Marca_equipo = viewEquip.Marca_equipo;
+
       if (formData.Alumnos_equipo == "" || formData.Alumnos_equipo == null)
         formData.Alumnos_equipo = viewEquip.Alumnos_equipo;
+
+      if (formData.Asignatura_equipo == "" || formData.Asignatura_equipo == null)
+        formData.Asignatura_equipo = viewEquip.Asignatura_equipo;
+
+      if (formData.Practicas_equipo == "" || formData.Practicas_equipo == null)
+        formData.Practicas_equipo = viewEquip.Practicas_equipo; 
+
+      if (formData.Utilidad_equipo == "" || formData.Utilidad_equipo == null)
+        formData.Utilidad_equipo = viewEquip.Utilidad_equipo; 
+
+        
 
       if (!disponibilidad || disponibilidad == null)
         formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
@@ -91,7 +134,7 @@ function EditFormEquipo(props) {
         formData.Estado_equipo = viewEquip.Estado_equipo;
       else formData.Estado_equipo = estado;
 
-      if (formData.estado == 2) formData.estado = 2;
+      /* if (formData.estado == 2) formData.estado = 2;
       if (formData.estado == 3) formData.estado = 3;
       if (formData.Disponibilidad == 1) formData.Disponibilidad = true;
       if (formData.Disponibilidad == 2) formData.Disponibilidad = false;
@@ -101,7 +144,7 @@ function EditFormEquipo(props) {
       if (formData.id_carrera == 4) formData.id_carrera = 4;
       if (formData.id_carrera == 5) formData.id_carrera = 5;
       formData.idLaboratorio = selectedLab;
-      formData.Id_equipo = viewEquip.Id_equipo;
+      formData.Id_equipo = viewEquip.Id_equipo; */
       console.log(formData);
       //const response = await registerEquipApi(formData);
       //console.log(response);
@@ -210,6 +253,13 @@ function EditFormEquipo(props) {
                 onChange={formik.handleChange}
                 error={formik.errors.Descripcion_equipo}
               />
+              <br></br>
+              <Checkbox
+                checked={componentDisabled}
+                onChange={(e) => setComponentDisabled(e.target.checked)}
+              >
+                Cuenta con un manual de usuario
+              </Checkbox>
               <Item>Nombre del manual:</Item>
               <Input
                 className={`Manual_equipo ${editable ? "" : "disabled"}`}
@@ -222,6 +272,8 @@ function EditFormEquipo(props) {
                     : "Sin asignar"
                 }
                 onChange={formik.handleChange}
+                onValuesChange={onFormLayoutChange}
+                disabled={!componentDisabled}
                 error={formik.errors.Manual_equipo}
               />
               <Item>Estatus actual: {viewEquip.Descripcion_estado}</Item>
