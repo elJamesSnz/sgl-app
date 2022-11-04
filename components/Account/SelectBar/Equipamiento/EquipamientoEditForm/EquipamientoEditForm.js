@@ -104,6 +104,7 @@ function EditFormEquipo(props) {
       if (formData.id_carrera == 4) formData.id_carrera = 4;
       if (formData.id_carrera == 5) formData.id_carrera = 5;
       formData.idLaboratorio = selectedLab;
+      formData.Id_equipo = viewEquip.Id_equipo;
       console.log(formData);
       //const response = await registerEquipApi(formData);
       //console.log(response);
