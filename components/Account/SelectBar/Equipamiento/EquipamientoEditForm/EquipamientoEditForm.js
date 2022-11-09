@@ -228,7 +228,7 @@ function EditFormEquipo(props) {
               />
               <Item>Codigo Cams:</Item>
               <Input
-                className={`Cams_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Cams_equipo ${editable ? "" : "disabled"}`}
                 name="Cams_equipo"
                 type="text"
                 //placeholder="Codigo de Barras"
@@ -242,7 +242,7 @@ function EditFormEquipo(props) {
               />
               <Item>Modelo:</Item>
               <Input
-                className={`Modelo_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Modelo_equipo ${editable ? "" : "disabled"}`}
                 name="Modelo_equipo"
                 type="text"
                 rows={4}
@@ -257,7 +257,7 @@ function EditFormEquipo(props) {
               />
               <Item>Año:</Item>
               <Input
-                className={`Año_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Año_equipo ${editable ? "" : "disabled"}`}
                 name="Año_equipo"
                 type="text"
                 //placeholder="Año"
@@ -271,7 +271,7 @@ function EditFormEquipo(props) {
               />
               <Item>Descripción</Item>
               <Input
-                className={`Descripcion_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Descripcion_equipo ${editable ? "" : "disabled"}`}
                 name="Descripcion_equipo"
                 type="text"
                 //placeholder="Descripción"
@@ -292,7 +292,7 @@ function EditFormEquipo(props) {
               </Checkbox>
               <Item>Nombre del manual:</Item>
               <Input
-                className={`Manual_equipo ${editable || agregar? "" : "disabled"}`}
+                className={`Manual_equipo ${editable ? "" : "disabled"}`}
                 name="Manual_equipo"
                 type="text"
                 //placeholder="Nombre del manual"
@@ -309,10 +309,7 @@ function EditFormEquipo(props) {
               <Item>Estatus actual: {viewEquip.Descripcion_estado}</Item>
               <Dropdown
                 nombre="Estado_equipo"
-                //disabled={!editable}
-                className={`Estado_equipo ${
-                  editable || agregar? "" : "disabled"
-                }`}
+                disabled={!editable}
                 clearable
                 search
                 selection
@@ -325,7 +322,7 @@ function EditFormEquipo(props) {
               <Item>Descripción del fallo:</Item>
               <Input
                 className={`Descripcion_fallo_equipo ${
-                  editable || agregar? "" : "disabled"
+                  editable ? "" : "disabled"
                 }`}
                 name="Descripcion_fallo_equipo"
                 type="text"
@@ -343,10 +340,7 @@ function EditFormEquipo(props) {
                 Disponibilidad actual: {String(viewEquip.Descripcion)}
               </Item>
               <Dropdown
-                //disabled={!editable}
-                className={`Disponibilidad_equipo ${
-                  editable || agregar? "" : "disabled"
-                }`}
+                disabled={!editable}
                 clearable
                 search
                 selection
@@ -384,7 +378,7 @@ function EditFormEquipo(props) {
               />
               <Item>Alumnos beneficiados</Item>
               <Input
-                className={`Alumnos_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Alumnos_equipo ${editable ? "" : "disabled"}`}
                 name="Alumnos_equipo"
                 type="text"
                 //placeholder="Marca del equipo"
@@ -398,7 +392,7 @@ function EditFormEquipo(props) {
               />
               <Item>Asignaturas del equipo</Item>
               <Input
-                className={`Asignatura_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Asignatura_equipo ${editable ? "" : "disabled"}`}
                 name="Asignatura_equipo"
                 type="text"
                 //placeholder="Asignaturas del equipo"
@@ -412,7 +406,7 @@ function EditFormEquipo(props) {
               />
               <Item>Prácticas del equipo</Item>
               <Input
-                className={`Practicas_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Practicas_equipo ${editable ? "" : "disabled"}`}
                 name="Practicas_equipo"
                 type="text"
                 //placeholder="Prácticas del equipo"
@@ -426,7 +420,7 @@ function EditFormEquipo(props) {
               />
               <Item>Utilidades del equipo</Item>
               <Input
-                className={`Utilidad_equipo ${editable || agregar ? "" : "disabled"}`}
+                className={`Utilidad_equipo ${editable ? "" : "disabled"}`}
                 name="Utilidad_equipo"
                 type="text"
                 //placeholder="Utilidades del equipo"
