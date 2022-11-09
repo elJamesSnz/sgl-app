@@ -93,7 +93,7 @@ export default function AdeudoEditForm(props) {
           />
           <Item>Nombre del Alumno:</Item>
           <Input
-            className={`Nombre_alumno ${editable ? "disabled" : "disabled"}`}
+            className={`Nombre_alumno ${editable ? "" : "disabled"}`}
             name="nombre"
             type="text"
             //placeholder="Nombre del Alumno"
@@ -101,7 +101,7 @@ export default function AdeudoEditForm(props) {
           />
           <Item>Boleta_adeudo:</Item>
           <Input
-            className={`boleta ${editable ? "disabled" : "disabled"}`}
+            className={`boleta ${editable ? "" : "disabled"}`}
             name="boleta"
             type="text"
             rows={4}

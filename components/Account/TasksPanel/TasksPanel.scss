@@ -4,9 +4,10 @@
 
 .availabletasks__panel {
   //display grid para número de columnas
-  min-width: 50rem !important;
+  //min-width: 50rem !important;
   padding: 1rem 2rem;
   flex-wrap: wrap;
+  //display: inline-flex;
   margin: 0 auto;
   margin-top: 2rem;
   margin-bottom: 1rem;
