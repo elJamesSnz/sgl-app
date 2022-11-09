@@ -171,7 +171,7 @@ function EditFormEquipo(props) {
         // const response = await RegisterEquipApi(formData);
         alert("agregar");
       } else {
-        const response = await EditFormEquipo(formData);
+        //const response = await EditFormEquipo(formData);
         alert("editar");
       }
 
@@ -228,7 +228,9 @@ function EditFormEquipo(props) {
               />
               <Item>Codigo Cams:</Item>
               <Input
-                className={`Cams_equipo ${editable ? "" : "disabled"}`}
+                className={`Cams_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 name="Cams_equipo"
                 type="text"
                 //placeholder="Codigo de Barras"
@@ -242,7 +244,9 @@ function EditFormEquipo(props) {
               />
               <Item>Modelo:</Item>
               <Input
-                className={`Modelo_equipo ${editable ? "" : "disabled"}`}
+                className={`Modelo_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 name="Modelo_equipo"
                 type="text"
                 rows={4}
@@ -257,7 +261,9 @@ function EditFormEquipo(props) {
               />
               <Item>Año:</Item>
               <Input
-                className={`Año_equipo ${editable ? "" : "disabled"}`}
+                className={`Año_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 name="Año_equipo"
                 type="text"
                 //placeholder="Año"
@@ -271,7 +277,9 @@ function EditFormEquipo(props) {
               />
               <Item>Descripción</Item>
               <Input
-                className={`Descripcion_equipo ${editable ? "" : "disabled"}`}
+                className={`Descripcion_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 name="Descripcion_equipo"
                 type="text"
                 //placeholder="Descripción"
@@ -292,7 +300,9 @@ function EditFormEquipo(props) {
               </Checkbox>
               <Item>Nombre del manual:</Item>
               <Input
-                className={`Manual_equipo ${editable ? "" : "disabled"}`}
+                className={`Manual_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 name="Manual_equipo"
                 type="text"
                 //placeholder="Nombre del manual"

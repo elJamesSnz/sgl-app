@@ -12,6 +12,7 @@ import RequestForm from "../SelectBar/Equipamiento/RequestForm";
 import CaptureFormAdeudo from "../SelectBar/Adeudo/CaptureFormAdeudo";
 import RequestFormAdeudo from "../SelectBar/Adeudo/RequestFormAdeudo";
 import ReportesNoAdeudo from "../SelectBar/ReportesNoAdeudo";
+import AdeudoEditForm from "../SelectBar/Adeudo/AdeudoEditForm/AdeudoEditForm";
 export default function TasksPanel(props) {
   const {
     equips,
@@ -206,11 +207,10 @@ function ShowComponent(props) {
     case 2:
       return <RequestFormAdeudo debts={debts} equips={equips} />;
     case 3:
+      let viewAdeudo = [];
       return (
-        <CaptureFormAdeudo
-          selectedLab={selectedLab}
-          equips={equips}
-          index={index}
+        <AdeudoEditForm
+          viewAdeudo={viewAdeudo}
         />
       );
     case 20:
