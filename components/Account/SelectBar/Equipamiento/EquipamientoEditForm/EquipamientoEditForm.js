@@ -23,8 +23,6 @@ export default function EquipamientoEditForm(props) {
   const [estado, setEstado] = useState(undefined);
   //Indica si es editar un equipo o agregar uno
   const [agregar, setAgregar] = useState(false);
-  const [labId, setLabId] = useState(0);
-  console.log(viewEquip);
 
   useEffect(() => {
     if (viewEquip == null || size(viewEquip) == 0) {
@@ -98,8 +96,10 @@ function EditFormEquipo(props) {
     initialValues: initualValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
+      console.log(formData);
       if (agregar) {
         //VALIDACIONES AGREGAR
+        formData.Id_laboratorio = selectedLab;
       } else {
         //VALIDACIONES EDITAR
 
@@ -158,27 +158,24 @@ function EditFormEquipo(props) {
         if (formData.Utilidad_equipo == "" || formData.Utilidad_equipo == null)
           formData.Utilidad_equipo = viewEquip.Utilidad_equipo;
 
-        if (!disponibilidad || disponibilidad == null)
-          formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
-        else formData.Disponibilidad_equipo = disponibilidad;
-
-        if (!estado || estado == null)
-          formData.Estado_equipo = viewEquip.Estado_equipo;
-        else formData.Estado_equipo = estado;
-
         formData.Id_equipo = viewEquip.Id_equipo;
+        formData.Id_laboratorio = viewEquip.Id_laboratorio;
       }
 
-      formData.Disponibilidad_equipo = disponibilidad;
-      formData.Estado_equipo = estado;
-      formData.Id_laboratorio = selectedLab;
+      if (!disponibilidad || disponibilidad == null)
+        formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
+      else formData.Disponibilidad_equipo = disponibilidad;
+
+      if (!estado || estado == null)
+        formData.Estado_equipo = viewEquip.Estado_equipo;
+      else formData.Estado_equipo = estado;
 
       console.log(formData);
 
       if (agregar) {
         const response = await RegisterEquipApi(formData);
       } else {
-        //const response = await EditFormEquipo(formData);
+        const response = await EditEquipApi(formData);
       }
 
       //console.log(response);
@@ -515,9 +512,7 @@ function initualValues() {
     Asignatura_equipo: "",
     Año_equipo: "",
     Cams_equipo: "",
-    Descripcion: "",
     Descripcion_equipo: "",
-    Descripcion_estado: "",
     Descripcion_fallo_equipo: "",
     Disponibilidad_equipo: "",
     Estado_equipo: "",
