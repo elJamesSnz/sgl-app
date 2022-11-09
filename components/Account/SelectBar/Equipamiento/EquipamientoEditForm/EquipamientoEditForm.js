@@ -330,7 +330,10 @@ function EditFormEquipo(props) {
               <Item>Estatus actual: {viewEquip.Descripcion_estado}</Item>
               <Dropdown
                 nombre="Estado_equipo"
-                disabled={!agregar}
+                //disabled={!editable}
+                className={`Estado_equipo ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 clearable
                 search
                 selection
@@ -362,7 +365,10 @@ function EditFormEquipo(props) {
                 {viewEquip.Descripcion ? String(viewEquip.Descripcion) : ""}
               </Item>
               <Dropdown
-                disabled={!agregar}
+                //disabled={!agregar}
+                className={`Descripcion_estado ${
+                  editable || agregar ? "" : "disabled"
+                }`}
                 clearable
                 search
                 selection

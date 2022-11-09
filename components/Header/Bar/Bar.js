@@ -11,9 +11,12 @@ export default function Bar() {
       <div className="main_bar main-container">
         <LogoSGL router={router} />
         <a className="TITLE" href="/">
-          Unidad Profesional Interdisciplinaria en Ingeniería y Tecnologías
-          Avanzadas
+          "Unidad Profesional Interdisciplinaria en Ingeniería y Tecnologías
+          Avanzadas"<br></br>Coordinacion de Laboratorios
+          <br></br> Sistema de Gestion de Laboratorios
         </a>
+        
+        
         <LogoIPN />
       </div>
     </div>
