@@ -202,6 +202,7 @@ function ShowComponent(props) {
           disponibilidadEquipo={disponibilidadEquipo}
           estadosEquipos={estadosEquipos}
           viewEquip={viewEquip}
+          selectedLab={selectedLab}
         />
       );
     case 2:
@@ -209,9 +210,7 @@ function ShowComponent(props) {
     case 3:
       let viewAdeudo = [];
       return (
-        <AdeudoEditForm
-          viewAdeudo={viewAdeudo}
-        />
+        <AdeudoEditForm viewAdeudo={viewAdeudo} selectedLab={selectedLab} />
       );
     case 20:
       if (auth.idRol == 1) {

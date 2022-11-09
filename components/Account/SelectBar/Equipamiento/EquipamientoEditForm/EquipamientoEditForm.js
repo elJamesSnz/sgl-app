@@ -16,12 +16,14 @@ import { registerEquipApi } from "../../../../../api/user";
 import { EditEquipApi, RegisterEquipApi } from "../../../../../api/equip";
 
 export default function EquipamientoEditForm(props) {
-  const { viewEquip, estadosEquipos, disponibilidadEquipo } = props;
+  const { viewEquip, estadosEquipos, disponibilidadEquipo, selectedLab } =
+    props;
   const [editable, setEditable] = useState(false);
   const [disponibilidad, setDisponibilidad] = useState(undefined);
   const [estado, setEstado] = useState(undefined);
   //Indica si es editar un equipo o agregar uno
   const [agregar, setAgregar] = useState(false);
+  const [labId, setLabId] = useState(0);
   console.log(viewEquip);
 
   useEffect(() => {
@@ -32,6 +34,7 @@ export default function EquipamientoEditForm(props) {
 
   return (
     <EditFormEquipo
+      selectedLab={selectedLab}
       disponibilidadEquipo={disponibilidadEquipo}
       estadosEquipos={estadosEquipos}
       editable={editable}
@@ -58,6 +61,7 @@ function EditFormEquipo(props) {
     estado,
     setEstado,
     agregar,
+    selectedLab,
   } = props;
   const [componentDisabled, setComponentDisabled] = useState(false);
   const onFormLayoutChange = ({ disabled }) => {
@@ -165,14 +169,16 @@ function EditFormEquipo(props) {
         formData.Id_equipo = viewEquip.Id_equipo;
       }
 
+      formData.Disponibilidad_equipo = disponibilidad;
+      formData.Estado_equipo = estado;
+      formData.Id_laboratorio = selectedLab;
+
       console.log(formData);
 
       if (agregar) {
-        // const response = await RegisterEquipApi(formData);
-        alert("agregar");
+        const response = await RegisterEquipApi(formData);
       } else {
         //const response = await EditFormEquipo(formData);
-        alert("editar");
       }
 
       //console.log(response);
@@ -193,24 +199,29 @@ function EditFormEquipo(props) {
               style={{ padding: "10px" }}
               onSubmit={formik.handleSubmit}
             >
-              <Item>Laboratorio actual: </Item>
-              <Item>
-                {viewEquip.Nombre_laboratorio
-                  ? viewEquip.Nombre_laboratorio
-                  : `Sin asignar`}
-              </Item>
-              <Input
-                disabled={!editable}
-                className={`nombre ${!editable ? "" : "disabled"}`}
-                name="nombre"
-                type="text"
-                //placeholder="Nombre del Laboratorio"
-                placeholder={
-                  viewEquip?.Nombre_laboratorio
-                    ? `${viewEquip?.Nombre_laboratorio}`
-                    : "Sin asignar"
-                }
-              />
+              {!agregar && (
+                <>
+                  <Item>Laboratorio actual: </Item>
+                  <Item>
+                    {viewEquip.Nombre_laboratorio
+                      ? viewEquip.Nombre_laboratorio
+                      : `Sin asignar`}
+                  </Item>
+                  <Input
+                    disabled={!editable}
+                    className={`nombre ${!editable ? "" : "disabled"}`}
+                    name="nombre"
+                    type="text"
+                    //placeholder="Nombre del Laboratorio"
+                    placeholder={
+                      viewEquip?.Nombre_laboratorio
+                        ? `${viewEquip?.Nombre_laboratorio}`
+                        : "Sin asignar"
+                    }
+                  />
+                </>
+              )}
+
               <Item>Nombre del equipo:</Item>
               <Input
                 className={`Nombre_equipo ${
