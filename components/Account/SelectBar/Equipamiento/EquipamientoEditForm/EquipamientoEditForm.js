@@ -163,7 +163,6 @@ function EditFormEquipo(props) {
         formData.Id_laboratorio = viewEquip.Id_laboratorio;
       }
 
-<<<<<<< Updated upstream
       if (!disponibilidad || disponibilidad == null)
         formData.Disponibilidad_equipo = viewEquip.Disponibilidad_equipo;
       else formData.Disponibilidad_equipo = disponibilidad;
@@ -171,10 +170,6 @@ function EditFormEquipo(props) {
       if (!estado || estado == null)
         formData.Estado_equipo = viewEquip.Estado_equipo;
       else formData.Estado_equipo = estado;
-=======
-      formData.Disponibilidad_equipo = disponibilidad;
-      formData.Estado_equipo = estado;
->>>>>>> Stashed changes
 
       console.log(formData);
 
