@@ -26,16 +26,21 @@ export default function AdeudoEditForm(props) {
   }, []);
 
   console.log(viewAdeudo);
-  //<div className={`${navActive ? "active" : ""} nav__menu-list`}>
-  let NombreAlumno_Completo =
-    `${viewAdeudo.Nombre_alumno} ` +
-    `${viewAdeudo.Paterno_alumno} ` +
-    `${viewAdeudo.Materno_alumno}`;
 
-  let NombreEmpleado_Completo =
-    `${viewAdeudo.Nombre_empleado} ` +
-    `${viewAdeudo.Paterno_empleado} ` +
-    `${viewAdeudo.Materno_empleado}`;
+  var NombreAlumno_Completo = null;
+  var NombreEmpleado_Completo = null;
+
+  if (!agregar) {
+    NombreAlumno_Completo =
+      `${viewAdeudo.Nombre_alumno} ` +
+      `${viewAdeudo.Paterno_alumno} ` +
+      `${viewAdeudo.Materno_alumno}`;
+
+    NombreEmpleado_Completo =
+      `${viewAdeudo.Nombre_empleado} ` +
+      `${viewAdeudo.Paterno_empleado} ` +
+      `${viewAdeudo.Materno_empleado}`;
+  }
 
   const formik = useFormik({
     initialValues: initualValues(),
@@ -97,7 +102,9 @@ export default function AdeudoEditForm(props) {
             name="nombre"
             type="text"
             //placeholder="Nombre del Alumno"
-            placeholder={`${NombreAlumno_Completo}`}
+            placeholder={
+              NombreAlumno_Completo ? `${NombreAlumno_Completo}` : "Sin asignar"
+            }
           />
           <Item>Boleta_adeudo:</Item>
           <Input
@@ -194,7 +201,11 @@ export default function AdeudoEditForm(props) {
             name="profesor"
             type="text"
             //placeholder="Profesor"
-            placeholder={`${NombreEmpleado_Completo}`}
+            placeholder={
+              NombreEmpleado_Completo
+                ? `${NombreEmpleado_Completo}`
+                : "Sin asignar"
+            }
           />
         </Form>
         <div className="AdeudoEditForm__img">
