@@ -34,62 +34,6 @@ export async function getUserLabsApi(idUser) {
   }
 }
 
-export async function getItemsLabApi(idLab) {
-  try {
-    const url = `${URL}/api/users/getItemsLab?idLab=${idLab}`;
-    const response = await fetch(url);
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    return null;
-  }
-}
-
-export async function getDebtsLabApi(idLab) {
-  try {
-    const url = `${URL}/api/users/DebtByLab?idLab=${idLab}`;
-    const response = await fetch(url);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    return null;
-  }
-}
-
-export async function getDebtApi(idLab) {
-  try {
-    const url = `${URL}/api/users/Debt?idLab=${idLab}`;
-    const response = await fetch(url);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    return null;
-  }
-}
-
-export async function getAllDebts() {
-  try {
-    const url = `${URL}/api/users/AllDebts`;
-    const response = await fetch(url);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    return null;
-  }
-}
-
-export async function getAllEquipo() {
-  try {
-    const url = `${URL}/api/users/getAllEquipo`;
-    const response = await fetch(url);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    return null;
-  }
-}
-
 export async function AllLab() {
   try {
     const url = `${URL}/api/users/AllLab`;
@@ -101,9 +45,20 @@ export async function AllLab() {
   }
 }
 
+export async function getDebtsLabApi(idLab) {
+  try {
+    const url = `${URL}/api/debts/DebtByLab?idLab=${idLab}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
 export async function registerDebtApi(formData) {
   try {
-    const url = `${URL}/api/users/PostAdeudo`;
+    const url = `${URL}/api/debts/PostAdeudo`;
     const params = {
       method: "POST",
       headers: {
@@ -123,10 +78,31 @@ export async function registerDebtApi(formData) {
   }
 }
 
-
-export async function getDisponibilidadApi() {
+export async function getDebtApi(idLab) {
   try {
-    const url = `${URL}/api/users/getDisponibilidad`;
+    const url = `${URL}/api/debts/Debt?idLab=${idLab}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getAllDebts() {
+  try {
+    const url = `${URL}/api/debts/AllDebts`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getAllEquipo() {
+  try {
+    const url = `${URL}/api/equips/getAllEquipo`;
     const response = await fetch(url);
     const result = await response.json();
     return result;
@@ -137,7 +113,30 @@ export async function getDisponibilidadApi() {
 
 export async function getEstadosEquipoApi() {
   try {
-    const url = `${URL}/api/users/getEstadosEquipo`;
+    const url = `${URL}/api/equips/getEstadosEquipo`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getItemsLabApi(idLab) {
+  try {
+    const url = `${URL}/api/equips/getEquipsByLab?idLab=${idLab}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getDisponibilidadApi() {
+  try {
+    const url = `${URL}/api/users/getDisponibilidad`;
     const response = await fetch(url);
     const result = await response.json();
     return result;
