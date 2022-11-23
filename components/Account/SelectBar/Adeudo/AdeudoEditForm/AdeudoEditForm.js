@@ -11,14 +11,17 @@ import {
   Item,
   Select,
   Option,
+  TextArea,
 } from "semantic-ui-react";
+import { DatePicker, Checkbox } from "antd";
 
 export default function AdeudoEditForm(props) {
   const { viewAdeudo } = props;
   const [editable, setEditable] = useState(false);
   //Indica si es editar un equipo o agregar uno
   const [agregar, setAgregar] = useState(false);
-
+  const [componentDisabled, setComponentDisabled] = useState(false);
+  const [componentDisabled2, setComponentDisabled2] = useState(false);
   useEffect(() => {
     if (viewAdeudo == null || size(viewAdeudo) == 0) {
       setAgregar(true);
@@ -96,6 +99,7 @@ export default function AdeudoEditForm(props) {
                 : "Sin asignar"
             }
           />
+          {/* ALUMNO */}
           <Item>Nombre del Alumno:</Item>
           <Input
             className={`Nombre_alumno ${editable ? "" : "disabled"}`}
@@ -145,43 +149,97 @@ export default function AdeudoEditForm(props) {
                 : "No hay correo registrado"
             }
           />
-          <Item>Fecha de peticion</Item>
-          <Input
-            className={`Fecha_alta ${editable ? "" : "disabled"}`}
-            name="fecha_peticion"
-            type="text"
-            //placeholder="MM/DD/AAAA"
 
-            placeholder={
-              viewAdeudo.Fecha_alta ? `${viewAdeudo.Fecha_alta}` : "Sin asignar"
-            }
-          />
-          <Item>Fecha de entrega:</Item>
-          <Input
-            className={`Fecha_entrega ${editable ? "" : "disabled"}`}
-            name="fecha_entrega"
-            type="text"
-            //placeholder="MM/DD/AAAA"
+          {/* ADEUDO */}
 
-            placeholder={
-              viewAdeudo.Fecha_entrega
-                ? `${viewAdeudo.Fecha_entrega}`
-                : "Sin asignar"
-            }
-          />
+          <br></br>
+          <Checkbox
+            checked={componentDisabled}
+            onChange={(e) => setComponentDisabled(e.target.checked)}
+          >
+            Adeuda un equipo
+          </Checkbox>
           <Item>Nombre equipo adeudado:</Item>
           <Input
-            className={`Nombre_equipo ${editable ? "disabled" : "disabled"}`}
+            className={`Nombre_equipo ${editable ? "" : "disabled"}`}
             name="nombreequipo"
             type="text"
             //placeholder="Nombre equipo adeudado"
-
             placeholder={
               viewAdeudo.Nombre_equipo
                 ? `${viewAdeudo.Nombre_equipo}`
                 : "Sin asignar"
             }
+            disabled={!componentDisabled}
           />
+          <br></br>
+          <Item>Descripcion del equipo adeudado:</Item>
+          <TextArea disabled
+            className={`Descripcion_equipo ${editable ? "" : "disabled"}`}
+            name="Descripcion_equipo"
+            type="text"
+            //placeholder="Nombre equipo adeudado"
+            placeholder={
+              viewAdeudo.Descripcion_equipo
+                ? `${viewAdeudo.Descripcion_equipo}`
+                : "Sin asignar"
+            }
+            disabled={!componentDisabled}
+          />
+          <Item>Modelo equipo adeudado:</Item>
+          <Input
+            className={`Modelo_equipo ${editable ? "" : "disabled"}`}
+            name="Modelo"
+            type="text"
+            //placeholder="Nombre equipo adeudado"
+            placeholder={
+              viewAdeudo.Modelo_equipo
+                ? `${viewAdeudo.Modelo_equipo}`
+                : "Sin asignar"
+            }
+            disabled={!componentDisabled}
+          />
+          
+          <br></br>
+          <Checkbox
+            checked={componentDisabled2}
+            onChange={(e) => setComponentDisabled2(e.target.checked)}
+          >
+            Adeuda un componente 
+          </Checkbox>
+          <Item>Nombre del componente:</Item>
+          <Input
+            className={`Nombre_componente ${
+              editable || agregar ? "" : "disabled"
+            }`}
+            //name="Manual_equipo"
+            type="text"
+            placeholder="Nombre del Componente"
+            /* placeholder={
+              viewEquip.Nombre_componente
+                ? `${viewEquip.Nombre_componente}`
+                : "Sin asignar"
+            } */
+           // onChange={formik.handleChange}
+           // onValuesChange={onFormLayoutChange}
+           disabled={!componentDisabled2}
+           // error={formik.errors.Manual_equipo}
+          />
+          <br></br>
+          <Item>Descripcion del componente adeudado:</Item>
+          <TextArea disabled
+            className={`Descripcion_componente ${editable ? "" : "disabled"}`}
+            name="Descripcion_componente"
+            type="text"
+            //placeholder="Nombre equipo adeudado"
+            /* placeholder={
+              viewAdeudo.Descripcion_componente
+                ? `${viewAdeudo.Descripcion_componente}`
+                : "Sin asignar"
+            } */
+            disabled={!componentDisabled2}
+          />
+
           <Item>Asignatura:</Item>
           <Input
             className={`Asignatura_adeudo ${editable ? "" : "disabled"}`}
@@ -207,6 +265,45 @@ export default function AdeudoEditForm(props) {
                 : "Sin asignar"
             }
           />
+          <Item>Fecha de peticion</Item>
+          <DatePicker
+            className={`Fecha_alta ${editable ? "" : "disabled"}`}
+            name="fecha_peticion"
+            type="text"
+            //placeholder="MM/DD/AAAA"
+
+            placeholder={
+              viewAdeudo.Fecha_alta ? `${viewAdeudo.Fecha_alta}` : "Sin asignar"
+            }
+            // onChange = {(event) => this.setState({startDate: event.target.value})}
+          />
+          <Item>Fecha de entrega:</Item>
+          <DatePicker
+            className={`Fecha_entrega ${editable ? "" : "disabled"}`}
+            name="fecha_entrega"
+            type="text"
+            //placeholder="MM/DD/AAAA"
+
+            placeholder={
+              viewAdeudo.Fecha_entrega
+                ? `${viewAdeudo.Fecha_entrega}`
+                : "Sin asignar"
+            }
+            //onChange = {(event) => this.setState({startDate: event.target.value})}
+          />
+        <Item>Estado del adeudo:</Item>
+          <Input
+            className={`Descripcion_estado_adeudo ${editable ? "" : "disabled"}`}
+            name="profesor"
+            type="text"
+            //placeholder="Profesor"
+            placeholder={
+              Descripcion_estado_adeudo
+                ? `${viewAdeudo.Descripcion_estado_adeudo}`
+                : "Sin asignar"
+            }
+          />
+          
         </Form>
         <div className="AdeudoEditForm__img">
           <img
@@ -276,6 +373,7 @@ function initualValues() {
     Nombre_laboratorio: "",
     Practicas_equipo: "",
     Utilidad_equipo: "",
+    Descripcion_estado_adeudo: "",
   };
 }
 
@@ -300,5 +398,6 @@ function validationSchema() {
     Nombre_laboratorio: Yup.string(),
     Practicas_equipo: Yup.string(),
     Utilidad_equipo: Yup.string(),
+    Descripcion_estado_adeudo: Yup.string(),
   };
 }

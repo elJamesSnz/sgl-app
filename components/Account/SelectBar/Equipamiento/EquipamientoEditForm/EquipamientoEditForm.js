@@ -466,6 +466,24 @@ function EditFormEquipo(props) {
                 onChange={formik.handleChange}
                 error={formik.errors.Utilidad_equipo}
               />
+
+              {/* <Item>fecha</Item>
+              <Input
+                className={`fecha ${
+                  editable || agregar ? "" : "disabled"
+                }`}
+                name="fecha"
+                type="text"
+                //placeholder="Utilidades del equipo"
+                placeholder={
+                  viewEquip.fecha
+                    ? `${viewEquip.fecha}`
+                    : "Sin asignar"
+                }
+                onChange={(event) => this.setState({startDate: event.target.value})}
+                error={formik.errors.fecha}
+              /> */}
+
               <div className="EquipamientoEditForm__img">
                 <img
                   alt="example"
@@ -526,6 +544,7 @@ function initualValues() {
     Nombre_laboratorio: "",
     Practicas_equipo: "",
     Utilidad_equipo: "",
+    fecha:"",
   };
 }
 
@@ -550,5 +569,6 @@ function validationSchema() {
     Nombre_laboratorio: Yup.string(),
     Practicas_equipo: Yup.string(),
     Utilidad_equipo: Yup.string(),
+    fecha: Yup.string(),
   };
 }
